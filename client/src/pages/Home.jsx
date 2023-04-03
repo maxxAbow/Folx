@@ -33,7 +33,11 @@ const Home = () => {
                     <Login login={login} setLogin={setLogin} />
                 </Col>
                 <Col xs lg="5" style={{ height: '100vh', padding: 0}} >
-   
+                <Canvas >
+                    <Suspense fallback={null}>
+                   
+                    </Suspense>
+                </Canvas>  
                 </Col>
             </Row>
             
