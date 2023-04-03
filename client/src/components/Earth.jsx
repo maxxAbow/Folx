@@ -8,6 +8,15 @@ function Earth() {
 
     const gltf = useLoader(GLTFLoader, '/assets/polyImages/earth/scene.gltf')
 
+
+  return (
+    <>
+
+        
+        {/* Renders the Earth Image */}
+        <primitive object={gltf.scene} />
+    </>
+  )
 }
 
 export default Earth
