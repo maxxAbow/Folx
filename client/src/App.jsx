@@ -1,14 +1,16 @@
 import React from 'react';
+import {Container} from 'react-bootstrap'
 import Home from './pages/Home'
-
 import Navigation from './components/Navigation';
+
+import './assets/css/App.css'
 
 function App() {
   return (
-    <div className='App'>
+    <Container fluid className='p-0'>
       <Navigation />
       <Home />
-    </div>
+    </Container>
   );
 }
 
