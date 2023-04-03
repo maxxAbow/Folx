@@ -11,7 +11,8 @@ function Earth() {
 
   return (
     <>
-
+        {/* Creates camera perspective around the obect, takes arg called position [x-axis,y-axis, z-axis] */}
+        <PerspectiveCamera makeDefault  position={[0,0,5]}/>
         
         {/* Renders the Earth Image */}
         <primitive object={gltf.scene} />
