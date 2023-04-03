@@ -1,4 +1,4 @@
-const express = require('express');
-const app = express();
-const mongoose = require('mongoose');
-
+import express from 'express';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import cors from 'cors';
