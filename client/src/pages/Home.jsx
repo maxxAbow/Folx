@@ -8,6 +8,9 @@ import Earth from '../components/Earth';
 import Login from '../components/Login'
 
 const Home = () => {
+  
+  const [login, setLogin] = useState(true);
+
   return <div>Home</div>;
 };
 
