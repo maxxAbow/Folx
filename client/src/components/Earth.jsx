@@ -7,10 +7,10 @@ import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
 function Earth() {
 
     const gltf = useLoader(GLTFLoader, '/assets/polyImages/earth/scene.gltf')
-    // const orbitControlsRef = useRef(null)
-    // useFrame((state) => {
+    const orbitControlsRef = useRef(null)
+    useFrame((state) => {
         
-    // })
+    })
 
     // useEffect(() => {
     //     if(!!orbitControlsRef.current){
