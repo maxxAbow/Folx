@@ -27,9 +27,10 @@ const Home = () => {
         </div>
             <Row className='middle'>
                 <Col>
-                    <img className='astro bounce-2' src='../assets/images/astronaut-flipped.png' alt='A bouncing astronaut' />
+                    <img className='astro bounce-2' src='/assets/images/astronaut-flipped.png' alt='A bouncing astronaut' />
                 </Col>
                 <Col className="col-lg-5 col-md-7 p-0 form-container" style={{width: '25%', position: 'relative', zIndex: '1'}}>
+                    <Login login={login} setLogin={setLogin} />
                 </Col>
                 <Col xs lg="5" style={{ height: '100vh', padding: 0}} >
              
