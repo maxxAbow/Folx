@@ -1,0 +1,407 @@
+.flier {
+	pointer-events: none;
+}
+
+.astro {
+    align-self: flex-end;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    height: 400px;
+    margin-left: 105px;
+    transform-origin: bottom;
+    width: 400px;
+}
+
+.bounce-2 {
+    animation-name: bounce-2;
+    animation-timing-function: ease;
+}
+@keyframes bounce-2 {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-100px); }
+    100% { transform: translateY(0); }
+}
+
+.flier > * {
+    height: 80px;
+    width: 80px;
+}
+
+.flier > * {
+    height: 80px;
+    width: 80px;
+}
+
+/* Each image follows a unique path based on its parent container's ID */
+#image1 {
+    animation: fly1 55s linear infinite;
+    top: 0;
+	left: 0;
+	position: fixed;
+	z-index: 0;
+	pointer-events: none;
+}
+
+#image2 {
+    animation: fly2 45s linear infinite;
+    pointer-events: none ;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+
+#image3 {
+    animation: fly3 60s linear infinite;
+    bottom: 0;
+	right: 0;
+	position: fixed;
+	z-index: 0;
+	pointer-events: none;
+}
+
+#image4 {
+    animation: fly4 50s linear infinite;
+    bottom: 0;
+	left: 0;
+	position: fixed;
+	z-index: 0;
+	pointer-events: none;
+}
+
+#image5 {
+    animation: fly5 50s linear infinite;
+    pointer-events: none ;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+
+#image6 {
+    animation: fly6 50s linear infinite;
+    pointer-events: none ;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+
+#image7 {
+    animation: fly7 45s linear infinite;
+    pointer-events: none ;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+
+#image8 {
+    animation: fly8 55s linear infinite;
+    top: 0;
+	left: 0;
+	position: fixed;
+	z-index: 0;
+	pointer-events: none;
+}
+
+/* Keyframe values control where the element will begin
+    and end its trajectory across the screen. Each rule
+    represents a path the element follows across the screen. */
+
+
+@keyframes fly1 {
+    0% {
+
+        transform: translate(-200%,10vh) rotateZ(0deg);opacity: 1;
+    }
+
+    12.5% {
+        transform: translate(120vw,-120%) rotateZ(20deg);
+    }
+
+    25% {
+        transform: translate(-200%,50vh) scale(1.75) rotateZ(-20deg);
+    }
+
+    37.5% {
+        transform: translate(-200%,-120%) rotateZ(-40deg);
+    }
+
+    50% {
+        transform: translate(100vw,50vh) rotateZ(0deg);
+    }
+
+    62.5% {
+        transform: translate(20vw,105vh) rotateZ(20deg);
+    }
+    75% {
+        transform: translate(200%,100vh) rotateZ(20deg);
+    }
+    87.5% {
+        transform: translate(50vw,-200%) scale(1.75) rotateZ(20deg);
+    }
+
+    100% {
+        transform: translate(-200%,10vh) rotateZ(0deg);
+    }
+}
+
+@keyframes fly2 {
+    0% {
+
+        transform: translate(-200%,110vh) rotateZ(0deg);opacity: 1;
+    }
+
+    12.5% {
+        transform: translate(120vw,-120%) rotateZ(20deg);
+    }
+
+    25% {
+        transform: translate(-200%,50vh) scale(1.75) rotateZ(-20deg);
+    }
+
+    37.5% {
+        transform: translate(-200%,-120%) rotateZ(-40deg);
+    }
+
+    50% {
+        transform: translate(100vw,50vh) rotateZ(0deg);
+    }
+
+    62.5% {
+        transform: translate(20vw,100vh) rotateZ(20deg);
+    }
+    75% {
+        transform: translate(200%,100vh) rotateZ(20deg);
+    }
+    87.5% {
+        transform: translate(50vw,-200%) scale(1.75) rotateZ(20deg);
+    }
+
+    100% {
+        transform: translate(-200%,110vh) rotateZ(0deg);
+    }
+
+}
+
+@keyframes fly3 {
+    0% {
+        transform: translate(200%, 110vh) rotateZ(0deg);
+    }
+    
+    12.5% {
+        transform: translate(-120vw,-120%) rotateZ(-20deg);
+    }
+    
+    25% {
+        transform: translate(200%,-50vh) scale(1.75) rotateZ(20deg);
+    }
+    
+    37.5% {
+        transform: translate(200%,120%) rotateZ(-40deg);
+    }
+    
+    50% {
+        transform: translate(-100vw,-50vh) rotateZ(0deg);
+    }
+    
+    62.5% {
+        transform: translate(-20vw,-100vh) rotateZ(-20deg);
+    }
+    75% {
+        transform: translate(-200%,-100vh) rotateZ(-20deg);
+    }
+    87.5% {
+        transform: translate(-50vw,200%) scale(1.75) rotateZ(-20deg);
+    }
+    
+    100% {
+        transform: translate(200%, -110vh) rotateZ(0deg);
+    }
+}
+
+@keyframes fly4 {
+    0% {
+        transform: translate(-200%, 110vh) rotateZ(0deg);
+    }
+    
+    12.5% {
+        transform: translate(120vw, -120%) rotateZ(-20deg);
+    }
+    
+    25% {
+        transform: translate(-200%, -50vh) scale(1.75) rotateZ(20deg);
+    }
+    
+    37.5% {
+        transform: translate(-200%, 120%) rotateZ(-40deg);
+    }
+    
+    50% {
+        transform: translate(100vw, -50vh) rotateZ(0deg);
+    }
+    
+    62.5% {
+        transform: translate(20vw, 100vh) rotateZ(-20deg);
+    }
+    
+    75% {
+        transform: translate(200%, 100vh) rotateZ(-20deg);
+    }
+    
+    87.5% {
+        transform: translate(50vw, -200%) scale(1.75) rotateZ(-20deg);
+    }
+    
+    100% {
+        transform: translate(-200%, -110vh) rotateZ(0deg);
+    }
+}
+    
+@keyframes fly5 {
+    0% {
+
+        transform: translate(-200%,110vh) rotateZ(0deg);opacity: 1;
+    }
+
+    12.5% {
+        transform: translate(60vw,-120%) rotateZ(20deg);
+    }
+
+    25% {
+        transform: translate(-200%,70vh) scale(1.75) rotateZ(-20deg);
+    }
+
+    37.5% {
+        transform: translate(-200%,-120%) rotateZ(-40deg);
+    }
+
+    50% {
+        transform: translate(125vw,75vh) rotateZ(0deg);
+    }
+
+    62.5% {
+        transform: translate(20vw,100vh) rotateZ(20deg);
+    }
+    75% {
+        transform: translate(200%,100vh) rotateZ(20deg);
+    }
+    87.5% {
+        transform: translate(50vw,-200%) scale(1.75) rotateZ(20deg);
+    }
+
+    100% {
+        transform: translate(-200%,110vh) rotateZ(0deg);
+    }
+
+}
+
+@keyframes fly6 {
+    0% {
+
+        transform: translate(-200%,200vh) rotateZ(0deg);opacity: 1;
+    }
+
+    12.5% {
+        transform: translate(80vw,-120%) rotateZ(20deg);
+    }
+
+    25% {
+        transform: translate(-200%,100vh) scale(1.75) rotateZ(-20deg);
+    }
+
+    37.5% {
+        transform: translate(-200%,-120%) rotateZ(-40deg);
+    }
+
+    50% {
+        transform: translate(100vw,50vh) rotateZ(0deg);
+    }
+
+    62.5% {
+        transform: translate(40vw,120vh) rotateZ(20deg);
+    }
+    75% {
+        transform: translate(200%,120vh) rotateZ(20deg);
+    }
+    87.5% {
+        transform: translate(75vw,-200%) scale(1.75) rotateZ(20deg);
+    }
+
+    100% {
+        transform: translate(-200%,200vh) rotateZ(0deg);
+    }
+}
+
+@keyframes fly7 {
+    0% {
+
+        transform: translate(-200%,70vh) rotateZ(0deg);opacity: 1;
+    }
+
+    12.5% {
+        transform: translate(180vw,-120%) rotateZ(20deg);
+    }
+
+    25% {
+        transform: translate(-200%,100vh) scale(1.75) rotateZ(-20deg);
+    }
+
+    37.5% {
+        transform: translate(-200%,-120%) rotateZ(-40deg);
+    }
+
+    50% {
+        transform: translate(50vw,100vh) rotateZ(0deg);
+    }
+
+    62.5% {
+        transform: translate(60vw,100vh) rotateZ(20deg);
+    }
+    75% {
+        transform: translate(200%,100vh) rotateZ(20deg);
+    }
+    87.5% {
+        transform: translate(20vw,-200%) scale(1.75) rotateZ(20deg);
+    }
+
+    100% {
+        transform: translate(-200%,70vh) rotateZ(0deg);
+    }
+
+}
+
+
+@keyframes fly8 {
+    0% {
+
+        transform: translate(-200%,60vh) rotateZ(0deg);opacity: 1;
+    }
+
+    12.5% {
+        transform: translate(80vw,-150%) rotateZ(20deg);
+    }
+
+    25% {
+        transform: translate(-180%,100vh) scale(1.75) rotateZ(-20deg);
+    }
+
+    37.5% {
+        transform: translate(-200%,-120%) rotateZ(-40deg);
+    }
+
+    50% {
+        transform: translate(100vw,80vh) rotateZ(0deg);
+    }
+
+    62.5% {
+        transform: translate(95vw,115vh) rotateZ(20deg);
+    }
+    75% {
+        transform: translate(230%,100vh) rotateZ(20deg);
+    }
+    87.5% {
+        transform: translate(100vw,-250%) scale(1.75) rotateZ(20deg);
+    }
+
+    100% {
+        transform: translate(-200%,60vh) rotateZ(0deg);
+    }
+}
