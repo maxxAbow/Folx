@@ -35,7 +35,7 @@ const Home = () => {
                 <Col xs lg="5" style={{ height: '100vh', padding: 0}} >
                 <Canvas >
                     <Suspense fallback={null}>
-                   
+                    <Earth/>
                     </Suspense>
                 </Canvas>  
                 </Col>
