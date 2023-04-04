@@ -54,7 +54,7 @@ body {
   border: 1px solid var(--blue);
   color: var(--blue);
   border-radius: 18px;
-  height: 56px;
+  height: 55px;
 }
 
 .btn:hover {
@@ -73,7 +73,7 @@ body {
 .form-box {
   background: var(--white);
   border-radius: 30px;
-  margin-right: 18%;
+  /* margin-right: 18%; */
 }
 
 #emailInput,
