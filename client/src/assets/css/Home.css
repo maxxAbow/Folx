@@ -10,8 +10,7 @@ body {
 .container3D {
   width: 100vw !important;
   height: 100vh !important;
-  /* background-image: url('assets/images/space-purple.jpeg'); */
-  background-image: url('../../../public/assets/images/space-purple.jpeg');
+  background-image: url('/public/assets/images/space-purple.jpeg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
