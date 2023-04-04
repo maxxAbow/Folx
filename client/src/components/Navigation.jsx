@@ -1,13 +1,17 @@
 import React from 'react';
-import '../assets/css/Navigation.css'
-import { Nav, Navbar, NavDropdown, Container} from 'react-bootstrap'
+import '../assets/css/Navigation.css';
+import { Nav, Navbar, NavDropdown, Container } from 'react-bootstrap';
+
+import {} from 'react-icons';
 
 const Navigation = () => {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="black" variant="dark" id='navbar'>
-      <Container >
-        <Navbar.Brand href="#home">FolX (But it'll be a logo here haha!)</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+    <Navbar collapseOnSelect expand='lg' bg='black' variant='dark' id='navbar'>
+      <Container>
+        <Navbar.Brand href='#home'>
+          FolX (But it'll be a logo here haha!)
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         {/* <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="#features">Features</Nav.Link>
@@ -27,7 +31,7 @@ const Navigation = () => {
         </Navbar.Collapse> */}
       </Container>
     </Navbar>
-  )
+  );
 };
 
 export default Navigation;
