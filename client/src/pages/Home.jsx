@@ -18,11 +18,15 @@ const Home = () => {
     if (imgArray.length === 0) {
         return
     };
-    
+
+    // Selects the audio tag and plays the sound clip
+    const myAudio = document.getElementById('myAudio');
+    myAudio.play();
+
     // Randomly generates a number that's between 0 and the length of the array
     let i = Math.floor(Math.random() * imgArray.length);
 
-    //uses the random number to remove an element from the DOM based of the index.
+    // Uses the random number to remove an element from the DOM based of the index.
     imgArray[i].remove()
 }
 
@@ -57,6 +61,9 @@ const Home = () => {
             </Row>
             
         </div>
+        <audio id="myAudio" style={{display: "none"}}>
+           <source src='/assets/audio/apple_bite.wav' type="audio/wav" /> 
+        </audio>
     </Col> 
 </Row>
   )
