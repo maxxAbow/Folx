@@ -3,8 +3,6 @@ body {
   color: #FFFFFF;
   background: black;
   overflow: hidden;
-
-
 }
 
 .container3D {
@@ -25,13 +23,13 @@ body {
 }
 
 :root {
-  --blue: #84CCD3;
+  --blue: #151550;
   --red: #F86B6B;
   --green: #BCD098;
   --yellow: #F5D771;
   --tan: #B38871;
   --offwhite: #E1D9CF;
-  --white: #F7F7F5;
+  --white: #EBEBEB;
   --black: #253036;
 }
 
@@ -51,12 +49,13 @@ body {
 .form-container {
   position: absolute;
   z-index: 1;
-
 }
 
 .btn {
   border: 1px solid var(--blue);
   color: var(--blue);
+  border-radius: 18px;
+  height: 58px;
 }
 
 .btn:hover {
@@ -74,5 +73,15 @@ body {
 
 .form-box {
   background: var(--white);
-  border-radius: 15px;
+  border-radius: 30px;
+  margin-right: 15%;
+}
+
+#emailInput,
+#passwordInput,
+#sign-up-password-input,
+#sign-up-email-input,
+#display-name-input {
+  border-radius: 18px;
+  text-align: center;
 }
