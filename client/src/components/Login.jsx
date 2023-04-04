@@ -1,19 +1,20 @@
 import React from 'react';
 
-import {} from 'react-icons';
+import { BiLogInCircle } from 'react-icons/bi';
+import { RiAccountPinBoxFill } from 'react-icons/ri';
 
 const Login = ({ login, setLogin }) => {
   return (
     <>
       <div
-        className='form-box p-md-5 p-3'
+        className='form-box p-md-5'
         id='signinForm'
         style={{ display: login ? 'block' : 'none' }}
       >
-        {/* <div className="form-name">
-        <h2 className="fw-bold mb-3">weatherOrNot</h2>
-        </div> */}
         <div className='form-title'>
+          <div className='text-center mb-3 loginIcon'>
+            <BiLogInCircle size={52} />
+          </div>
           <h2 className='fw-bold mb-4 text-center'>Sign In</h2>
         </div>
         <form action=''>
@@ -45,7 +46,7 @@ const Login = ({ login, setLogin }) => {
             </button>
           </div>
         </form>
-        <div className='mt-3 text-center'>
+        <div className='mt-4 text-center'>
           <span>Don't have an account? </span>
           <button
             className='p-0 border-0 bg-transparent primaryColor'
@@ -57,12 +58,15 @@ const Login = ({ login, setLogin }) => {
         </div>
       </div>
       <div
-        className='form-box p-md-5 p-3'
+        className='form-box p-md-5'
         id='signupForm'
         style={{ display: !login ? 'block' : 'none' }}
       >
         <div className='form-title'>
-          <h2 className='fw-bold mb-4 text-center'>Create Account</h2>
+          <div className='text-center mb-3 loginIcon'>
+            <RiAccountPinBoxFill size={50} />
+          </div>
+          <h2 className='fw-bold mb-4 text-center'>Sign Up</h2>
         </div>
         <form action=''>
           <div className='form-floating mb-3'>
@@ -105,7 +109,7 @@ const Login = ({ login, setLogin }) => {
             </button>
           </div>
         </form>
-        <div className='mt-3 text-center'>
+        <div className='mt-4 text-center'>
           <span>Already have an account? </span>
           <button
             className='p-0 border-0 bg-transparent primaryColor'

@@ -1,9 +1,10 @@
 import React from 'react';
-import {Container} from 'react-bootstrap'
-import Home from './pages/Home'
+import { Container } from 'react-bootstrap';
+import Home from './pages/Home';
 import Navigation from './components/Navigation';
+import Starfield from './components/Starfield';
 
-import './assets/css/App.css'
+import './assets/css/App.css';
 
 function App() {
   return (
