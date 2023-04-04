@@ -14,7 +14,7 @@ const Login = ({ login, setLogin }) => {
         <h2 className="fw-bold mb-3">weatherOrNot</h2>
         </div> */}
         <div className='form-title'>
-          <h2 className='fw-bold mb-3'>Sign In</h2>
+          <h2 className='fw-bold mb-4 text-center'>Sign In</h2>
         </div>
         <form action=''>
           <div className='form-floating mb-3'>
@@ -24,7 +24,9 @@ const Login = ({ login, setLogin }) => {
               className='form-control form-control-sm'
               placeholder='Email'
             />
-            <label htmlFor='floatingInput'>Email</label>
+            <label htmlFor='floatingInput' className='text-center'>
+              Email
+            </label>
           </div>
           <div className='form-floating mb-3'>
             <input
@@ -33,15 +35,17 @@ const Login = ({ login, setLogin }) => {
               className='form-control form-control-sm'
               placeholder='Password'
             />
-            <label htmlFor='floatingPassword'>Password</label>
+            <label htmlFor='floatingPassword' className='text-center'>
+              Password
+            </label>
           </div>
-          <div className='mt-3'>
-            <button id='signInButton' className='btn'>
+          <div className='mt-3 text-center d-grid'>
+            <button id='signInButton' className='btn text-center mt-1'>
               Sign In
             </button>
           </div>
         </form>
-        <div className='mt-3'>
+        <div className='mt-3 text-center'>
           <span>Don't have an account? </span>
           <button
             className='p-0 border-0 bg-transparent primaryColor'
@@ -58,7 +62,7 @@ const Login = ({ login, setLogin }) => {
         style={{ display: !login ? 'block' : 'none' }}
       >
         <div className='form-title'>
-          <h2 className='fw-bold mb-3'>Create Your Account</h2>
+          <h2 className='fw-bold mb-4 text-center'>Create Account</h2>
         </div>
         <form action=''>
           <div className='form-floating mb-3'>
@@ -68,7 +72,9 @@ const Login = ({ login, setLogin }) => {
               id='display-name-input'
               placeholder='Display Name'
             />
-            <label htmlFor='floatingInput'>Display Name</label>
+            <label htmlFor='floatingInput' className='text-center'>
+              Display Name
+            </label>
           </div>
           <div className='form-floating mb-3'>
             <input
@@ -77,7 +83,9 @@ const Login = ({ login, setLogin }) => {
               placeholder='Email'
               id='sign-up-email-input'
             />
-            <label htmlFor=' floatingInput'>Email</label>
+            <label htmlFor=' floatingInput' className='text-center'>
+              Email
+            </label>
           </div>
           <div className='form-floating mb-3'>
             <input
@@ -87,15 +95,17 @@ const Login = ({ login, setLogin }) => {
               name='floatingPassword'
               id='sign-up-password-input'
             />
-            <label htmlFor='floatingPassword'>Password</label>
+            <label htmlFor='floatingPassword' className='text-center'>
+              Password
+            </label>
           </div>
-          <div className='mt-3'>
-            <button id='sign-up-button' className='btn'>
+          <div className='mt-3 text-center d-grid'>
+            <button id='sign-up-button' className='btn mt-1'>
               Sign Up
             </button>
           </div>
         </form>
-        <div className='mt-3'>
+        <div className='mt-3 text-center'>
           <span>Already have an account? </span>
           <button
             className='p-0 border-0 bg-transparent primaryColor'
