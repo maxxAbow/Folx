@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/FolxDB',
+  process.env.MONGODB_URI || 'mongodb+srv://folx_db:3zACJz7VZFY9YwkK@paradise.6cqsvuv.mongodb.net/?retryWrites=true&w=majority',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
