@@ -9,6 +9,8 @@ const {
     addSiouxChef,
     fireSiouxChef,
     getSiouxChefs,
+    hasLiked,
+    hasDisliked,
 } = require('../../controller/userController');
 
 expressRouter.route('/')
@@ -24,5 +26,9 @@ expressRouter.route('/:userId/SiouxChefs/:siouxChefId')
     .get(getSiouxChefs)
     .post(addSiouxChef)
     .delete(fireSiouxChef);
+
+expressRouter.route('/:userId/posts/:postId')
+    .get(hasDisliked)
+    .get(hasLiked  )
 
 module.export = expressRouter;

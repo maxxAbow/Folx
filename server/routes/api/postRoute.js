@@ -3,11 +3,14 @@ const expressRouter = require('express').Router;
 const {
     createPost,
     getAllPosts,
-    getSinglePost,
     deletePost,
     createComment,
     getComments,
     editComment,
+    getLikes,
+    getDislikes,
+    //optional
+    getSinglePost,
 } = require('../../controller/postController');
 
 expressRouter.route('/')
@@ -17,6 +20,8 @@ expressRouter.route('/')
 expressRouter.route('/:postId')
     .post(createPost)
     .delete(deletePost)
+    .get(getLikes)
+    .get(getDislikes)
 
 expressRouter.route('/:postId/comments/:commentId')
     .get(getComments)
