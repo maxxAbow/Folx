@@ -15,7 +15,7 @@ const Login = ({ login, setLogin }) => {
           <div className='text-center mb-3 loginIcon'>
             <BiLogInCircle size={52} />
           </div>
-          <h2 className='fw-bold mb-4 text-center'>Sign In</h2>
+          <h2 className='fw-bold mb-4 text-center mt-2'>Sign In</h2>
         </div>
         <form action=''>
           <div className='form-floating mb-3'>
@@ -66,7 +66,7 @@ const Login = ({ login, setLogin }) => {
           <div className='text-center mb-3 loginIcon'>
             <RiAccountPinBoxFill size={50} />
           </div>
-          <h2 className='fw-bold mb-4 text-center'>Sign Up</h2>
+          <h2 className='fw-bold mb-4 text-center mt-2'>Sign Up</h2>
         </div>
         <form action=''>
           <div className='form-floating mb-3'>
