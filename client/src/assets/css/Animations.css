@@ -12,6 +12,10 @@
     width: 400px;
 }
 
+.astro:hover {
+    cursor: pointer;
+}
+
 .bounce-2 {
     animation-name: bounce-2;
     animation-timing-function: ease;
