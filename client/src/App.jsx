@@ -11,7 +11,11 @@ function App() {
   return (
     <Container fluid className='p-0 app'>
       <Navigation />
-      <Login />
+      <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Login />} />
+      </Routes>
+      </BrowserRouter>
     </Container>
   );
 }
