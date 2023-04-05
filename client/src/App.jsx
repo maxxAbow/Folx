@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import Home from './pages/homePage/Home';
+import Login from './pages/loginPage/Login';
 import Navigation from './components/Navigation';
 import Starfield from './components/Starfield';
 
@@ -10,7 +10,7 @@ function App() {
   return (
     <Container fluid className='p-0 app'>
       <Navigation />
-      <Home />
+      <Login />
     </Container>
   );
 }
