@@ -17,6 +17,7 @@ import {
   REGISTER
 } from "redux-persist"
 import storage from "redux-persist/lib/storage"
+import { PersistGate } from 'redux-persist/integration/react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

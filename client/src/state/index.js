@@ -1,3 +1,4 @@
+// Created this so that all our state info can be stored in a local state so that all the user info will be available until they clear their cache
 const { createSlice } = require("@reduxjs/toolkit");
 
 // The state that will be stored in our global state
