@@ -74,7 +74,7 @@ const Navigation = () => {
           Folx 
           <FoodBank sx={{ fontSize: 40 }}/>
         </Typography>
-        {/* Setting condition for if Page is on a mobile screen */}
+        {/* Setting condition for if Page is not on a mobile screen */}
         {isNonMobileScreensScreens && (
           <FlexBetween 
             backgroundColor={neutralLight} 
