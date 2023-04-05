@@ -6,6 +6,8 @@ const usersSchema = new Schema({
   firstName: String,
   lastName: String,
   password: String,
+  likedPosts: [{postId: String}],
+  dislikedPosts: [{postId: String}],
 });
 
 const Users = mongoose.model('Users', usersSchema)
