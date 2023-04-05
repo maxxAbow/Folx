@@ -14,6 +14,7 @@ import { themeSettings } from './theme';
 import './assets/css/App.css';
 
 function App() {
+  const mode = useSelector((state) => state.mode);
   return (
     <Container fluid className='p-0 app'>
       <Navigation />
