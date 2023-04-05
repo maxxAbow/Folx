@@ -7,7 +7,7 @@ const initialState = {
     user: null,
     //Represents all Auth info we will store
     token: null,
-    post: []
+    posts: []
 }
 
 export const authSlice = createSlice({
@@ -27,6 +27,26 @@ export const authSlice = createSlice({
         setLogout: (state) => {
             state.user = null;
             state.token = null;
+        },
+        setFriends: (state, action) => {
+            if (state.user) {
+                state.user.friends = action.payload.friends;
+            } else {
+                console.error("user friends non-existent")
+            }
+        },
+        setPosts: (state, action) => {
+            state.posts = action.payload.posts
+        },
+        setPost: (state, action) => {
+            const updatedPosts = state.posts.map((post) => {
+                if (post._id === action.payload.post_id){
+                    return action.payload.post;
+                } else {
+                    return post;
+                }
+            })
+            state.posts = updatedPosts
         }
     }
 })
