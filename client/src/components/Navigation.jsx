@@ -35,6 +35,12 @@ import FlexBetween from './style-components/FlexBetween';
 const Navigation = () => {
   // State to determine to open up mobile menu on smaller/mobile screens
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
+  // To dispatch actions from reducers
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  // To grab user information
+  const user = useSelector((state) => state.user);
+  
   return (
     <div></div>
   )
