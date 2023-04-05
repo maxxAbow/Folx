@@ -13,6 +13,25 @@ import {
   useMediaQuery
 } from '@mui/material';
 
+import {
+  LocalPizza,
+  LightMode,
+  DarkMode,
+  Search,
+  FastFood,
+  FoodBank,
+  Message,
+  Notifications,
+  Help,
+  Menu,
+  Close
+} from '@mui/icons-material';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { setMode, setLogout } from 'state';
+import { useNavigate } from 'react-router-dom';
+import FlexBetween from './style-components/FlexBetween';
+
 const Navigation = () => {
   return (
     <Navbar collapseOnSelect expand='lg' bg='black' variant='dark' id='navbar'>
