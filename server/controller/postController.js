@@ -23,4 +23,4 @@ getLikes,
 getDislikes,
 
 //optional
-getSinglePost,
+getSinglePost
