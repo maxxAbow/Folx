@@ -9,3 +9,12 @@ const initialState = {
     token: null,
     post: []
 }
+
+export const authSlice = createSlice({
+    name: "auth",
+    initialState,
+    //These are fuction that modify the global state
+    reducers: {
+
+    }
+})
