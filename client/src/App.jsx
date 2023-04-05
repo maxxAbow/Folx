@@ -15,15 +15,19 @@ import './assets/css/App.css';
 
 function App() {
   const mode = useSelector((state) => state.mode);
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
     <Container fluid className='p-0 app'>
       <Navigation />
       <BrowserRouter>
+      <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/home' element={<Home />} />
         <Route path='/profile/:userId' element={<Profile />} />
       </Routes>
+      </ThemeProvider>
       </BrowserRouter>
     </Container>
   );
