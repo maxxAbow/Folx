@@ -18,10 +18,10 @@ function App() {
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
     <Container fluid className='p-0 app'>
-      <Navigation />
       <BrowserRouter>
       <ThemeProvider theme={theme}>
       <CssBaseline />
+      <Navigation />
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/home' element={<Home />} />
