@@ -51,8 +51,13 @@ const Navigation = () => {
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
+  const fullName = `${user.firstName} ${user.lastName}`
+
   return (
-    <div></div>
+    // The Box component from @mui/material allows us to pass in CSS properties as component properties
+    <FlexBetween padding="1rem 6%" backgroundColor={alt}>
+
+    </FlexBetween>
   )
 }
 // const Navigation = () => {

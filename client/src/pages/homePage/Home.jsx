@@ -1,4 +1,5 @@
 import React from 'react';
+import Navigation from 'components/Navigation';
 
 const Home = () => {
   // const [login, setLogin] = useState(true);
@@ -24,7 +25,9 @@ const Home = () => {
   // };
 
   return (
-    <div>Home</div>
+    <div>
+      <Navigation />
+    </div>
   );
 };
 
