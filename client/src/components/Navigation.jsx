@@ -89,6 +89,17 @@ const Navigation = () => {
           </FlexBetween>
         )}
       </FlexBetween>
+      {/* Desktop Nav */}
+      {isNonMobileScreensScreens ? (
+        <FlexBetween gap="2rem">
+          {/* Use redux to change 'mode' state via buttons to Light or Dark mode */}
+          <IconButton onclick={() => dispatch(setMode())}>
+            {theme.palette.mode === "dark" ? (
+              <DarkMode sx={{ fontSize: "25px"}} />
+            ): <LightMode sx={{ color: dark, fontSize: "25px"}} />}
+          </IconButton>
+        </FlexBetween>
+      ) : (<IconButton></IconButton>)}
     </FlexBetween>
   )
 }
