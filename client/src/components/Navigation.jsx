@@ -51,7 +51,7 @@ const Navigation = () => {
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
-  const fullName = `${user.firstName} ${user.lastName}`
+  // const fullName = `${user.firstName} ${user.lastName}`
 
   return (
     // The Box component from @mui/material allows us to pass in CSS properties as component properties
@@ -72,8 +72,22 @@ const Navigation = () => {
           }}
         >
           Folx 
-          <FoodBank />
+          <FoodBank sx={{ fontSize: 40 }}/>
         </Typography>
+        {/* Setting condition for if Page is on a mobile screen */}
+        {isNonMobileScreensScreens && (
+          <FlexBetween 
+            backgroundColor={neutralLight} 
+            borderRadius="9px" 
+            gap="3rem" 
+            padding="0.1rem 1.5rem"
+          > 
+            <InputBase placeholder='Search...' />
+            <IconButton>
+              <Search />
+            </IconButton>
+          </FlexBetween>
+        )}
       </FlexBetween>
     </FlexBetween>
   )
