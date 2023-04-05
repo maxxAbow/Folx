@@ -56,7 +56,25 @@ const Navigation = () => {
   return (
     // The Box component from @mui/material allows us to pass in CSS properties as component properties
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
-
+      <FlexBetween gap="1.75rem">
+        {/* Logo will go here, but Typogrpahy Component is a placeholder for now */}
+        <Typography 
+          fontWeight="bold"
+          fontSize="clamp(1rem, 2rem, 2.25rem)"
+          color="primary"
+          onclick={() => navigate('/home')}
+          // Add 'sx' property to add psuedo CSS
+          sx={{
+            "&:hover" : {
+              color: primaryLight,
+              cursor: "pointer"
+            }
+          }}
+        >
+          Folx 
+          <FoodBank />
+        </Typography>
+      </FlexBetween>
     </FlexBetween>
   )
 }
