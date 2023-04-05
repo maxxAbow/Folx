@@ -4,7 +4,7 @@ import './assets/css/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import authReducer from "./state";
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import {
   persistStore,
