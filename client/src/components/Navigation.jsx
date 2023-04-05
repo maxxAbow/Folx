@@ -40,7 +40,17 @@ const Navigation = () => {
   const navigate = useNavigate();
   // To grab user information
   const user = useSelector((state) => state.user);
-  
+  // Hook to determine if current screensize to determine users screensize
+  const isNonMobileScreensScreens = useMediaQuery("(min-width: 1000px)");
+
+  // Refers themes from theme js file
+  const theme = useTheme();
+  const neutralLight = theme.palette.neutral.light;
+  const dark = theme.palette.neutral.dark;
+  const background = theme.palette.background.default;
+  const primaryLight = theme.palette.primary.light;
+  const alt = theme.palette.background.alt;
+
   return (
     <div></div>
   )
