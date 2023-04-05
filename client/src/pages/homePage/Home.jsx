@@ -1,10 +1,10 @@
 import React, { Suspense, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { Canvas } from '@react-three/fiber';
-import '../assets/css/Home.css';
-import '../assets/css/Animations.css';
-import Earth from '../components/Earth';
-import Login from '../components/Login';
+import '../../assets/css/Home.css';
+import '../../assets/css/Animations.css';
+import Earth from '../../components/Earth';
+import Login from '../../components/Login';
 
 const Home = () => {
   const [login, setLogin] = useState(true);
