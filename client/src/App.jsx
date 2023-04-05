@@ -8,7 +8,7 @@ import './assets/css/App.css';
 
 function App() {
   return (
-    <Container fluid className='p-0'>
+    <Container fluid className='p-0 app'>
       <Navigation />
       <Home />
     </Container>
