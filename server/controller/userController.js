@@ -26,4 +26,4 @@ getSiouxChefs,
 hasLiked,
 
 //this user has disliked this post
-hasDisliked,
+hasDisliked
