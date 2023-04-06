@@ -25,9 +25,9 @@ const Home = () => {
   // };
 
   return (
-    <div>
+    <>
       <Navigation />
-    </div>
+    </>
   );
 };
 
