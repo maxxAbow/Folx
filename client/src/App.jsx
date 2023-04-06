@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-import Home from './pages/Home';
+import Login from 'pages/loginPage/Login';
+import Home from 'pages/homePage/Home';
+import Profile from 'pages/profilePage/Profile';
 import Navigation from './components/Navigation';
 import Starfield from './components/Starfield';
+import { useSelector } from 'react-redux';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { createTheme } from "@mui/material/styles";
+import { themeSettings } from './theme';
 
 import './assets/css/App.css';
 
 function App() {
+  const mode = useSelector((state) => state.mode);
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
-    <Container fluid className='p-0'>
-      <Navigation />
-      <Home />
+    <Container fluid className='p-0 app'>
+      <BrowserRouter>
+      <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {/* <Navigation /> */}
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/profile/:userId' element={<Profile />} />
+      </Routes>
+      </ThemeProvider>
+      </BrowserRouter>
     </Container>
   );
 }

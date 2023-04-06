@@ -1,12 +1,12 @@
 import React, { Suspense, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { Canvas } from '@react-three/fiber';
-import '../assets/css/Home.css';
-import '../assets/css/Animations.css';
-import Earth from '../components/Earth';
-import Login from '../components/Login';
+import '../../assets/css/Login.css';
+import '../../assets/css/Animations.css';
+import Earth from '../../components/Earth';
+import Form from '../../components/Form';
 
-const Home = () => {
+const Login = () => {
   const [login, setLogin] = useState(true);
 
   // Randomly generates a number that represents an index in the array returned by the images
@@ -96,7 +96,7 @@ const Home = () => {
               className='col-lg-5 col-md-7 p-0 form-container'
               style={{ width: '25%', position: 'relative', zIndex: '1' }}
             >
-              <Login login={login} setLogin={setLogin} />
+              <Form login={login} setLogin={setLogin} />
             </Col>
             <Col xs lg='5' style={{ height: '100vh', padding: 0 }}>
               <Canvas>
@@ -115,4 +115,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Login;
