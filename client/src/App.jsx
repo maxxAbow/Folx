@@ -10,12 +10,11 @@ import { useSelector } from 'react-redux';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from './theme';
+import './assets/css/App.css';
 
 // Grabs the login information if Login is successful
 // const isAuth = Boolean(useSelector((state) => state.token))
 const isAuth = true;
-
-import './assets/css/App.css';
 
 function App() {
   const mode = useSelector((state) => state.mode);
