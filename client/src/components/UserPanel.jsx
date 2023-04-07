@@ -5,7 +5,7 @@ import {
     ManageAccountsOutlined,
     EditOutlined,
     LocationOnOutlined,
-    WorkOutlineOutlined
+    DinnerDiningOutlined 
 } from "@mui/icons-material";
 
 import {Box, Typography, Divider, useTheme } from "@mui/material";
@@ -85,6 +85,10 @@ function UserPanel({userId, image}) {
                 <Typography color={medium}>Atlanta</Typography>
               </Box>
           </Box>
+              <Box display="flex" align-item="center" gap="1rem">
+                <DinnerDiningOutlined  fontSize='large' sx={{coloar:main}}/>
+                <Typography color={medium}>Favorite Food: Pizza</Typography>
+              </Box>
         </FlexBetween>
       </FlexBetween>
     </WidgeWrap>
