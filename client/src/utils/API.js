@@ -1,5 +1,6 @@
-import Axios from "axios";
+import axios from "axios";
+import { API_URL } from "config";
 
-module.exports = {
-    
-}
+const api = {
+    return axios.get()
+} 
