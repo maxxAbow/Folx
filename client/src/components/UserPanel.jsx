@@ -31,7 +31,7 @@ function UserPanel({userId, image}) {
     }
     
     useEffect(() => {
-      searchUser(`642e0df19e30862e22e41145`);
+      searchUser(`643059c59d990055ea7bb745`);
     }, [])
 
     // useEffect(() => {
