@@ -32,13 +32,18 @@ function UserPanel({userId, image}) {
     
     useEffect(() => {
       searchUser(`642e0df19e30862e22e41145`);
-      console.log(user)
     }, [])
 
     // useEffect(() => {
     //   console.log(user);
     // }, [user]);
     
+    if (!user) {
+      return null
+    }
+
+    const { userName, firstName, lastName } = user
+    console.log(userName + ',' + firstName + ',' + lastName)
   return (
     <div>UserPanel</div>
   )
