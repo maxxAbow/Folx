@@ -14,7 +14,15 @@ import FlexBetween from './style-components/FlexBetween';
 import WidgeWrap from './style-components/widgeWrap';
 import { useSelector } from 'react-redux';
 
-function UserPanel() {
+function UserPanel({userId, image}) {
+    const [user, setUser] = useState(null);
+    const {palette} = useTheme();
+    const navigate = useNavigate()
+    const token = useSelector((state) => state.token);
+    const dark = palette.neutral.dark;
+    const medium = palette.neutral.medium;
+    const main = palette.neutral.main;
+    
   return (
     <div>UserPanel</div>
   )
