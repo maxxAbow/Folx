@@ -7,7 +7,7 @@ const api = {
     },
 
     getUserById: (userId) => {
-        return axios.get(`${API_URL}/api/:${userId}`);
+        return axios.get(`${API_URL}/api/users/${userId}`);
     }
 
 } 
