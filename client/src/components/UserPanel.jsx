@@ -84,11 +84,12 @@ function UserPanel({userId, image}) {
                 <LocationOnOutlined  fontSize='large' sx={{coloar:main}}/>
                 <Typography color={medium}>Atlanta</Typography>
               </Box>
-          </Box>
               <Box display="flex" align-item="center" gap="1rem">
                 <DinnerDiningOutlined  fontSize='large' sx={{coloar:main}}/>
+                {/* Might change this to favorite cuisine instead, talk to back-end */}
                 <Typography color={medium}>Favorite Food: Pizza</Typography>
               </Box>
+          </Box>
         </FlexBetween>
       </FlexBetween>
     </WidgeWrap>
