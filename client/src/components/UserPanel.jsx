@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
-    ManageAccountPutlined,
+    ManageAccountsOutlined,
     EditOutlined,
     LocationOnOutlined,
     WorkOutlineOutlined
@@ -52,8 +52,9 @@ function UserPanel({userId, image}) {
         paddingBottom="1.1rem"
         // onClick={() => navigate(`/profile/:${userId}`)}
       >
+        {/* First Row */}
         <FlexBetween gap="1rem">
-          {/* Need to import image soon */}
+          {/* Need to import image soon, work with Backend for this as well */}
           <ProfilePic image={image} />
           <Box>
             <Typography 
@@ -68,6 +69,21 @@ function UserPanel({userId, image}) {
               }}>
                 {firstName} {lastName}
               </Typography>
+              {/* Need to work with Back-end to add number of friends to User Model */}
+              <Typography color={medium}>6 Friends</Typography>
+          </Box>
+          <ManageAccountsOutlined />
+        </FlexBetween>
+
+        <Divider />
+
+        {/* Next Row */}
+        <FlexBetween>
+          <Box padding="1rem 0">
+              <Box display="flex" align-item="center" gap="1rem" marginBottom="0.5rem">
+                <LocationOnOutlined  fontSize='large' sx={{coloar:main}}/>
+                <Typography color={medium}>Atlanta</Typography>
+              </Box>
           </Box>
         </FlexBetween>
       </FlexBetween>
