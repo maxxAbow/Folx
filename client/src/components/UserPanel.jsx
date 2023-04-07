@@ -44,8 +44,34 @@ function UserPanel({userId, image}) {
 
     const { userName, firstName, lastName } = user
     console.log(userName + ',' + firstName + ',' + lastName)
+  
   return (
-    <div>UserPanel</div>
+    <WidgeWrap>
+      <FlexBetween
+        gap="0.5rem"
+        paddingBottom="1.1rem"
+        // onClick={() => navigate(`/profile/:${userId}`)}
+      >
+        <FlexBetween gap="1rem">
+          {/* Need to import image soon */}
+          <ProfilePic image={image} />
+          <Box>
+            <Typography 
+              variant="h4"
+              color={dark}
+              fontWeight="500"
+              sx={{
+                "&:hover": {
+                  color: palette.primary.light,
+                  cursor: "pointer"
+                }
+              }}>
+                {firstName} {lastName}
+              </Typography>
+          </Box>
+        </FlexBetween>
+      </FlexBetween>
+    </WidgeWrap>
   )
 }
 
