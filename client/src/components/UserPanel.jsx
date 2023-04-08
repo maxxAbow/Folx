@@ -72,25 +72,26 @@ function UserPanel({userId, image}) {
               {/* Need to work with Back-end to add number of friends to User Model */}
               <Typography color={medium}>6 Friends</Typography>
           </Box>
-          <ManageAccountsOutlined />
         </FlexBetween>
+        <ManageAccountsOutlined />
+      </FlexBetween>
 
         <Divider />
 
         {/* Next Row */}
-        <FlexBetween>
           <Box padding="1rem 0">
-              <Box display="flex" align-item="center" gap="1rem" marginBottom="0.5rem">
-                <LocationOnOutlined  fontSize='large' sx={{coloar:main}}/>
+              <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
+                <LocationOnOutlined  fontSize='large' sx={{color:main}}/>
                 <Typography color={medium}>Atlanta</Typography>
               </Box>
-              <Box display="flex" align-item="center" gap="1rem">
-                <DinnerDiningOutlined  fontSize='large' sx={{coloar:main}}/>
+              <Box display="flex" alignItems="center" gap="1rem">
+                <DinnerDiningOutlined  fontSize='large' sx={{color:main}}/>
                 {/* Might change this to favorite cuisine instead, talk to back-end */}
                 <Typography color={medium}>Favorite Food: </Typography>
                 <Typography color={medium} fontWeight="500"> Pizza </Typography>
               </Box>
           </Box>
+          <Divider />
 
           {/* New Row */}
           <Box padding="1rem 0">
@@ -102,8 +103,6 @@ function UserPanel({userId, image}) {
           </Box>
 
           {/* Future Dev, add new rows for social profiles */}
-        </FlexBetween>
-      </FlexBetween>
     </WidgeWrap>
   )
 }

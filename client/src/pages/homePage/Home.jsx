@@ -4,10 +4,10 @@ import UserPanel from 'components/UserPanel';
 import { Box, useMediaQuery } from '@mui/material';
 
 const Home = () => {
-  const isNonMobileScreen = useMediaQuery("min-width: 1000px")
+  const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
 
   return (
-    <>
+    <Box>
       <Navigation />
       <Box 
       width="100%" 
@@ -19,8 +19,16 @@ const Home = () => {
         <Box flexBasis={isNonMobileScreen ? "26%" : undefined}>
           <UserPanel />
         </Box>
+        <Box 
+          flexBasis={isNonMobileScreen ? "42%" : undefined}
+          marginTop={isNonMobileScreen ? undefined : "2rem"}
+        >
+        </Box>
+        {isNonMobileScreen && (
+          <Box flexBasis={"26%"}></Box>
+        )}
       </Box>
-    </>
+    </Box>
   );
 };
 
