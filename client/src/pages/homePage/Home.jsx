@@ -1,13 +1,25 @@
 import React from 'react';
 import Navigation from 'components/Navigation';
 import UserPanel from 'components/UserPanel';
+import { Box, useMediaQuery } from '@mui/material';
 
 const Home = () => {
-  
+  const isNonMobileScreen = useMediaQuery("min-width: 1000px")
+
   return (
     <>
       <Navigation />
-      <UserPanel />
+      <Box 
+      width="100%" 
+      padding="2rem 6%" 
+      display={isNonMobileScreen ? "flex" : "block"}
+      gap="0.5rem"
+      justifyContent="space-between"
+      >
+        <Box flexBasis={isNonMobileScreen ? "26%" : undefined}>
+          <UserPanel />
+        </Box>
+      </Box>
     </>
   );
 };
