@@ -31,7 +31,7 @@ function UserPanel({userId, image}) {
     }
     
     useEffect(() => {
-      searchUser(`643059c59d990055ea7bb745`);
+      searchUser(userId);
     }, [])
 
     // useEffect(() => {
@@ -50,12 +50,16 @@ function UserPanel({userId, image}) {
       <FlexBetween
         gap="0.5rem"
         paddingBottom="1.1rem"
-        // onClick={() => navigate(`/profile/:${userId}`)}
+        onClick={() => navigate(`/profile/:${userId}`)}
       >
         {/* First Row */}
         <FlexBetween gap="1rem">
           {/* Need to import image soon, work with Backend for this as well */}
-          <ProfilePic image={image} />
+          <Box>
+            <ProfilePic 
+              image={image} 
+            />
+          </Box>
           <Box>
             <Typography 
               variant="h4"

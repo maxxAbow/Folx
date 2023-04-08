@@ -5,6 +5,8 @@ import { Box, useMediaQuery } from '@mui/material';
 
 const Home = () => {
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
+  const image = 'daikeen.jpg'
+  const userId = '643059c59d990055ea7bb745'
 
   return (
     <Box>
@@ -17,7 +19,7 @@ const Home = () => {
       justifyContent="space-between"
       >
         <Box flexBasis={isNonMobileScreen ? "26%" : undefined}>
-          <UserPanel />
+          <UserPanel image={image} userId={userId}/>
         </Box>
         <Box 
           flexBasis={isNonMobileScreen ? "42%" : undefined}
