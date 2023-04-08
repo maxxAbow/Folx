@@ -10,8 +10,11 @@ import { useSelector } from 'react-redux';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from './theme';
-
 import './assets/css/App.css';
+
+// Grabs the login information if Login is successful
+// const isAuth = Boolean(useSelector((state) => state.token))
+const isAuth = true;
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -24,8 +27,8 @@ function App() {
       {/* <Navigation /> */}
       <Routes>
         <Route path='/' element={<Login />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='/profile/:userId' element={<Profile />} />
+        <Route path='/home' element={isAuth ? <Home /> : <Navigate to="/" />} />
+        <Route path='/profile/:userId' element={isAuth ? <Profile /> : <Navigate to="/" />} />
       </Routes>
       </ThemeProvider>
       </BrowserRouter>

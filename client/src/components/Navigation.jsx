@@ -62,6 +62,7 @@ const Navigation = () => {
       <FlexBetween gap="1.75rem">
         {/* Logo will go here, but Typogrpahy Component is a placeholder for now */}
         <Typography 
+          display="flex"
           fontWeight="bold"
           fontSize="clamp(1rem, 2rem, 2.25rem)"
           color="primary"
@@ -74,7 +75,7 @@ const Navigation = () => {
             }
           }}
         >
-          Folx 
+          FolX
           <FoodBank sx={{ fontSize: 40 }}/>
         </Typography>
         {/* Setting condition for if Page is not on a mobile screen */}

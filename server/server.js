@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const db = require('./config/connection');
 const routes = require('./controllers');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -16,6 +17,8 @@ const sess = {
   saveUninitialized: true,
 };
 
+// Enable CORS for all routes
+app.use(cors());
 app.use(session(sess))
 app.use(routes);
 
