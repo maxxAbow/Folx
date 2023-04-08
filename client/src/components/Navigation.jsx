@@ -54,7 +54,7 @@ const Navigation = () => {
   const alt = theme.palette.background.alt;
 
   // const fullName = `${user.firstName} ${user.lastName}`
-  const fullName = `Gordon Ramsay`
+  const fullName = `Daikeen Lockett`
 
   return (
     // The Box component from @mui/material allows us to pass in CSS properties as component properties

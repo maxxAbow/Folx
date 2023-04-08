@@ -4,6 +4,7 @@ import UserPanel from 'components/UserPanel';
 import { Box, useMediaQuery } from '@mui/material';
 
 const Home = () => {
+  // Make fetch call here via the home component level, will do first thing tomorrow
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
   const image = 'daikeen.jpg'
   const userId = '643059c59d990055ea7bb745'
