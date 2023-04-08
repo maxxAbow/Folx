@@ -6,7 +6,9 @@ import {
     EditOutlined,
     LocationOnOutlined,
     DinnerDiningOutlined,
-    LocalPizzaOutlined
+    LocalPizzaOutlined,
+    DeleteOutlined,
+    NoMealsOutlined
 } from "@mui/icons-material";
 
 import {Box, Typography, Divider, useTheme } from "@mui/material";
@@ -102,9 +104,15 @@ function UserPanel({userId, image}) {
           <Box padding="1rem 0">
             <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
               <LocalPizzaOutlined fontSize='large' sx={{color:main}}/>
-              <Typography color={dark} fontWeight="500">Number of Likes </Typography>
+              <Typography color={dark} fontWeight="500">Number of Likes: </Typography>
               {/* Replace with variable with number of likes */}
               <Typography color={dark}> 100</Typography>
+            </Box>
+            <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
+              <NoMealsOutlined fontSize='large' sx={{color:main}}/>
+              <Typography color={dark} fontWeight="500">Number of Dislikes: </Typography>
+              {/* Replace with variable with number of likes */}
+              <Typography color={dark}> 50</Typography>
             </Box>
           </Box>
 
