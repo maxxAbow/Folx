@@ -5,7 +5,8 @@ import {
     ManageAccountsOutlined,
     EditOutlined,
     LocationOnOutlined,
-    DinnerDiningOutlined
+    DinnerDiningOutlined,
+    LocalPizzaOutlined
 } from "@mui/icons-material";
 
 import {Box, Typography, Divider, useTheme } from "@mui/material";
@@ -99,11 +100,12 @@ function UserPanel({userId, image}) {
 
           {/* New Row */}
           <Box padding="1rem 0">
-            <FlexBetween  marginBottom="0.5rem">
+            <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
+              <LocalPizzaOutlined fontSize='large' sx={{color:main}}/>
               <Typography color={dark} fontWeight="500">Number of Likes </Typography>
               {/* Replace with variable with number of likes */}
               <Typography color={dark}> 100</Typography>
-            </FlexBetween>
+            </Box>
           </Box>
 
           {/* Future Dev, add new rows for social profiles */}
