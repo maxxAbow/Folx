@@ -5,7 +5,7 @@ import {
     ManageAccountsOutlined,
     EditOutlined,
     LocationOnOutlined,
-    DinnerDiningOutlined 
+    DinnerDiningOutlined
 } from "@mui/icons-material";
 
 import {Box, Typography, Divider, useTheme } from "@mui/material";
@@ -86,13 +86,13 @@ function UserPanel({userId, image}) {
           <Box padding="1rem 0">
               <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
                 <LocationOnOutlined  fontSize='large' sx={{color:main}}/>
-                <Typography color={medium}>Atlanta</Typography>
+                <Typography color={dark} fontWeight="500">Atlanta</Typography>
               </Box>
               <Box display="flex" alignItems="center" gap="1rem">
                 <DinnerDiningOutlined  fontSize='large' sx={{color:main}}/>
                 {/* Might change this to favorite cuisine instead, talk to back-end */}
-                <Typography color={medium}>Favorite Food: </Typography>
-                <Typography color={medium} fontWeight="500"> Pizza </Typography>
+                <Typography color={dark} fontWeight="500">Favorite Food: </Typography>
+                <Typography color={dark} >Pizza </Typography>
               </Box>
           </Box>
           <Divider />
@@ -100,9 +100,9 @@ function UserPanel({userId, image}) {
           {/* New Row */}
           <Box padding="1rem 0">
             <FlexBetween  marginBottom="0.5rem">
-              <Typography color={medium}>Number of Likes </Typography>
+              <Typography color={dark} fontWeight="500">Number of Likes </Typography>
               {/* Replace with variable with number of likes */}
-              <Typography color={medium} fontWeight="500"> 100</Typography>
+              <Typography color={dark}> 100</Typography>
             </FlexBetween>
           </Box>
 
