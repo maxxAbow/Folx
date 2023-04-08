@@ -87,9 +87,21 @@ function UserPanel({userId, image}) {
               <Box display="flex" align-item="center" gap="1rem">
                 <DinnerDiningOutlined  fontSize='large' sx={{coloar:main}}/>
                 {/* Might change this to favorite cuisine instead, talk to back-end */}
-                <Typography color={medium}>Favorite Food: Pizza</Typography>
+                <Typography color={medium}>Favorite Food: </Typography>
+                <Typography color={medium} fontWeight="500"> Pizza </Typography>
               </Box>
           </Box>
+
+          {/* New Row */}
+          <Box padding="1rem 0">
+            <FlexBetween  marginBottom="0.5rem">
+              <Typography color={medium}>Number of Likes </Typography>
+              {/* Replace with variable with number of likes */}
+              <Typography color={medium} fontWeight="500"> 100</Typography>
+            </FlexBetween>
+          </Box>
+
+          {/* Future Dev, add new rows for social profiles */}
         </FlexBetween>
       </FlexBetween>
     </WidgeWrap>
