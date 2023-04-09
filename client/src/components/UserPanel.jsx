@@ -46,7 +46,7 @@ function UserPanel({userId, image}) {
     }
 
     const { userName, firstName, lastName } = user
-    console.log(userName + ',' + firstName + ',' + lastName)
+    // console.log(userName + ',' + firstName + ',' + lastName)
   
   return (
     <WidgeWrap>

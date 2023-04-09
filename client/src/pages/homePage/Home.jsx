@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navigation from 'components/Navigation';
 import UserPanel from 'components/UserPanel';
+import CreatePost from 'components/CreatePost';
 import { Box, useMediaQuery } from '@mui/material';
 import api from 'utils/API';
 
@@ -32,6 +33,7 @@ const Home = () => {
           flexBasis={isNonMobileScreen ? "42%" : undefined}
           marginTop={isNonMobileScreen ? undefined : "2rem"}
         >
+          <CreatePost image={image} />
         </Box>
         {isNonMobileScreen && (
           <Box flexBasis={"26%"}></Box>
