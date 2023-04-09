@@ -36,7 +36,8 @@ function Timeline({userId, isProfile = false}) {
         <>
             {posts.map((post) => {
                 <Post 
-                    _id={post._id}
+                    key={post._id}
+                    postId={post._id}
                     userId={post.userId}
                     username={post.username}
                     description={post.description}
