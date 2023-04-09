@@ -8,8 +8,11 @@ const api = {
 
     getUserById: (userId) => {
         return axios.get(`${API_URL}/api/users/${userId}`);
-    }
+    },
 
+    createUser : (data) => {
+        return axios.post(`${API_URL}/api/users`, data)
+    }
 } 
 
 export default api
