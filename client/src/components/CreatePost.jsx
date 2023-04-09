@@ -21,6 +21,8 @@ import {
     useMediaQuery 
 } from '@mui/material';
 
+import Dropzone from 'react-dropzone';
+
 function CreatePost() {
   return (
     <div>CreatePost</div>
