@@ -27,7 +27,7 @@ import FlexBetween from './style-components/FlexBetween';
 import ProfilePic from './style-components/ProfilePic';
 import { useDispatch, useSelector } from 'react-redux';
 import {setPosts} from "state";
-import WidgeWrap from './style-components/widgeWrap';
+import WidgeWrap from './style-components/WidgeWrap';
 
 function CreatePost({image}) {
     const dispatch = useDispatch();
@@ -51,7 +51,14 @@ function CreatePost({image}) {
 
   return (
     <WidgeWrap>
+       <FlexBetween gap="1.5rem">
+        <ProfilePic image={image} />
+        <InputBase
+            placeholder='Tell us about your meal?' 
+
         
+        />
+        </FlexBetween> 
     </WidgeWrap>
   )
 }
