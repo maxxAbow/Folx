@@ -17,6 +17,10 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  userImage: {
+    type: String,
+    required: false
+  },
   posts: [
     {
         type: Schema.Types.ObjectId,

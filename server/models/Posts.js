@@ -60,6 +60,6 @@ postSchema
     return this.dislikes.length
 })
 
-const Post = model('post', postSchema);
+const Posts = model('post', postSchema);
 
-module.exports = Post;
+module.exports = {Posts};

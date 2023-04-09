@@ -25,30 +25,30 @@ db.once('open', async () => {
 
   const createdUsers = await Users.insertMany(users)
 
-  const populatedPosts = postsData.map((post, i) => {
-    return {
-      ...post,
-      userId: createdUsers[i]._id,
-      createdAt: new Date(),
-    }
-  })
+//   const populatedPosts = postsData.map((post, i) => {
+//     return {
+//       ...post,
+//       userId: createdUsers[i]._id,
+//       createdAt: new Date(),
+//     }
+//   })
 
-  const createdPosts = await Posts.insertMany(populatedPosts);
+//   const createdPosts = await Posts.insertMany(populatedPosts);
 
-  const populatedInteractions = []
-  for(let i = 0; i < 4; i++){
-    populatedInteractions.push(
-      {
-        postId: createdPosts[i]._id,
-        comments: [{
-          body: 'Hey I have some thoughts about this',
-          userId: createdUsers[i]._id
-        }]
-      }
-    )
-  }
+//   const populatedInteractions = []
+//   for(let i = 0; i < 4; i++){
+//     populatedInteractions.push(
+//       {
+//         postId: createdPosts[i]._id,
+//         comments: [{
+//           body: 'Hey I have some thoughts about this',
+//           userId: createdUsers[i]._id
+//         }]
+//       }
+//     )
+//   }
   
- const createdInteractions = await Interactions.insertMany(populatedInteractions);
+//  const createdInteractions = await Interactions.insertMany(populatedInteractions);
 
 
   console.log('all done!');
