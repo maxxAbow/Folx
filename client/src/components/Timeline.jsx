@@ -25,8 +25,10 @@ function Timeline({userId, isProfile = false}) {
     useEffect(() => {
         if(isProfile) {
             // getUserPosts();
+            return null
         } else {
             // getAllPosts();
+            setPosts(posts);
         }
     }, [])
 
@@ -34,15 +36,15 @@ function Timeline({userId, isProfile = false}) {
         <>
             {posts.map((post) => {
                 <Post 
-                    _id={}
-                    userId={}
-                    username={}
-                    description={}
-                    location={}
-                    userImage={}
-                    postImage={}
-                    like={}
-                    dislikes={}
+                    _id={post._id}
+                    userId={post.userId}
+                    username={post.username}
+                    description={post.description}
+                    location={post.location}
+                    userImage={post.userImage}
+                    postImage={post.postImage}
+                    likes={post.like}
+                    dislikes={post.dislikes}
                 />
             })}
         </>
