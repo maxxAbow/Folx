@@ -54,9 +54,15 @@ function CreatePost({image}) {
        <FlexBetween gap="1.5rem">
         <ProfilePic image={image} />
         <InputBase
-            placeholder='Tell us about your meal?' 
-
-        
+            placeholder='Tell us about your meal?'
+            value={post}
+            onChange={(e) => setPost(e.target.value)}
+            sx={{
+               width: "100%",
+               backgroundColor: palette.neutral.light ,
+               borderRadius: "2rem",
+               padding: "1rem 2rem"
+            }}
         />
         </FlexBetween> 
     </WidgeWrap>
