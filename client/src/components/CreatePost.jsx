@@ -47,7 +47,7 @@ function CreatePost({image}) {
 
     const newPost = async (data) => {
         // const newPost = await api.createPost(data);
-        console.log("post created")
+        console.log(post)
     };
 
   return (
@@ -145,6 +145,17 @@ function CreatePost({image}) {
                 </FlexBetween>
             }
 
+           <Button 
+            disabled={!post} 
+            onClick={()=> newPost()}
+            sx={{
+                color: palette.background.alt,
+                backgroundColor: palette.primary.main,
+                borderRadius: "3rem"
+            }}
+            >
+            Post
+            </Button> 
        </FlexBetween>
 
     </WidgeWrap>
