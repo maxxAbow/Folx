@@ -146,6 +146,7 @@ function CreatePost({image}) {
             }
 
            <Button 
+           //If user has not updated post's state, the button is disabled
             disabled={!post} 
             onClick={()=> newPost()}
             sx={{
