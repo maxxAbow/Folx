@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {
     AttachFileOutlined,
@@ -22,6 +22,10 @@ import {
 } from '@mui/material';
 
 import Dropzone from 'react-dropzone';
+import FlexBetween from './style-components/FlexBetween';
+import ProfilePic from './style-components/ProfilePic';
+import { useDispatch, useSelector } from 'react-redux';
+import {setPosts} from "state";
 
 function CreatePost() {
   return (
