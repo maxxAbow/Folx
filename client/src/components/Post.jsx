@@ -2,8 +2,8 @@ import React from 'react';
 
 import {} from 'react-icons';
 
-const Posts = () => {
-  return <div>Posts</div>;
+const Post = () => {
+  return <div>Post</div>;
 };
 
-export default Posts;
+export default Post;
