@@ -2,6 +2,7 @@ import React from 'react';
 import Navigation from 'components/Navigation';
 import UserPanel from 'components/UserPanel';
 import { Box, useMediaQuery } from '@mui/material';
+import api from 'utils/API';
 
 const Home = () => {
   // Make fetch call here via the home component level, will do first thing tomorrow
