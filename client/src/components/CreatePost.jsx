@@ -34,7 +34,7 @@ function CreatePost({image}) {
     // State to represent if the user clicks the 'image button' to open up a place to drop an image
     const [isImage, setIsImage] = useState(false);
     // State to store the actuall image if the decide to dropit/upload it
-    const [uploadImage, isUploadImage] = useState(null)
+    const [uploadImage, setUploadImage] = useState(null)
     // State to represent post content
     const [post, setPost] = useState("");
 
@@ -68,45 +68,46 @@ function CreatePost({image}) {
         </FlexBetween> 
        {isImage &&(
        <Box
-        borderRadius="5px"
         border={`1px solid ${medium}`}
-        padding="1 rem"
+        borderRadius="5px"
+        marginTop="1rem"
+        padding="1rem"
        >
             <Dropzone
             acceptedFiles=".jpg,.jpeg,.png"
             multiple={false}
-            onDrop={(acceptedFiles) => isUploadImage(acceptedFiles[0])}
-          >
+            onDrop={(acceptedFiles) => setUploadImage(acceptedFiles[0])}
+            >
             {({ getRootProps, getInputProps }) => (
-              <FlexBetween>
+                <FlexBetween>
                 <Box
-                  {...getRootProps()}
-                  border={`2px dashed ${palette.primary.main}`}
-                  p="1rem"
-                  width="100%"
-                  sx={{ "&:hover": { cursor: "pointer" } }}
+                    {...getRootProps()}
+                    border={`2px dashed ${palette.primary.main}`}
+                    p="1rem"
+                    width="100%"
+                    sx={{ "&:hover": { cursor: "pointer" } }}
                 >
-                  <input {...getInputProps()} />
-                  {!image ? (
+                    <input {...getInputProps()} />
+                    {!uploadImage ? (
                     <p>Add Image Here</p>
-                  ) : (
+                    ) : (
                     <FlexBetween>
-                      <Typography>{image.name}</Typography>
-                      <EditOutlined />
+                        <Typography>{uploadImage.name}</Typography>
+                        <EditOutlined />
                     </FlexBetween>
-                  )}
+                    )}
                 </Box>
-                {image && (
-                  <IconButton
-                    onClick={() => isUploadImage(null)}
+                {uploadImage && (
+                    <IconButton
+                    onClick={() => setUploadImage(null)}
                     sx={{ width: "15%" }}
-                  >
+                    >
                     <DeleteOutlined />
-                  </IconButton>
+                    </IconButton>
                 )}
-              </FlexBetween>
+                </FlexBetween>
             )}
-          </Dropzone>
+            </Dropzone>
        </Box>
        )}
 
