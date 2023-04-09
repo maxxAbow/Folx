@@ -1,5 +1,5 @@
 const { Interactions } = require('./Interactions')
-const { Posts } = require('./Posts')
-const { Users } = require('./Users')
+const { Post } = require('./Post')
+const { User } = require('./User')
 
-module.exports = { Interactions, Posts, Users }
+module.exports = { Interactions, Post, User }
