@@ -45,8 +45,9 @@ function CreatePost({image}) {
     const mediumMain = palette.neutral.mediumMain;
     const medium = palette.neutral.medium; 
 
-    const createPost = async (data) => {
-        const newPost = await api.createPost(data);
+    const newPost = async (data) => {
+        // const newPost = await api.createPost(data);
+        console.log("post created")
     };
 
   return (
@@ -110,6 +111,42 @@ function CreatePost({image}) {
        )}
 
        <Divider sx={{margin: "1.25rem 0"}}/>
+       {/* Stores all icons below */}
+       <FlexBetween>
+            {/* This will turn off/on the DropZone area to upload an image  */}
+            <FlexBetween gap="0.25rem" onClick={() => setIsImage(!isImage)}>
+                <ImageOutlined sx={{color: mediumMain}}/>
+                <Typography
+                    color={mediumMain}
+                    sx={{
+                        "&:hover": {cursor: "pointer", color: medium}
+                    }}
+                >
+                    Image
+                </Typography>
+            </FlexBetween>
+            {isNonMobileScreen ? (
+                <>
+                    <FlexBetween gap="0.25rem">
+                        <GifBoxOutlined sx={{color: mediumMain}}/>
+                        <Typography color={mediumMain}>Clip</Typography>
+                    </FlexBetween>
+                    <FlexBetween gap="0.25rem">
+                        <AttachFileOutlined sx={{color: mediumMain}}/>
+                        <Typography color={mediumMain}>Attachment</Typography>
+                    </FlexBetween>
+                    <FlexBetween gap="0.25rem">
+                        <MicOutlined sx={{color: mediumMain}}/>
+                        <Typography color={mediumMain}>Audio</Typography>
+                    </FlexBetween>
+                </>
+            ): <FlexBetween gap="0.25rem">
+                    <MoreHorizOutlined sx={{color: mediumMain}}/>
+                </FlexBetween>
+            }
+
+       </FlexBetween>
+
     </WidgeWrap>
   )
 }
