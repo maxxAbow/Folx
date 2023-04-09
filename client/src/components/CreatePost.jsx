@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import api from 'utils/API';
 
 import {
     AttachFileOutlined,
@@ -26,6 +27,7 @@ import FlexBetween from './style-components/FlexBetween';
 import ProfilePic from './style-components/ProfilePic';
 import { useDispatch, useSelector } from 'react-redux';
 import {setPosts} from "state";
+import WidgeWrap from './style-components/widgeWrap';
 
 function CreatePost({image}) {
     const dispatch = useDispatch();
@@ -37,14 +39,20 @@ function CreatePost({image}) {
     const [post, setPost] = useState("");
 
     const {palette} = useTheme();
-    const {_id} = useSelector((state) => state.user);
-    const token = useSelector((state) => state.token);
+    // const {_id} = useSelector((state) => state.user);
+    // const token = useSelector((state) => state.token);
     const isNonMobileScreen = useMediaQuery("(min-width: 1000px)");
     const mediumMain = palette.neutral.mediumMain;
     const medium = palette.neutral.medium; 
-    
+
+    const createPost = async (data) => {
+        const newPost = await api.createPost(data);
+    };
+
   return (
-    <div>CreatePost</div>
+    <WidgeWrap>
+        
+    </WidgeWrap>
   )
 }
 
