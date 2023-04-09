@@ -12,7 +12,7 @@ import {
 } from "@mui/icons-material";
 
 import {Box, Typography, Divider, useTheme } from "@mui/material";
-import ProfilePic from './ProfilePic';
+import ProfilePic from './style-components/ProfilePic';
 import FlexBetween from './style-components/FlexBetween';
 import WidgeWrap from './style-components/WidgeWrap';
 import { useSelector } from 'react-redux';
@@ -46,7 +46,7 @@ function UserPanel({userId, image}) {
     }
 
     const { userName, firstName, lastName } = user
-    console.log(userName + ',' + firstName + ',' + lastName)
+    // console.log(userName + ',' + firstName + ',' + lastName)
   
   return (
     <WidgeWrap>
@@ -75,7 +75,7 @@ function UserPanel({userId, image}) {
                 }
               }}>
                 {firstName} {lastName}
-              </Typography>
+            </Typography>
               {/* Need to work with Back-end to add number of friends to User Model */}
               <Typography color={medium}>6 Friends</Typography>
           </Box>
