@@ -1,8 +1,9 @@
 [
   {
-    "userName": "David",
+    "username": "David",
     "email": "David@gmail.com",
     "location": "Nashville",
+    "favFood": "Pizza",
     "userImage": "david",
     "posts": [],
     "friends": [],
@@ -10,9 +11,10 @@
     "dislikedPosts": []
   },
   {
-    "userName": "Maxx",
+    "username": "Maxx",
     "email": "Maxx@gmail.com",
     "location": "Savannah",
+    "favFood": "Cake",
     "userImage": "maxx",
     "posts": [],
     "friends": [],
@@ -20,9 +22,10 @@
     "dislikedPosts": []
   },
   {
-    "userName": "Victor",
+    "username": "Victor",
     "email": "Victor@gmail.com",
     "location": "Berlin",
+    "favFood": "Bear Claws",
     "userImage": "victor",
     "posts": [],
     "friends": [],
@@ -30,9 +33,10 @@
     "dislikedPosts": []
   },
   {
-    "userName": "Daikeen",
+    "username": "Daikeen",
     "email": "Daikeen@gmail.com",
     "location": "Atlanta",
+    "favFood": "Wings",
     "userImage": "daikeen",
     "posts": [],
     "friends": [],
@@ -40,9 +44,10 @@
     "dislikedPosts": []
   },
   {
-    "userName": "Sarah",
+    "username": "Sarah",
     "email": "Sarah@gmail.com",
     "location": "Atlanta",
+    "favFood": "Fried Chicken",
     "userImage": "sarah",
     "posts": [],
     "friends": [],

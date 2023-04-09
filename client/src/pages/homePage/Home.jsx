@@ -7,14 +7,29 @@ import api from 'utils/API';
 
 const Home = () => {
   // Make fetch call here via the home component level, will do first thing tomorrow
-  // const [user, setUser] = useState(null) 
+  const [user, setUser] = useState(null) 
+  // const [userId, setUserId] = useState(null)
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
   const image = 'daikeen.jpg'
-  const userId = '643059c59d990055ea7bb745'
+  const userId = '6433322a33b7796f3864b0a1'
+  
+  // const getUser = async () => {
+  //   const allUsers = (await api.getUsers()).data;
+  //   let i = Math.floor(Math.random() * allUsers.length);
+  //   const userId = await allUsers[i]._id
+  //   const userData = (await api.getUserById(userId)).data;
+  //   const userInfo = await setUser(userData);
+  // }
+
+  // useEffect(() => {
+  //     getUser();
+  //   }, []);
 
   // if (!user) {
   //   return null
   // }
+ 
+  // console.log(user)
 
   return (
     <Box>
@@ -33,7 +48,7 @@ const Home = () => {
           flexBasis={isNonMobileScreen ? "42%" : undefined}
           marginTop={isNonMobileScreen ? undefined : "2rem"}
         >
-          <CreatePost image={image} />
+          <CreatePost image={image} userId={userId}  />
         </Box>
         {isNonMobileScreen && (
           <Box flexBasis={"26%"}></Box>

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  userName: {
+  username: {
     type: String, 
     unique: true
   },
@@ -14,6 +14,10 @@ const userSchema = new Schema({
   },
   password: String,
   location: {
+    type: String,
+    required: true
+  },
+  favFood: {
     type: String,
     required: true
   },

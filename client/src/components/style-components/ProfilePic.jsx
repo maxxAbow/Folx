@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 
 // Component for the user's profile image widget
+//Make onlick fucntion
 const ProfilePic = ({image, size="60px"}) => {
     return (
         <Box width={size} height={size}>
