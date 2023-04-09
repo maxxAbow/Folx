@@ -1,16 +1,47 @@
 [
   {
-    "body": "This is a post about the Worlds best Banana Bread",
-    "title": "Banana Bread Madness"
+    "username": "David",
+    "description": "Just tried the best pizza in town at Luigi's! The crust was perfectly crispy and the toppings were so fresh. Highly recommend!",
+    "userImage": "david",
+    "postImage": "",
+    "likes": ["64333be1dc1c5059180bf06b", "64333be1dc1c5059180bf06d"],
+    "createdAt": "4/7/2023",
+    "likeCount": 2,
+    "dislikeCount": 1
   },
   {
-    "body": "Pizza rolls are delicious, that's my opinion",
-    "title": "Pizza rolls yum"
-  },{
-    "body": "My dog is really cute",
-    "title": "Have you seen my dog?"
-  },{
-    "body": "Brownies are awesome. Have you tried adding fudge?",
-    "title": "Brownies"
-  }
+    "username": "Maxx",
+    "description": "Just had the most amazing slice of cake at my favorite bakery in town! The frosting was perfect and the cake was so moist. 😍",
+    "userImage": "maxx",
+    "postImage": "",
+    "likes": ["64333be1dc1c5059180bf06a", "64333be1dc1c5059180bf06c"],
+    "createdAt": "4/6/2023"
+  },
+  {
+    "username": "Victor",
+    "description": "I love German pastries and the bear claws at this Berlin bakery are amazing! Flakey and filled with almond paste. A must-try!",
+    "userImage": "victor",
+    "postImage": "",
+    "likes": ["64333be1dc1c5059180bf06b", "64333be1dc1c5059180bf06d"],
+    "createdAt": "4/1/2023"
+  },
+  {
+    "username": "Daikeen",
+    "description": "Atlanta has the best wings I've ever had! Perfectly spicy sauce and perfectly cooked wings. Highly recommend for all wing lovers out there!",
+    "userImage": "daikeen",
+    "postImage": "",
+    "likes": ["64333be1dc1c5059180bf06a", "64333be1dc1c5059180bf06b", "64333be1dc1c5059180bf06c", "64333be1dc1c5059180bf06e"],
+    "createdAt": "4/7/2023"
+  },
+  {
+    "username": "Sarah",
+    "description": "I had the best fried chicken at this new spot in Atlanta! The batter was perfectly crispy and the meat was so juicy. Definitely going back!",
+    "userImage": "sarah",
+    "postImage": "",
+    "likes": [
+        "64333be1dc1c5059180bf06c", "64333be1dc1c5059180bf06d"
+    ],
+    "createdAt": "04/08/2023"
+}
+
 ]

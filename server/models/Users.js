@@ -42,12 +42,6 @@ const userSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'post'
     }
-  ],
-  dislikedPosts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'post'
-    }
   ]
 });
 

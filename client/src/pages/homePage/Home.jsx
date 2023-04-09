@@ -11,7 +11,7 @@ const Home = () => {
   // const [userId, setUserId] = useState(null)
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
   const image = 'daikeen.jpg'
-  const userId = '6433322a33b7796f3864b0a1'
+  const userId = '64333be1dc1c5059180bf06d'
   
   // const getUser = async () => {
   //   const allUsers = (await api.getUsers()).data;

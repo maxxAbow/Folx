@@ -50,8 +50,7 @@ function UserPanel({userId, image}) {
       friends,
       location,
       favFood,
-      likedPosts,
-      dislikedPosts
+      likedPosts
     } = user;
 
   return (
@@ -118,7 +117,7 @@ function UserPanel({userId, image}) {
               <NoMealsOutlined fontSize='large' sx={{color:main}}/>
               <Typography color={dark} fontWeight="500">Number of Dislikes: </Typography>
               {/* Replace with variable with number of likes */}
-              <Typography color={dark}> {dislikedPosts.length}</Typography>
+              <Typography color={dark}> 0 </Typography>
             </Box>
           </Box>
 

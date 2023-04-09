@@ -25,12 +25,6 @@ const postSchema = new Schema(
         ref: 'user'
         }
       ],
-      dislikes: [
-        {
-        type: Schema.Types.ObjectId, 
-        ref: 'user'
-        }
-      ],
       createdAt: {
           type: Date,
           default: Date.now,

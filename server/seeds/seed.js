@@ -7,33 +7,33 @@ const bcrypt = require('bcrypt')
 const usersData = require('./usersData.json');
 const postsData = require('./postsData.json');
 
-const populatedUsers = usersData.map(async user => {
-  const populatedUser = {
-    ...user,
-    password: await bcrypt.hash('password123', 10)
-  }
-  return populatedUser
-})
+// const populatedUsers = usersData.map(async user => {
+//   const populatedUser = {
+//     ...user,
+//     password: await bcrypt.hash('password123', 10)
+//   }
+//   return populatedUser
+// })
 
 db.once('open', async () => {
   // clean database
-  await Users.deleteMany({});
-  await Posts.deleteMany({});
-  await Interactions.deleteMany({});
+  // await Users.deleteMany({});
+  // await Posts.deleteMany({});
+  // await Interactions.deleteMany({});
 
-  const users = await Promise.all(populatedUsers)
+  // const users = await Promise.all(populatedUsers)
 
-  const createdUsers = await Users.insertMany(users)
+  // const createdUsers = await Users.insertMany(users)
 
-//   const populatedPosts = postsData.map((post, i) => {
-//     return {
-//       ...post,
-//       userId: createdUsers[i]._id,
-//       createdAt: new Date(),
-//     }
-//   })
+  const populatedPosts = postsData.map((post, i) => {
+    return {
+      ...post,
+      // userId: createdUsers[i]._id,
+      // createdAt: new Date(),
+    }
+  })
 
-//   const createdPosts = await Posts.insertMany(populatedPosts);
+  const createdPosts = await Posts.insertMany(populatedPosts);
 
 //   const populatedInteractions = []
 //   for(let i = 0; i < 4; i++){
