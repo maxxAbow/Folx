@@ -44,10 +44,10 @@ const api = {
 
     // Session Axios calls for sessionRoutes controller
     login: (userData) => {
-        return axios.post(`${API_URL}/api/login`, userData);
+        return axios.post(`${API_URL}/api/session/login`, userData);
     },
     logout: () => {
-        return axios.post(`${API_URL}/api/logout`);
+        return axios.post(`${API_URL}/api/session/logout`);
     },
 
     getSession: () => {

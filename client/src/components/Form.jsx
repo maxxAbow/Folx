@@ -1,9 +1,36 @@
-import React from 'react';
-
+import React, {useEffect, useState} from 'react';
+import api from 'utils/API';
 import { BiLogInCircle } from 'react-icons/bi';
 import { RiAccountPinBoxFill } from 'react-icons/ri';
 
-const Form = ({ login, setLogin }) => {
+const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
+  const [values, setValues] = useState({
+    email:'',
+    password:''
+  })
+
+  const activeUser = []
+  // data.session.loggedIn
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(values)
+    const authUser = await api.login(values)
+    if (!authUser) {
+      alert("Email and or Password is incorrect")
+    }
+    const userData = authUser.data
+    console.log(userData)
+    if (userData.session.loggedIn === true){
+      setIsAuth(true)
+    }
+
+    for (let key in userData.session) {
+      if (key === "userId" || key === "loggedIn") {
+          activeUser.push(userData.session[key]);
+      }
+  }
+    localStorage.setItem('activeUser', JSON.stringify(activeUser));
+  }
   return (
     <>
       <div
@@ -17,11 +44,12 @@ const Form = ({ login, setLogin }) => {
           </div>
           <h2 className='fw-bold mb-4 text-center mt-2'>Sign In</h2>
         </div>
-        <form action=''>
+        <form onSubmit={handleSubmit}>
           <div className='form-floating mb-3'>
             <input
               id='emailInput'
               type='email'
+              onChange={e => setValues({...values, email: e.target.value})}
               className='form-control form-control-sm'
               placeholder='Email'
             />
@@ -33,6 +61,7 @@ const Form = ({ login, setLogin }) => {
             <input
               id='passwordInput'
               type='password'
+              onChange={e => setValues({...values, password: e.target.value})}
               className='form-control form-control-sm'
               placeholder='Password'
             />

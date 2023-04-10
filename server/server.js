@@ -26,6 +26,11 @@ app.use(cors());
 app.use(session(sess))
 app.use(routes);
 
+app.use((req, res, next) => {
+  console.log(req.session);
+  next();
+})
+
 db.once('open', () => {
   app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);

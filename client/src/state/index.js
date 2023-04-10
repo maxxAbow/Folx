@@ -5,10 +5,10 @@ const { createSlice } = require("@reduxjs/toolkit");
 const initialState = {
     //Represents Dark/Light mode state
     mode: "light",
-    user: null,
+    // user: null,
     //Represents all Auth info we will store
-    token: null,
-    posts: []
+    // token: null,
+    // posts: []
 }
 
 export const authSlice = createSlice({

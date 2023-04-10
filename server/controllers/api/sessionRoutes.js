@@ -4,22 +4,22 @@ const bcrypt = require('bcrypt')
 
 router.post('/login', async (req, res) => {
   try {
-    const { userName, password } = req.body
+    const { email, password } = req.body
 
-    if(!userName || !password ) {
+    if(!email || !password ) {
       return res.status(400).json({message: "userName and password must be defined"})
     }
-    if(typeof userName !== 'string' || typeof password !== 'string') {
-      return res.status(400).json({message: "userName and password must be a string"})
+    if(typeof email !== 'string' || typeof password !== 'string') {
+      return res.status(400).json({message: "email and password must be a string"})
     }
 
     // Find the user who matches the posted e-mail address
-    const foundUser = await Users.findOne({ userName });
+    const foundUser = await Users.findOne({ email });
 
     if (!foundUser) {
       return res
         .status(400)
-        .json({ message: 'Incorrect userName or password, please try again' });
+        .json({ message: 'Incorrect email or password, please try again' });
     }
 
     // Verify the posted password with the password store in the database
@@ -28,7 +28,7 @@ router.post('/login', async (req, res) => {
     if (!validPassword) {
       return res
         .status(400)
-        .json({ message: 'Incorrect userName or password, please try again' });
+        .json({ message: 'Incorrect email or password, please try again' });
     }
 
     // Create session variables based on the logged in user
