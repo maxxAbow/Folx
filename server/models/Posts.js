@@ -48,12 +48,6 @@ postSchema
     return this.likes.length
 })
 
-postSchema
-  .virtual('dislikeCount')
-  .get(function() {
-    return this.dislikes.length
-})
-
 const Posts = model('post', postSchema);
 
 module.exports = {Posts};
