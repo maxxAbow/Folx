@@ -1,171 +1,147 @@
-const {Post, User, Interactions} = require('../models');
+const router = require('express').Router();
+const { Posts, Users } = require('../../models');
 
-module.exports = {
-    getPosts(req,res) {
-        Post.find()
-        .then((posts) => res.json(posts))
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json({message: 'Server'})
-        })
-    },
-
-    getSinglePost(req,res) {
-        const {postId} = req.params;
-        Post.findOne({_id: postId})
-            .then((post) => {
-                !post
-                    ? res.status(400).json({message: 'No user found with this ID'})
-                    : res.status(200).json(post)
-                })
-            .catch((err) => {
-                console.log(err);
-                res.status(500).json({message: 'Server Error'})
-            });
-    },
-
-    createPost(req,res) {
-        const {description, username, userId} = req.body;
-        if(!userId){
-            res.status(400).json({message: 'Found no user with this ID'})
-        }
-
-        Post.create({description, username})
-            .then((post) =>{
-                const postId = post._id;
-                
-                return User.findByIdAndUpdate(
-                userId,
-                {$push: {posts: postId}},
-                {new: true});
-            })
-            .then((user) => {
-                !user
-                    ? res.status(400).json({message: 'Found no user with this ID'})
-                    : res.status(201).json(user)
-            })
-            .catch((err) => {
-                console.log(err);
-                res.status(500).json({message: 'Server Error'})
-            })      
-    },
-
-    updatePost(req,res) {
-        const {description} = req.body;
-        const {postId} = req.params;
-        Post.findByIdAndUpdate(
-            postId,
-            {description},
-            {
-                new: true,
-                runValidators: true
-            }
-        )
-        .then((post) => {
-            !post
-                ? res.status(400).json({message: 'Found no post with this ID'})
-                : res.status(201).json(post)
-        })
-        .catch((err) => {
-            console.log(err)
-            res.status(500).json({message: 'Server Error'})
-        })
-    },
-
-    deletePost(req,res) {
-        const {postId} = req.params;
-        Post.findById(postId)
-        .then((post) => {  
-            if (!post) {
-                res.status(400).json({message: 'Found no post with this ID'})
-            }          
-            return Post.findByIdAndDelete(postId);
-        })
-        .then((post) => {
-            const username = post.username;    
-            return User.findOneAndUpdate(
-                {username: username},
-                {$pull: {posts: postId}},
-                {new: true}
-            )
-        .then((user) => {
-            !user
-                ? res.status(400).json({message: 'Found no user with this ID'})
-                : res.json({ message: 'post and associated user data deleted' });
-        })
-    })
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json({message: 'Server Error'})
-        })
-    },
-
-    // likePost(req,res) {
-
-    // },
-
-    // removeLike(req,res) {
-
-    // }
+// GET all posts
+router.get('/', async (req, res) => {
+    try {
+      const posts = await Posts.find();
+      res.json(posts);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+  
+// GET a specific post by id
+router.get('/:postId', async (req, res) => {
+try {
+    const {postId} = req.params;
+    if(!postId){
+    return res.status(400).json({message: 'PostID must be defined'})
+    }
+    if(typeof postId !== 'string'){
+    return res.status(400).json({message: 'PostID must be a string'})
+    }
+    const post = await Posts.findById(postId)
+    if(!post){
+    return res.status(404).json({message: 'Post not found'})
+    }
+    return res.json(post)
+} catch (error) {
+    return res.status(500).json(error)
 }
+});
 
-// module.exports = {
+// CREATE a new post
+router.post('/', async (req, res) => {  
+try {
+    const {
+        username,
+        description,
+        userImage,
+        postImage
+    } = req.body
 
-// //user creates a post
-// createPost(req,res){
-//     const {body, userId, title, createdAt} = req.body;
-//     if(!userId){
-//         res.status(400).json({message:'User account required to create post'})
-//     }
-//     Posts.create({body,createdAt})
-//     .then((post)=>{
-//         const postId=post._id;
-//         return Users.findByIdAndUpdate(
-//             userId,
-//             {$push:{post:postId}},
-//             {new:true});
-//     })
-//     .catch((err)=>{
-//         console.log(err);
-//         res.status(500).json({message:'Server error'})
-//     })
-// },
+    if(!username || !description) {
+        return res.status(400).json({message: "username and description must be defined"})
+        }
+    if(typeof username !== 'string' || typeof description !== 'string') {
+        return res.status(400).json({message: "username and description must be strings"})
+    }
+    const newPost = {
+        username,
+        description,
+        userImage,
+        postImage
+    }
 
-// //get all for feed
-// getAllPosts(req,res){
-//     Posts.find()
-//     .then((posts)=> res.json(posts))
-//     .catch((err)=>{
-//         console.log(err);
-//         res.status(500).json({message:'Server'})
-//     })
-// },
+    const createdPost = await Posts.create(newPost)
+    const postId = createdPost._id
 
-// //user deletes their own post
-// deletePost,
+    const findUser = await Posts.findOne(
+        {username},
+        {$push: {posts: postId}},
+        {new: true}
+    );
 
-// //user comments on a post
-// createComment,
+    if(!findUser) {
+        return res.status(400).json({message: "username not found"})
+    }
 
-// //see post's comments on feed
-// getComments,
+    res.status(201).json(createdPost);
+} catch (err) {
+    res.status(400).json({ message: err.message });
+}
+});
 
-// //edit user's comment
-// editComment,
-
-// //optional
-// getSinglePost(req,res){
-//     const{postId}=req.params;
-//     Posts.findOne({_id: postId})
-//     .then((posts)=>{
-//         !posts
-//         ? res.status(400).json({message: 'Post not found'})
-//         : res.status(200).json(posts)
-//     })
-//     .catch((err)=>{
-//         console.log(err);
-//         res.status(500).json({message:'Server Error'})
-//     });
-// },
-
+// // Updates Like array with user's id that like the post, 
+// router.put('/:postId/likes', async (req, res) => {
+// try {
+//     const post = await Post.findByIdAndUpdate(
+//     req.params.postId,
+//     { $addToSet: { likes: req.body.userId } },
+//     { new: true }
+//     );
+//     res.json(post);
+// } catch (err) {
+//     console.error(err);
+//     res.status(500).send('Server error');
 // }
+// });
+
+// //
+// router.put('/:id/likes', async (req, res) => {
+// const { id } = req.params;
+// const { userId } = req.body;
+
+// try {
+//     const post = await Post.findById(id);
+
+//     if (!post) {
+//     return res.status(404).json({ message: 'Post not found' });
+//     }
+
+//     const index = post.likes.indexOf(userId);
+//     if (index === -1) {
+//     return res.status(400).json({ message: 'User has not liked this post' });
+//     }
+
+//     post.likes.splice(index, 1);
+//     await post.save();
+
+//     res.json(post);
+// } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: 'Server Error' });
+// }
+// });
+
+// Delete Post and remove the post from the user's posts array
+router.delete('/:postId', async (req, res) => {
+try {
+    const {postId} = req.params;
+    if(!postId){
+        return res.status(400).json({message: 'PostID must be defined'})
+    }
+    if(typeof postId !== 'string'){
+        return res.status(400).json({message: 'PostID must be a string'})
+    }
+    const foundPost = await Posts.findById(postId);
+    if(!foundPost || foundPost._id) {
+        return res.status(400).json({message: 'Post not found'})
+    }
+    const update = await Users.findOneAndUpdate(
+        {username: foundPost.username},
+        {$pull: {posts: postId}},
+        {new: true}
+    )
+    const response = await Posts.deleteOne({_id: postId});
+    if(response.deletedCount){
+        return res.json({message: 'Post successfully deleted'})
+    }
+} catch (err) {
+    res.status(500).json({ message: err.message });
+}
+});
+
+
+module.exports = router;
