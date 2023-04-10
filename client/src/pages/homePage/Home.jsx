@@ -4,14 +4,15 @@ import UserPanel from 'components/UserPanel';
 import CreatePost from 'components/CreatePost';
 import { Box, useMediaQuery } from '@mui/material';
 import api from 'utils/API';
+import Timeline from 'components/Timeline';
 
 const Home = () => {
   // Make fetch call here via the home component level, will do first thing tomorrow
   const [user, setUser] = useState(null) 
   // const [userId, setUserId] = useState(null)
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
-  const image = 'daikeen.jpg'
-  const userId = '64333be1dc1c5059180bf06d'
+  const image = 'david'
+  const userId = '64333be1dc1c5059180bf06a'
   
   // const getUser = async () => {
   //   const allUsers = (await api.getUsers()).data;
@@ -49,6 +50,7 @@ const Home = () => {
           marginTop={isNonMobileScreen ? undefined : "2rem"}
         >
           <CreatePost image={image} userId={userId}  />
+          <Timeline />
         </Box>
         {isNonMobileScreen && (
           <Box flexBasis={"26%"}></Box>

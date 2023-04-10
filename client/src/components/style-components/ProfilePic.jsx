@@ -12,7 +12,7 @@ const ProfilePic = ({image, size="60px"}) => {
                 alt="user"
                 // Below is path for to receive image from the cloud
                 // src={`http://localhost:3001/assets/${image}`}
-                src={`../assets/images/${image}`}
+                src={`../assets/images/${image}.jpg`}
             />
         </Box>
     )

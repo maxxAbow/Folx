@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { PersonAddOutlined, PersonRemoveOutlined} from "@mui/icons-material";
 import {Box, IconButton, Typography, useTheme} from "@mui/material";
@@ -8,28 +8,32 @@ import {Box, IconButton, Typography, useTheme} from "@mui/material";
 import FlexBetween from "./style-components/FlexBetween";
 import ProfilePic from "./style-components/ProfilePic"; 
 
-const { palette } = useTheme();
-const primaryLight = palette.primary.light;
-const primaryDark = palette.primary.dark;
-const main = palette.neutral.main;
-const medium = palette.neutral.medium;
-
-const addFriend = () => {
-    console.log("Friend is added");
-};
-
-const removeFriend = () => {
-    console.log("Friend is removed")
-};
-
 function Friend({image, friendId, username, subtitle}) {
-    
-    const {palette} = useTheme();
-     
+  
+  const [isFriend, setIsFriend] = useState(false);
+
+  const navigate = useNavigate();
+
+  const { palette } = useTheme();
+  const primaryLight = palette.primary.light;
+  const primaryDark = palette.primary.dark;
+  const main = palette.neutral.main;
+  const medium = palette.neutral.medium;
+  
+  const addFriend = () => {
+      setIsFriend(!isFriend)
+      console.log("Friend is added");
+  };
+  
+  const removeFriend = () => {
+      setIsFriend(!isFriend)
+      console.log("Friend is removed")
+  };
+       
     return (
         <FlexBetween>
         <FlexBetween gap="1rem">
-          <UserImage image={userPicturePath} size="55px" />
+          <ProfilePic image={image} size="55px" />
           <Box
             onClick={() => {
               navigate(`/profile/${friendId}`);

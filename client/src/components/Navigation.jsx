@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-// import '../assets/css/Navigation.css';
-import { Nav, Navbar, NavDropdown, Container } from 'react-bootstrap';
 import {
   Box,
   IconButton,
@@ -31,7 +29,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setMode, setLogout } from 'state';
 import { useNavigate } from 'react-router-dom';
 import FlexBetween from './style-components/FlexBetween';
-// import { light } from '@mui/material/styles/createPalette';
 
 const Navigation = () => {
   // State to determine to open up mobile menu on smaller/mobile screens

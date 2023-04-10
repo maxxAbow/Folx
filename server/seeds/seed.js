@@ -18,7 +18,7 @@ const postsData = require('./postsData.json');
 db.once('open', async () => {
   // clean database
   // await Users.deleteMany({});
-  // await Posts.deleteMany({});
+  await Posts.deleteMany({});
   // await Interactions.deleteMany({});
 
   // const users = await Promise.all(populatedUsers)
