@@ -3,12 +3,10 @@ import { useNavigate } from 'react-router-dom';
 
 import {
     ManageAccountsOutlined,
-    EditOutlined,
     LocationOnOutlined,
     DinnerDiningOutlined,
-    LocalPizzaOutlined,
-    DeleteOutlined,
-    NoMealsOutlined
+    RemoveRedEyeOutlined,
+    DeliveryDiningOutlined
 } from "@mui/icons-material";
 
 import {Box, Typography, Divider, useTheme } from "@mui/material";
@@ -45,9 +43,15 @@ function UserPanel({userId, image}) {
       return null
     }
 
-    const { userName, firstName, lastName } = user
-    // console.log(userName + ',' + firstName + ',' + lastName)
-  
+    const {
+      username,
+      friends,
+      location,
+      favFood,
+      followers,
+      following
+    } = user;
+
   return (
     <WidgeWrap>
       <FlexBetween
@@ -74,10 +78,10 @@ function UserPanel({userId, image}) {
                   cursor: "pointer"
                 }
               }}>
-                {firstName} {lastName}
+                {username}
             </Typography>
               {/* Need to work with Back-end to add number of friends to User Model */}
-              <Typography color={medium}>6 Friends</Typography>
+              <Typography color={medium}>{followers.length} Friends</Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />
@@ -89,13 +93,13 @@ function UserPanel({userId, image}) {
           <Box padding="1rem 0">
               <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
                 <LocationOnOutlined  fontSize='large' sx={{color:main}}/>
-                <Typography color={dark} fontWeight="500">Atlanta</Typography>
+                <Typography color={dark} fontWeight="500">{location}</Typography>
               </Box>
               <Box display="flex" alignItems="center" gap="1rem">
                 <DinnerDiningOutlined  fontSize='large' sx={{color:main}}/>
                 {/* Might change this to favorite cuisine instead, talk to back-end */}
                 <Typography color={dark} fontWeight="500">Favorite Food: </Typography>
-                <Typography color={dark} >Pizza </Typography>
+                <Typography color={dark} >{favFood} </Typography>
               </Box>
           </Box>
           <Divider />
@@ -103,16 +107,15 @@ function UserPanel({userId, image}) {
           {/* New Row */}
           <Box padding="1rem 0">
             <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
-              <LocalPizzaOutlined fontSize='large' sx={{color:main}}/>
-              <Typography color={dark} fontWeight="500">Number of Likes: </Typography>
-              {/* Replace with variable with number of likes */}
-              <Typography color={dark}> 100</Typography>
+              <DeliveryDiningOutlined fontSize='large' sx={{color:main}}/>
+              <Typography color={dark} fontWeight="500">Followers: </Typography>
+              <Typography color={dark}> {followers.length}</Typography>
             </Box>
             <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
-              <NoMealsOutlined fontSize='large' sx={{color:main}}/>
-              <Typography color={dark} fontWeight="500">Number of Dislikes: </Typography>
+              <RemoveRedEyeOutlined fontSize='large' sx={{color:main}}/>
+              <Typography color={dark} fontWeight="500">Following: </Typography>
               {/* Replace with variable with number of likes */}
-              <Typography color={dark}> 50</Typography>
+              <Typography color={dark}> {following.length} </Typography>
             </Box>
           </Box>
 

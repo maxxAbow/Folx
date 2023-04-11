@@ -7,8 +7,7 @@ const initialState = {
     mode: "light",
     user: null,
     //Represents all Auth info we will store
-    token: null,
-    posts: []
+    // posts: []
 }
 
 export const authSlice = createSlice({
@@ -22,12 +21,10 @@ export const authSlice = createSlice({
         },
         setLogin: (state, action) => {
             state.user = action.payload.user;
-            state.token = action.payload.token
         },
         // When logging it, it will reset states to null
         setLogout: (state) => {
             state.user = null;
-            state.token = null;
         },
         setFriends: (state, action) => {
             if (state.user) {

@@ -19,7 +19,6 @@ db.once('open', async () => {
   // clean database
   await Users.deleteMany({});
   await Posts.deleteMany({});
-  await Interactions.deleteMany({});
 
   const users = await Promise.all(populatedUsers)
 
@@ -33,22 +32,7 @@ db.once('open', async () => {
     }
   })
 
-  const createdPosts = await Posts.insertMany(populatedPosts);
-
-  const populatedInteractions = []
-  for(let i = 0; i < 4; i++){
-    populatedInteractions.push(
-      {
-        postId: createdPosts[i]._id,
-        comments: [{
-          body: 'Hey I have some thoughts about this',
-          userId: createdUsers[i]._id
-        }]
-      }
-    )
-  }
-  
- const createdInteractions = await Interactions.insertMany(populatedInteractions);
+  await Posts.insertMany(populatedPosts);
 
 
   console.log('all done!');

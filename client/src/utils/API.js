@@ -2,6 +2,8 @@ import userEvent from "@testing-library/user-event";
 import axios from "axios";
 import { API_URL } from "config";
 
+// axios.defaults.withCredentials=true;
+
 const api = {
     // User Axios calls for userRoutes controller
     // Notice we are only asking for username and not password
@@ -44,10 +46,10 @@ const api = {
 
     // Session Axios calls for sessionRoutes controller
     login: (userData) => {
-        return axios.post(`${API_URL}/api/login`, userData);
+        return axios.post(`${API_URL}/api/session/login`, userData);
     },
     logout: () => {
-        return axios.post(`${API_URL}/api/logout`);
+        return axios.post(`${API_URL}/api/session/logout`);
     },
 
     getSession: () => {

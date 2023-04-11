@@ -39,21 +39,22 @@ router.get('/:id', async (req,res) => {
   }
 })
 
+//TODO: Add new fields (location, fav_food)
 router.post('/', async (req, res) => {
   try {
-    const { userName, firstName, lastName, password } = req.body
+    const { username, firstName, lastName, password } = req.body
 
-    if(!userName || !firstName || !lastName || !password) {
+    if(!username || !firstName || !lastName || !password) {
       return res.status(400).json({message: "userName, firstName, lastName and password must be defined"})
     }
 
-    if(typeof userName !== 'string' || typeof firstName !== 'string' ||
+    if(typeof username !== 'string' || typeof firstName !== 'string' ||
      typeof lastName !== 'string' || typeof password !== 'string') {
-      return res.status(400).json({message: "userName, firstName, lastName and password must be strings"})
+      return res.status(400).json({message: "username, firstName, lastName and password must be strings"})
     }
 
     const user = {
-      userName,
+      username,
       firstName,
       lastName,
       password: await bcrypt.hash(password, 10)
@@ -62,7 +63,7 @@ router.post('/', async (req, res) => {
     const createdUser = await Users.create(user)
     return res.json(createdUser)
   } catch (e) {
-    if(e?.keyPattern?.userName){
+    if(e?.keyPattern?.username){
       return res.status(400).json({message: 'Username must be unique'})
     }
     return res.status(500).json(e)
@@ -91,9 +92,10 @@ router.delete('/:id', async (req,res) => {
   }
 })
 
+//TODO: Add new fields (location, fav_food)
 router.put('/:id', async (req, res) => {
   try {
-    const { userName, firstName, lastName } = req.body
+    const { username, firstName, lastName } = req.body
     const { id } = req.params
 
     if(!id){
@@ -102,15 +104,15 @@ router.put('/:id', async (req, res) => {
     if(typeof id !== 'string'){
       return res.status(400).json({message: 'ID must be a string'})
     }
-    if(!userName || !firstName || !lastName ) {
-      return res.status(400).json({message: "userName, firstName, lastName must be defined"})
+    if(!username || !firstName || !lastName ) {
+      return res.status(400).json({message: "username, firstName, lastName must be defined"})
     }
-    if(typeof userName !== 'string' || typeof firstName !== 'string' ||
+    if(typeof username !== 'string' || typeof firstName !== 'string' ||
      typeof lastName !== 'string') {
-      return res.status(400).json({message: "userName, firstName, lastName must be strings"})
+      return res.status(400).json({message: "username, firstName, lastName must be strings"})
     }
 
-    const response = await Users.updateOne({_id: id}, {userName, firstName, lastName})
+    const response = await Users.updateOne({_id: id}, {username, firstName, lastName})
 
     if(response.matchedCount){
       return res.json({message: 'User successfully updated'})
@@ -118,7 +120,7 @@ router.put('/:id', async (req, res) => {
       return res.status(404).json({message: 'User not found'})
     }
   } catch (e) {
-    if(e?.keyPattern?.userName){
+    if(e?.keyPattern?.username){
       return res.status(400).json({message: 'Username must be unique'})
     }
     return res.status(500).json(e)
@@ -169,22 +171,22 @@ router.put('/password/:id', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const { userName, password } = req.body
+    const { username, password } = req.body
 
-    if(!userName || !password ) {
-      return res.status(400).json({message: "userName and password must be defined"})
+    if(!username || !password ) {
+      return res.status(400).json({message: "username and password must be defined"})
     }
-    if(typeof userName !== 'string' || typeof password !== 'string') {
-      return res.status(400).json({message: "userName and password must be a string"})
+    if(typeof username !== 'string' || typeof password !== 'string') {
+      return res.status(400).json({message: "username and password must be a string"})
     }
 
     // Find the user who matches the posted e-mail address
-    const foundUser = await Users.findOne({ userName });
+    const foundUser = await Users.findOne({ username });
 
     if (!foundUser) {
       return res
         .status(400)
-        .json({ message: 'Incorrect userName or password, please try again' });
+        .json({ message: 'Incorrect username or password, please try again' });
     }
 
     // Verify the posted password with the password store in the database
@@ -193,10 +195,9 @@ router.post('/login', async (req, res) => {
     if (!validPassword) {
       return res
         .status(400)
-        .json({ message: 'Incorrect userName or password, please try again' });
+        .json({ message: 'Incorrect username or password, please try again' });
     }
 
-    console.log(req.session)
     // Create session variables based on the logged in user
     req.session.save(() => {
       req.session.userId = foundUser._id;
@@ -228,5 +229,59 @@ router.get('/session', (req, res) => {
     res.status(404).end();
   }
 });
+
+router.post('/followers/:userId', async (req, res) => {
+  const { userId: loggedInUser } = req.session
+
+  if (!loggedInUser) {
+    return res.status(400).json({message: 'No user is present in the session'})
+  }
+  try {
+    const user = await Users.findByIdAndUpdate(
+      req.params.userId,
+      { $addToSet: { followers: loggedInUser } }
+    );
+    const {_id} = user
+    if(_id) {
+      await Users.findByIdAndUpdate(
+        loggedInUser,
+        { $addToSet: { following: req.params.userId } }
+      );
+      return res.json({message: 'User successfully followed'})
+    } else {
+      return res.status(404).json({message: 'Error adding follower to user'})
+    }
+  } catch (error) {
+    res.status(500).json({message: 'Error adding follower to user'})
+  }
+ 
+})
+
+router.delete('/followers/:userId', async (req, res) => {
+  const { userId: loggedInUser } = req.session
+
+  if (!loggedInUser) {
+    return res.status(400).json({message: 'No user is present in the session'})
+  }
+  try {
+    const user = await Users.findByIdAndUpdate(
+      req.params.userId,
+      { $pull: { followers: loggedInUser } }
+    );
+    const {_id} = user
+    if(_id) {
+      await Users.findByIdAndUpdate(
+        loggedInUser,
+        { $pull: { following: req.params.userId } }
+      );
+      return res.json({message: 'User successfully unfollowed'})
+    } else {
+      return res.status(404).json({message: 'Error removing follower from user'})
+    }
+  } catch (error) {
+    res.status(500).json({message: 'Error removing follower from user'})
+  }
+ 
+})
 
 module.exports = router;

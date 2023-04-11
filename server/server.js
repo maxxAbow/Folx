@@ -12,7 +12,11 @@ app.use(express.json());
 
 const sess = {
   secret: 'Folx secret',
-  cookie: {},
+  // being sent to the browser, cookies used to authenticate user against the session
+  cookie: {
+    httpOnly: true, // means that cookie that is sent can be sent in http request
+    maxAge: 3600000 // sets expiration of cookie to 1hr
+  },
   resave: false,
   saveUninitialized: true,
 };
@@ -21,6 +25,11 @@ const sess = {
 app.use(cors());
 app.use(session(sess))
 app.use(routes);
+
+app.use((req, res, next) => {
+  console.log(req.session);
+  next();
+})
 
 db.once('open', () => {
   app.listen(PORT, () => {

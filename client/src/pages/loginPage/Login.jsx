@@ -8,6 +8,7 @@ import Form from '../../components/Form';
 
 const Login = () => {
   const [login, setLogin] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
 
   // Randomly generates a number that represents an index in the array returned by the images
   const hideImg = () => {
@@ -96,7 +97,12 @@ const Login = () => {
               className='col-lg-5 col-md-7 p-0 form-container'
               style={{ width: '25%', position: 'relative', zIndex: '1' }}
             >
-              <Form login={login} setLogin={setLogin} />
+              <Form 
+                login={login} 
+                setLogin={setLogin} 
+                isAuth={isAuth}
+                setIsAuth={setIsAuth}
+              />
             </Col>
             <Col xs lg='5' style={{ height: '100vh', padding: 0 }}>
               <Canvas>

@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 
 // Component for the user's profile image widget
+//Make onlick fucntion
 const ProfilePic = ({image, size="60px"}) => {
     return (
         <Box width={size} height={size}>
@@ -11,7 +12,7 @@ const ProfilePic = ({image, size="60px"}) => {
                 alt="user"
                 // Below is path for to receive image from the cloud
                 // src={`http://localhost:3001/assets/${image}`}
-                src={`../assets/images/${image}`}
+                src={`../assets/images/${image}.jpg`}
             />
         </Box>
     )
