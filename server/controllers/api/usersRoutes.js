@@ -39,6 +39,7 @@ router.get('/:id', async (req,res) => {
   }
 })
 
+//TODO: Add new fields (location, fav_food)
 router.post('/', async (req, res) => {
   try {
     const { username, firstName, lastName, password } = req.body
@@ -91,6 +92,7 @@ router.delete('/:id', async (req,res) => {
   }
 })
 
+//TODO: Add new fields (location, fav_food)
 router.put('/:id', async (req, res) => {
   try {
     const { username, firstName, lastName } = req.body
@@ -196,7 +198,6 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect username or password, please try again' });
     }
 
-    console.log(req.session)
     // Create session variables based on the logged in user
     req.session.save(() => {
       req.session.userId = foundUser._id;
@@ -228,5 +229,59 @@ router.get('/session', (req, res) => {
     res.status(404).end();
   }
 });
+
+router.post('/followers/:userId', async (req, res) => {
+  const { userId: loggedInUser } = req.session
+
+  if (!loggedInUser) {
+    return res.status(400).json({message: 'No user is present in the session'})
+  }
+  try {
+    const user = await Users.findByIdAndUpdate(
+      req.params.userId,
+      { $addToSet: { followers: loggedInUser } }
+    );
+    const {_id} = user
+    if(_id) {
+      await Users.findByIdAndUpdate(
+        loggedInUser,
+        { $addToSet: { following: req.params.userId } }
+      );
+      return res.json({message: 'User successfully followed'})
+    } else {
+      return res.status(404).json({message: 'Error adding follower to user'})
+    }
+  } catch (error) {
+    res.status(500).json({message: 'Error adding follower to user'})
+  }
+ 
+})
+
+router.delete('/followers/:userId', async (req, res) => {
+  const { userId: loggedInUser } = req.session
+
+  if (!loggedInUser) {
+    return res.status(400).json({message: 'No user is present in the session'})
+  }
+  try {
+    const user = await Users.findByIdAndUpdate(
+      req.params.userId,
+      { $pull: { followers: loggedInUser } }
+    );
+    const {_id} = user
+    if(_id) {
+      await Users.findByIdAndUpdate(
+        loggedInUser,
+        { $pull: { following: req.params.userId } }
+      );
+      return res.json({message: 'User successfully unfollowed'})
+    } else {
+      return res.status(404).json({message: 'Error removing follower from user'})
+    }
+  } catch (error) {
+    res.status(500).json({message: 'Error removing follower from user'})
+  }
+ 
+})
 
 module.exports = router;

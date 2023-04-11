@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const mongoose = require('mongoose');
 const { Posts, Users } = require('../../models');
 
 // GET all posts
@@ -33,41 +34,55 @@ try {
 }
 });
 
+// const userIds = ['blah balh']
+
+// const url = `http://localhost:3001/userId?userIds=${JSON.stringify(userIds)}`
+
+// GET all posts by a userId
+router.get('/userId/all', async (req, res) => {
+    const {userIds: userIdsString} = req.query
+
+    try {
+        if(!userIdsString) {
+            return res.status(400).json({message: 'userIds must be defined'})
+        }
+        const userIds = JSON.parse(userIdsString).map((string) => new mongoose.Types.ObjectId(string))
+
+        const posts = await Posts.find({where: { userId: {$in: userIds }}})
+        console.log(posts)
+        if(!posts.length){
+        return res.status(404).json({message: 'Posts not found'})
+        }
+        return res.json(posts)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json(error)
+    }
+});
+
 // CREATE a new post
 router.post('/', async (req, res) => {  
 try {
     const {
-        username,
         description,
-        userImage,
         postImage
     } = req.body
 
-    if(!username || !description) {
-        return res.status(400).json({message: "username and description must be defined"})
-        }
-    if(typeof username !== 'string' || typeof description !== 'string') {
-        return res.status(400).json({message: "username and description must be strings"})
+    const userId = req.session.userId
+
+    if(!userId || !description) {
+        return res.status(400).json({message: "userId and description must be defined"})
+    }
+    if(typeof description !== 'string') {
+        return res.status(400).json({message: "userId and description must be strings"})
     }
     const newPost = {
-        username,
+        userId,
         description,
-        userImage,
         postImage
     }
 
     const createdPost = await Posts.create(newPost)
-    const postId = createdPost._id
-
-    const findUser = await Posts.findOne(
-        {username},
-        {$push: {posts: postId}},
-        {new: true}
-    );
-
-    if(!findUser) {
-        return res.status(400).json({message: "username not found"})
-    }
 
     res.status(201).json(createdPost);
 } catch (err) {
@@ -75,47 +90,45 @@ try {
 }
 });
 
-// // Updates Like array with user's id that like the post, 
-// router.put('/:postId/likes', async (req, res) => {
-// try {
-//     const post = await Post.findByIdAndUpdate(
-//     req.params.postId,
-//     { $addToSet: { likes: req.body.userId } },
-//     { new: true }
-//     );
-//     res.json(post);
-// } catch (err) {
-//     console.error(err);
-//     res.status(500).send('Server error');
-// }
-// });
+// Updates Like array with user's id that like the post, 
+router.put('/:postId/like', async (req, res) => {
+    const {userId} = req.session
+    if(!userId){
+        return res.status(400).json({message: 'userId must be defined'})
+    }
+    try {
+        const post = await Posts.findByIdAndUpdate(
+            req.params.postId,
+            { $addToSet: { likes: req.body.userId } },
+            { new: true }
+        );
+        res.json(post);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server error');
+    }
+});
 
-// //
-// router.put('/:id/likes', async (req, res) => {
-// const { id } = req.params;
-// const { userId } = req.body;
+//
+router.put('/:postId/dislike', async (req, res) => {
+    const { userId } = req.session;
 
-// try {
-//     const post = await Post.findById(id);
+    if(!userId){
+        return res.status(400).json({message: 'userId must be defined'})
+    }
 
-//     if (!post) {
-//     return res.status(404).json({ message: 'Post not found' });
-//     }
-
-//     const index = post.likes.indexOf(userId);
-//     if (index === -1) {
-//     return res.status(400).json({ message: 'User has not liked this post' });
-//     }
-
-//     post.likes.splice(index, 1);
-//     await post.save();
-
-//     res.json(post);
-// } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ message: 'Server Error' });
-// }
-// });
+    try {
+        const post = await Posts.findByIdAndUpdate(
+            req.params.postId,
+            { $pull: { likes: userId } },
+            { new: true }
+        );
+        res.json(post);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server error');
+    }
+});
 
 // Delete Post and remove the post from the user's posts array
 router.delete('/:postId', async (req, res) => {
@@ -127,22 +140,39 @@ try {
     if(typeof postId !== 'string'){
         return res.status(400).json({message: 'PostID must be a string'})
     }
-    const foundPost = await Posts.findById(postId);
-    if(!foundPost || foundPost._id) {
-        return res.status(400).json({message: 'Post not found'})
-    }
-    const update = await Users.findOneAndUpdate(
-        {username: foundPost.username},
-        {$pull: {posts: postId}},
-        {new: true}
-    )
     const response = await Posts.deleteOne({_id: postId});
     if(response.deletedCount){
         return res.json({message: 'Post successfully deleted'})
+    } else {
+        return res.status(404).json({message: 'Post not found'})
     }
 } catch (err) {
     res.status(500).json({ message: err.message });
 }
+});
+
+// Updates comments in the post
+router.post('/:postId/comments', async (req, res) => {
+    const {userId} = req.session
+    const {body} = req.body
+    if(!userId || !body){
+        return res.status(400).json({message: 'userId and body must be defined'})
+    }
+    try {
+        const post = await Posts.findByIdAndUpdate(
+            req.params.postId,
+            { $push: { comments: {
+                userId,
+                body,
+                createdAt: new Date()
+            } } },
+            { new: true }
+        );
+        res.json(post);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server error');
+    }
 });
 
 

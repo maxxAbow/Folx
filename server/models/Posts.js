@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const postSchema = new Schema(
     {
-      username: {
+      userId: {
         type: String,
         required: true
       },
@@ -11,10 +11,6 @@ const postSchema = new Schema(
         minLength: 1,
         maxLength: [140, 'Must be less than 140 characters, got {VALUE}']
       },
-      userImage: {
-        type: String,
-        required: false
-      },
       postImage: {
         type: String,
         required: false
@@ -23,6 +19,13 @@ const postSchema = new Schema(
         {
         type: Schema.Types.ObjectId, 
         ref: 'user'
+        }
+      ],
+      comments: [
+        { 
+          body: String, 
+          createdAt: Date, 
+          userId: String 
         }
       ],
       createdAt: {

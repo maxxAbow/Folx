@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navigation from 'components/Navigation';
 import UserPanel from 'components/UserPanel';
 import CreatePost from 'components/CreatePost';
@@ -10,21 +11,33 @@ const Home = () => {
   // Make fetch call here via the home component level, will do first thing tomorrow
   const [user, setUser] = useState(null) 
   // const [userId, setUserId] = useState(null)
+  const [image, setImage] = useState('')
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
-  const image = 'david'
-  const userId = '64333be1dc1c5059180bf06a'
-  
-  // const getUser = async () => {
-  //   const allUsers = (await api.getUsers()).data;
-  //   let i = Math.floor(Math.random() * allUsers.length);
-  //   const userId = await allUsers[i]._id
-  //   const userData = (await api.getUserById(userId)).data;
-  //   const userInfo = await setUser(userData);
-  // }
+  const navigate = useNavigate()
+  // let image = ''
+  let userId = ''
+  let userData = {}
 
-  // useEffect(() => {
-  //     getUser();
-  //   }, []);
+  const activeUserStorage = localStorage.getItem("activeUser");// Retrieves activerUsers data from local storage
+  const activeUser = JSON.parse(activeUserStorage); // parses the string into a JS object
+
+  if (!activeUser || activeUser[1] !== true) {
+    navigate('/')
+  } else if (activeUser[1] === true) {
+    userId = activeUser[0] // if logged in, setUserId
+  }
+
+  const getUser = async (userId) => {
+    const findUser = await api.getUserById(userId);
+    userData = findUser.data;
+    setImage(userData.userImage)
+    // console.log(userData)
+  }
+
+  useEffect(() => {
+    getUser(userId)
+
+  }, [userId]);
 
   // if (!user) {
   //   return null

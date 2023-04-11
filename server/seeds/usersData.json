@@ -4,54 +4,34 @@
     "email": "David@gmail.com",
     "location": "Nashville",
     "favFood": "Pizza",
-    "userImage": "david",
-    "posts": [],
-    "friends": [],
-    "likedPosts": [],
-    "dislikedPosts": []
+    "userImage": "david"
   },
   {
     "username": "Maxx",
     "email": "Maxx@gmail.com",
     "location": "Savannah",
     "favFood": "Cake",
-    "userImage": "maxx",
-    "posts": [],
-    "friends": [],
-    "likedPosts": [],
-    "dislikedPosts": []
+    "userImage": "maxx"
   },
   {
     "username": "Victor",
     "email": "Victor@gmail.com",
     "location": "Berlin",
     "favFood": "Bear Claws",
-    "userImage": "victor",
-    "posts": [],
-    "friends": [],
-    "likedPosts": [],
-    "dislikedPosts": []
+    "userImage": "victor"
   },
   {
     "username": "Daikeen",
     "email": "Daikeen@gmail.com",
     "location": "Atlanta",
     "favFood": "Wings",
-    "userImage": "daikeen",
-    "posts": [],
-    "friends": [],
-    "likedPosts": [],
-    "dislikedPosts": []
+    "userImage": "daikeen"
   },
   {
     "username": "Sarah",
     "email": "Sarah@gmail.com",
     "location": "Atlanta",
     "favFood": "Fried Chicken",
-    "userImage": "sarah",
-    "posts": [],
-    "friends": [],
-    "likedPosts": [],
-    "dislikedPosts": []
+    "userImage": "sarah"
   }
 ]

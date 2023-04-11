@@ -25,22 +25,16 @@ const userSchema = new Schema({
     type: String,
     required: false
   },
-  posts: [
-    {
-        type: Schema.Types.ObjectId,
-        ref: 'post'
-    }
-  ],
-  friends: [
+  followers: [
     {
         type: Schema.Types.ObjectId,
         ref: 'user'
     }
   ],
-  likedPosts: [
+  following: [
     {
-      type: Schema.Types.ObjectId,
-      ref: 'post'
+        type: Schema.Types.ObjectId,
+        ref: 'user'
     }
   ]
 });

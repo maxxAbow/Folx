@@ -1,46 +1,32 @@
 [
   {
-    "username": "David",
     "description": "Just tried the best pizza in town at Luigi's! The crust was perfectly crispy and the toppings were so fresh. Highly recommend!",
-    "userImage": "david",
     "postImage": "pizza",
-    "likes": ["64333be1dc1c5059180bf06b", "64333be1dc1c5059180bf06d"],
-    "createdAt": "4/7/2023",
-    "likeCount": 2,
-    "dislikeCount": 1
-  },
-  {
-    "username": "Maxx",
-    "description": "Just had the most amazing slice of cake at my favorite bakery in town! The frosting was perfect and the cake was so moist. 😍",
-    "userImage": "maxx",
-    "postImage": "cake",
-    "likes": ["64333be1dc1c5059180bf06a", "64333be1dc1c5059180bf06c"],
-    "createdAt": "4/6/2023"
-  },
-  {
-    "username": "Victor",
-    "description": "I love German pastries and the bear claws at this Berlin bakery are amazing! Flakey and filled with almond paste. A must-try!",
-    "userImage": "victor",
-    "postImage": "bear-claw",
-    "likes": ["64333be1dc1c5059180bf06b", "64333be1dc1c5059180bf06d"],
-    "createdAt": "4/1/2023"
-  },
-  {
-    "username": "Daikeen",
-    "description": "Atlanta has the best wings I've ever had! Perfectly spicy sauce and perfectly cooked wings. Highly recommend for all wing lovers out there!",
-    "userImage": "daikeen",
-    "postImage": "wings",
-    "likes": ["64333be1dc1c5059180bf06a", "64333be1dc1c5059180bf06b", "64333be1dc1c5059180bf06c", "64333be1dc1c5059180bf06e"],
+    "likes": [],
     "createdAt": "4/7/2023"
   },
   {
-    "username": "Sarah",
+    "description": "Just had the most amazing slice of cake at my favorite bakery in town! The frosting was perfect and the cake was so moist. 😍",
+    "postImage": "cake",
+    "likes": [],
+    "createdAt": "4/6/2023"
+  },
+  {
+    "description": "I love German pastries and the bear claws at this Berlin bakery are amazing! Flakey and filled with almond paste. A must-try!",
+    "postImage": "bear-claw",
+    "likes": [],
+    "createdAt": "4/1/2023"
+  },
+  {
+    "description": "Atlanta has the best wings I've ever had! Perfectly spicy sauce and perfectly cooked wings. Highly recommend for all wing lovers out there!",
+    "postImage": "wings",
+    "likes": [],
+    "createdAt": "4/7/2023"
+  },
+  {
     "description": "I had the best fried chicken at this new spot in Atlanta! The batter was perfectly crispy and the meat was so juicy. Definitely going back!",
-    "userImage": "sarah",
     "postImage": "fried-chicken",
-    "likes": [
-        "64333be1dc1c5059180bf06c", "64333be1dc1c5059180bf06d"
-    ],
+    "likes": [],
     "createdAt": "04/08/2023"
 }
 

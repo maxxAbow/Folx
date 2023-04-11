@@ -2,8 +2,10 @@ import React, {useEffect, useState} from 'react';
 import api from 'utils/API';
 import { BiLogInCircle } from 'react-icons/bi';
 import { RiAccountPinBoxFill } from 'react-icons/ri';
+import { useNavigate } from 'react-router-dom';
 
 const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     email:'',
     password:''
@@ -30,6 +32,7 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
       }
   }
     localStorage.setItem('activeUser', JSON.stringify(activeUser));
+    navigate('/home')
   }
   return (
     <>

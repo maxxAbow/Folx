@@ -3,12 +3,10 @@ import { useNavigate } from 'react-router-dom';
 
 import {
     ManageAccountsOutlined,
-    EditOutlined,
     LocationOnOutlined,
     DinnerDiningOutlined,
-    LocalPizzaOutlined,
-    DeleteOutlined,
-    NoMealsOutlined
+    RemoveRedEyeOutlined,
+    DeliveryDiningOutlined
 } from "@mui/icons-material";
 
 import {Box, Typography, Divider, useTheme } from "@mui/material";
@@ -50,7 +48,8 @@ function UserPanel({userId, image}) {
       friends,
       location,
       favFood,
-      likedPosts
+      followers,
+      following
     } = user;
 
   return (
@@ -82,7 +81,7 @@ function UserPanel({userId, image}) {
                 {username}
             </Typography>
               {/* Need to work with Back-end to add number of friends to User Model */}
-              <Typography color={medium}>{friends.length} Friends</Typography>
+              <Typography color={medium}>{followers.length} Friends</Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />
@@ -108,16 +107,15 @@ function UserPanel({userId, image}) {
           {/* New Row */}
           <Box padding="1rem 0">
             <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
-              <LocalPizzaOutlined fontSize='large' sx={{color:main}}/>
-              <Typography color={dark} fontWeight="500">Number of Likes: </Typography>
-              {/* Replace with variable with number of likes */}
-              <Typography color={dark}> {likedPosts.length}</Typography>
+              <DeliveryDiningOutlined fontSize='large' sx={{color:main}}/>
+              <Typography color={dark} fontWeight="500">Followers: </Typography>
+              <Typography color={dark}> {followers.length}</Typography>
             </Box>
             <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
-              <NoMealsOutlined fontSize='large' sx={{color:main}}/>
-              <Typography color={dark} fontWeight="500">Number of Dislikes: </Typography>
+              <RemoveRedEyeOutlined fontSize='large' sx={{color:main}}/>
+              <Typography color={dark} fontWeight="500">Following: </Typography>
               {/* Replace with variable with number of likes */}
-              <Typography color={dark}> 0 </Typography>
+              <Typography color={dark}> {following.length} </Typography>
             </Box>
           </Box>
 
