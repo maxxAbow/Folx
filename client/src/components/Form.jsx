@@ -108,10 +108,32 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
               type='text'
               className='form-control form-control-sm'
               id='display-name-input'
-              placeholder='Display Name'
+              placeholder='First Name'
             />
             <label htmlFor='floatingInput' className='text-center'>
-              Display Name
+              First Name
+            </label>
+          </div>
+          <div className='form-floating mb-3'>
+            <input
+              type='text'
+              className='form-control form-control-sm'
+              id='display-name-input'
+              placeholder='Last Name'
+            />
+            <label htmlFor='floatingInput' className='text-center'>
+              Last Name
+            </label>
+          </div>
+          <div className='form-floating mb-3'>
+            <input
+              type='text'
+              className='form-control form-control-sm'
+              id='display-name-input'
+              placeholder='Location'
+            />
+            <label htmlFor='floatingInput' className='text-center'>
+              Location
             </label>
           </div>
           <div className='form-floating mb-3'>
@@ -277,7 +299,7 @@ export default Form;
 //         initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
 //         validationSchema={isLogin ? loginSchema : registerSchema}
 //       >
-//       {({
+//         {({
 //           values,
 //           errors,
 //           touched,
@@ -310,7 +332,8 @@ export default Form;
 //                       Boolean(touched.firstName) && Boolean(errors.firstName)
 //                     }
 //                     helperText={touched.firstName && errors.firstName}
-//                     sx={{ gridColumn: 'span 2' }}
+//                     sx={{ gridColumn: 'span 2', borderRadius: '18px' }}
+//                     // className='border-radius: 18px'
 //                   />
 //                   <TextField
 //                     label='Last Name'
@@ -446,6 +469,8 @@ export default Form;
 //         )}
 //       </Formik>
 //     </div>
+//   );
+// };
 
 // import { BiLogInCircle } from 'react-icons/bi';
 // import { RiAccountPinBoxFill } from 'react-icons/ri';
