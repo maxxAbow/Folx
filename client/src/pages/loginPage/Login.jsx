@@ -33,7 +33,7 @@ const Login = () => {
     <Row>
       <Col>
         <div className='container3D'>
-          <div class='flier'>
+          <div className='flier'>
             <img
               className='space-food'
               id='image1'
