@@ -5,9 +5,8 @@ const { createSlice } = require("@reduxjs/toolkit");
 const initialState = {
     //Represents Dark/Light mode state
     mode: "light",
-    // user: null,
+    user: null,
     //Represents all Auth info we will store
-    // token: null,
     // posts: []
 }
 
@@ -22,12 +21,10 @@ export const authSlice = createSlice({
         },
         setLogin: (state, action) => {
             state.user = action.payload.user;
-            state.token = action.payload.token
         },
         // When logging it, it will reset states to null
         setLogout: (state) => {
             state.user = null;
-            state.token = null;
         },
         setFriends: (state, action) => {
             if (state.user) {

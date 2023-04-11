@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import api from 'utils/API';
 import {
   Box,
   IconButton,
@@ -30,17 +31,18 @@ import { setMode, setLogout } from 'state';
 import { useNavigate } from 'react-router-dom';
 import FlexBetween from './style-components/FlexBetween';
 
-const Navigation = () => {
+const Navigation = ({userId}) => {
   // State to determine to open up mobile menu on smaller/mobile screens
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
+  const [user, setUser] = useState(null);
+
   // To dispatch actions from reducers
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // To grab user information
-  const user = useSelector((state) => state.user);
+  
   // Hook to determine if current screensize to determine users screensize
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
-
+  
   // Refers themes from theme js file
   const theme = useTheme();
   const neutralLight = theme.palette.neutral.light;
@@ -49,9 +51,29 @@ const Navigation = () => {
   const background = theme.palette.background.default;
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
+  
+  const logOut = () => {
+    localStorage.removeItem("activeUser");
+    navigate('/');
+  }
 
+  const searchUser = async (userId) => {
+    const response = await api.getUserById(userId);
+    await setUser(response.data);
+  }
+
+  useEffect(() => {
+    searchUser(userId);
+  }, [])
+  console.log(user)
+
+    
+  if (!user) {
+    return null
+  }
+
+  const {username} = user;
   // const fullName = `${user.firstName} ${user.lastName}`
-  const fullName = `Daikeen Lockett`
 
   return (
     // The Box component from @mui/material allows us to pass in CSS properties as component properties
@@ -102,9 +124,9 @@ const Navigation = () => {
           <Message sx={{ fontSize: "25px"}} />
           <Notifications sx={{ fontSize: "25px"}} />
           <Help sx={{ fontSize: "25px"}} />
-          <FormControl variant='standard' value={fullName}>
+          <FormControl variant='standard' value={username}>
             <Select
-              value={fullName}
+              value={username}
               sx={{
                 backgroundColor: neutralLight,
                 width: "150px",
@@ -120,10 +142,10 @@ const Navigation = () => {
               }}
               input={<InputBase />}
             >
-              <MenuItem value={fullName}>
-                <Typography>{fullName}</Typography>
+              <MenuItem value={username}>
+                <Typography>{username}</Typography>
               </ MenuItem>
-              <MenuItem onClick={() => dispatch(setLogout())}>
+              <MenuItem onClick={() => logOut()}>
                 Log Out
               </MenuItem>
             </Select>
@@ -166,9 +188,9 @@ const Navigation = () => {
           <Message sx={{ fontSize: "25px"}} />
           <Notifications sx={{ fontSize: "25px"}} />
           <Help sx={{ fontSize: "25px"}} />
-          <FormControl variant='standard' value={fullName}>
+          <FormControl variant='standard' value={username}>
             <Select
-              value={fullName}
+              value={username}
               sx={{
                 backgroundColor: neutralLight,
                 width: "150px",
@@ -184,10 +206,10 @@ const Navigation = () => {
               }}
               input={<InputBase />}
             >
-              <MenuItem value={fullName}>
-                <Typography>{fullName}</Typography>
+              <MenuItem value={username}>
+                <Typography>{username}</Typography>
               </ MenuItem>
-              <MenuItem onClick={() => dispatch(setLogout())}>
+              <MenuItem onClick={() => logOut()}>
                 Log Out
               </MenuItem>
             </Select>

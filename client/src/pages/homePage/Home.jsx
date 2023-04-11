@@ -30,6 +30,7 @@ const Home = () => {
   const getUser = async (userId) => {
     const findUser = await api.getUserById(userId);
     userData = findUser.data;
+    setUser(userData)
     setImage(userData.userImage)
     // console.log(userData)
   }
@@ -39,15 +40,9 @@ const Home = () => {
 
   }, [userId]);
 
-  // if (!user) {
-  //   return null
-  // }
- 
-  // console.log(user)
-
   return (
     <Box>
-      <Navigation />
+      <Navigation userId={userId} />
       <Box 
       width="100%" 
       padding="2rem 6%" 
