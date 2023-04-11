@@ -2,18 +2,18 @@
 
 :root {
   --purple: #151550;
-  --red: #F86B6B;
+  /* --red: #F86B6B;
   --green: #BCD098;
   --yellow: #F5D771;
   --tan: #B38871;
-  --offwhite: #E1D9CF;
+  --offwhite: #E1D9CF; */
   --white: #EBEBEB;
   --black: #253036;
 }
 
 body {
-  color: #FFFFFF;
-  background: black;
+  color: var(--white);
+  background: var(--black);
   overflow: hidden;
 }
 
@@ -73,11 +73,15 @@ body {
   /* margin-right: 18%; */
 }
 
+#first-name-input,
+#last-name-input,
 #emailInput,
 #passwordInput,
 #sign-up-password-input,
 #sign-up-email-input,
-#display-name-input {
+#display-name-input,
+#location-input,
+#favorite-food-input {
   border-radius: 18px;
   text-align: center;
 }
