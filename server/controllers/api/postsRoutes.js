@@ -91,6 +91,24 @@ router.get('/grabbing' , async (req,res)=>{
 
 
 
+//GET posts by userId
+router.get('/byUser/:userId', async (req,res)=>{
+    try{
+    const luckyUser = req.body.userId;
+    const posts = await Posts.find({where: {userId: {$in: luckyUser}}});
+    if(!posts){
+        return res.status(404).json({message: 'Posts by user: '+ luckyUser +' not found'})
+         }
+    console.log(posts);
+    } catch (e) {
+        console.log(e)
+        return res.status(500).json(e)
+        }
+});
+
+
+
+
 // CREATE a new post
 router.post('/', async (req, res) => {  
 try {
