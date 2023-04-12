@@ -73,13 +73,12 @@ body {
   /* margin-right: 18%; */
 }
 
-#first-name-input,
-#last-name-input,
-#emailInput,
-#passwordInput,
+.emailInput,
+.passwordInput,
 #sign-up-password-input,
 #sign-up-email-input,
 #display-name-input,
+#favorite-food-input,
 #location-input,
 #favorite-food-input {
   border-radius: 18px;
