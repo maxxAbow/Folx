@@ -34,31 +34,62 @@ try {
 }
 });
 
-// const userIds = ['blah balh']
 
-// const url = `http://localhost:3001/userId?userIds=${JSON.stringify(userIds)}`
 
-// GET all posts by a userId
-router.get('/userId/all', async (req, res) => {
-    const {userIds: userIdsString} = req.query
-
-    try {
-        if(!userIdsString) {
-            return res.status(400).json({message: 'userIds must be defined'})
+//GET followings posts by user's list of following
+router.get('/grabbing' , async (req,res)=>{
+    const activeUser = req.session.userId;
+    const user = Users.findOne({activeUser:_id});
+    try{
+        if(!activeUser){
+            return res.status(400).json({message: 'userId must be defined'})
         }
-        const userIds = JSON.parse(userIdsString).map((string) => new mongoose.Types.ObjectId(string))
-
-        const posts = await Posts.find({where: { userId: {$in: userIds }}})
+        if(!user){
+            return res.status(400).json({message: 'User not found'})
+        }
+        const following = user.following;
+        if(!following){
+            return res.status(400).json({message:'No followers found'})
+        }
+        const followingString = JSON.parse(following).map((string));
+ //       const constructedUrl = '/grabbing/' + activeUser + '/' + followingString;
+        const posts = await Posts.find({where: {userId: {$in: followingString}}});
         console.log(posts)
         if(!posts.length){
-        return res.status(404).json({message: 'Posts not found'})
+         return res.status(404).json({message: 'Posts not found'})
+         }
+         return res.json(posts)
+    } catch (e) {
+        console.log(e)
+        return res.status(500).json(e)
         }
-        return res.json(posts)
-    } catch (error) {
-        console.log(error)
-        return res.status(500).json(error)
-    }
 });
+// const userIds = ['blah balh']
+// const url = `http://localhost:3001/userId?userIds=${JSON.stringify(userIds)}`
+// GET all posts by a userId
+// router.get('/userId/all', async (req, res) => {
+//     const {userIds: userIdsString} = req.query
+
+//     try {
+//         if(!userIdsString) {
+//             return res.status(400).json({message: 'userIds must be defined'})
+//         }
+//         const userIds = JSON.parse(userIdsString).map((string) => new mongoose.Types.ObjectId(string))
+
+//         const posts = await Posts.find({where: { userId: {$in: userIds }}})
+//         console.log(posts)
+//         if(!posts.length){
+//         return res.status(404).json({message: 'Posts not found'})
+//         }
+//         return res.json(posts)
+//     } catch (error) {
+//         console.log(error)
+//         return res.status(500).json(error)
+//     }
+// });
+
+
+
 
 // CREATE a new post
 router.post('/', async (req, res) => {  
