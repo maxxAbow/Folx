@@ -36,3 +36,7 @@ db.once('open', () => {
     console.log(`API server running on port ${PORT}!`);
   });
 });
+
+app.get("/", (req, res) => {
+  res.send("yes chef!");
+ });
