@@ -138,6 +138,17 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
           </div>
           <div className='form-floating mb-3'>
             <input
+              type='text'
+              className='form-control form-control-sm'
+              id='display-name-input'
+              placeholder='Favorite Food'
+            />
+            <label htmlFor='floatingInput' className='text-center'>
+              Favorite Food
+            </label>
+          </div>
+          <div className='form-floating mb-3'>
+            <input
               type='email'
               className='form-control form-control-sm'
               placeholder='Email'
