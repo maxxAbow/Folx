@@ -37,9 +37,9 @@ try {
 
 
 //GET followings posts by user's list of following
-router.get('/grabbing' , async (req,res)=>{
+router.get('/grabbing/:userId' , async (req,res)=>{
     const activeUser = req.session.userId;
-    const user = Users.findOne({activeUser:_id});
+    const user = Users.findOne({where:{userId:{activeUser}}});
     try{
         if(!activeUser){
             return res.status(400).json({message: 'userId must be defined'})
@@ -92,10 +92,13 @@ router.get('/grabbing' , async (req,res)=>{
 
 
 //GET posts by userId
-router.get('/byUser/:userId', async (req,res)=>{
+router.get('/target/:userId', async (req,res)=>{
     try{
     const luckyUser = req.body.userId;
-    const posts = await Posts.find({where: {userId: {$in: luckyUser}}});
+    if(!luckyUser){
+        return res.status(400).json({message: 'User not found'})
+    }
+    const posts = await Posts.find({where: {userId: {luckyUser}}});
     if(!posts){
         return res.status(404).json({message: 'Posts by user: '+ luckyUser +' not found'})
          }
@@ -107,6 +110,19 @@ router.get('/byUser/:userId', async (req,res)=>{
 });
 
 
+//GET post data and only userImage
+router.get('/join/:id', async (req,res)=>{
+    const postUser = Posts.userId;
+    if(!postUser){
+        return res.status(400).json({message: 'Post owner not found'})
+    }
+ //   const post = await Posts.findOne({where:{userId: postUser}});
+    const userImage = Users.userImage;
+    const imageUser = await Users.find({where:{userId:postUser}},userImage);
+    if(!imageUser){
+        return res.status(400).json({message: 'Image not found'})
+    }
+})
 
 
 // CREATE a new post

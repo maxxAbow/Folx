@@ -16,6 +16,8 @@ const sess = {
   cookie: {
     httpOnly: true, // means that cookie that is sent can be sent in http request
     maxAge: 3600000 // sets expiration of cookie to 1hr
+    ,email: 'Maxx@gmail.com',
+    password:'$2b$10$ZXUNcT6gBq1OU7rV7aA4xuJiotQMHg4MLEjHDL/W4VnBcGRJ.CfaK'
   },
   resave: false,
   saveUninitialized: true,
