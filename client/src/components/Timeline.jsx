@@ -8,7 +8,7 @@ function Timeline({userId, isProfile = false}) {
 
     const getAllPosts = async () => {
         const {data} = (await api.getPosts());
-        console.log(data);
+        // console.log(data);
         setPosts(data);
     }
     
