@@ -26,12 +26,12 @@ import {
   Close,
 } from '@mui/icons-material';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setMode } from 'state';
 import { useNavigate } from 'react-router-dom';
 import FlexBetween from './style-components/FlexBetween';
 
-const Navigation = ({ userId }) => {
+const Navigation = ({ userId, setIsAuth }) => {
   // State to determine to open up mobile menu on smaller/mobile screens
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   const [user, setUser] = useState(null);
@@ -53,9 +53,12 @@ const Navigation = ({ userId }) => {
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
+  // Removes the activeUser Object from localStorage,
+  // then sets isAuth state to false so that it automatically rerenders the App.js, which routes the user back to the login page
   const logOut = () => {
     localStorage.removeItem('activeUser');
-    navigate('/');
+    setIsAuth(false);
+    // navigate('/');
   };
 
   const searchUser = async (userId) => {
