@@ -1,14 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import {setPosts} from "state";
 import Post from './Post';
 import api from 'utils/API';
 
 function Timeline({userId, isProfile = false}) {
-    // const dispatch = useDispatch();
-    // const posts = useSelector((state) => state.posts);
-    // const token = useSelector((state) => state.token);
-
+   
     const [posts, setPosts] = useState([]);
 
     const getAllPosts = async () => {
@@ -21,7 +16,7 @@ function Timeline({userId, isProfile = false}) {
         const {data} = await api.getPostById();
     }
 
-    // If User is on a profile, it will only retrieve made by that specific user, otherwise will retreive posts from everyone
+    // If User is on a profile, it will only retrieve post made by that specific user, otherwise will retreive posts from everyone
     useEffect(() => {
         if(isProfile) {
             // getUserPosts();

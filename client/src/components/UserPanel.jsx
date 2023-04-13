@@ -13,14 +13,12 @@ import {Box, Typography, Divider, useTheme } from "@mui/material";
 import ProfilePic from './style-components/ProfilePic';
 import FlexBetween from './style-components/FlexBetween';
 import WidgeWrap from './style-components/WidgeWrap';
-import { useSelector } from 'react-redux';
 import api from 'utils/API';
 
 function UserPanel({userId, image}) {
     const [user, setUser] = useState(null);
     const {palette} = useTheme();
     const navigate = useNavigate()
-    const token = useSelector((state) => state.token);
     const dark = palette.neutral.dark;
     const medium = palette.neutral.medium;
     const main = palette.neutral.main;
@@ -45,7 +43,6 @@ function UserPanel({userId, image}) {
 
     const {
       username,
-      friends,
       location,
       favFood,
       followers,

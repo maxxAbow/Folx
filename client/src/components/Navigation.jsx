@@ -27,7 +27,7 @@ import {
 } from '@mui/icons-material';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setMode, setLogout } from 'state';
+import { setMode } from 'state';
 import { useNavigate } from 'react-router-dom';
 import FlexBetween from './style-components/FlexBetween';
 
@@ -36,8 +36,9 @@ const Navigation = ({ userId }) => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   const [user, setUser] = useState(null);
 
-  // To dispatch actions from reducers
+  // To dispatch action from reducers to change mode's state
   const dispatch = useDispatch();
+  // To reroute page
   const navigate = useNavigate();
 
   // Hook to determine if current screensize to determine users screensize
@@ -230,34 +231,6 @@ const Navigation = ({ userId }) => {
     </FlexBetween>
   );
 };
-// const Navigation = () => {
-//   return (
-//     <Navbar collapseOnSelect expand='lg' bg='black' variant='dark' id='navbar'>
-//       <Container>
-//         <Navbar.Brand href='#home'>
-//           FolX (But it'll be a logo here haha!)
-//         </Navbar.Brand>
-//         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-//         {/* <Navbar.Collapse id="responsive-navbar-nav">
-//           <Nav className="me-auto">
-//             <Nav.Link href="#features">Features</Nav.Link>
-//             <Nav.Link href="#pricing">Pricing</Nav.Link>
-//             <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-//               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-//               <NavDropdown.Item href="#action/3.2">
-//                 Another action
-//               </NavDropdown.Item>
-//               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-//               <NavDropdown.Divider />
-//               <NavDropdown.Item href="#action/3.4">
-//                 Separated link
-//               </NavDropdown.Item>
-//             </NavDropdown>
-//           </Nav>
-//         </Navbar.Collapse> */}
-//       </Container>
-//     </Navbar>
-//   );
-// };
+
 
 export default Navigation;
