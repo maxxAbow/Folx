@@ -6,9 +6,9 @@ import '../../assets/css/Animations.css';
 import Earth from '../../components/Earth';
 import Form from '../../components/Form';
 
-const Login = () => {
+const Login = ({isAuth, setIsAuth}) => {
   const [login, setLogin] = useState(true);
-  const [isAuth, setIsAuth] = useState(false);
+  // const [isAuth, setIsAuth] = useState(false);
 
   // Randomly generates a number that represents an index in the array returned by the images
   const hideImg = () => {
@@ -29,6 +29,8 @@ const Login = () => {
     // Uses the random number to remove an element from the DOM based of the index.
     imgArray[i].remove();
   };
+
+  // console.log(`login component ${isAuth}`)
 
   return (
     <Row>

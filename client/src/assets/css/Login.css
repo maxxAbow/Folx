@@ -2,8 +2,8 @@
 
 :root {
   --purple: #151550;
-  /* --red: #F86B6B;
-  --green: #BCD098;
+  --red: #F86B6B;
+  /* --green: #BCD098;
   --yellow: #F5D771;
   --tan: #B38871;
   --offwhite: #E1D9CF; */
@@ -48,10 +48,10 @@ body {
 }
 
 .btn {
-  border: 1px solid var(--purple);
+  border: 1.5px solid var(--purple);
   color: var(--purple);
   border-radius: 18px;
-  height: 55px;
+  height: 58px;
 }
 
 .btn:hover {
@@ -68,18 +68,17 @@ body {
 }
 
 .form-box {
-  background: var(--white);
+  backdrop-filter: blur(10px);
+  background: rgba(190, 210, 250, .5);
   border-radius: 30px;
-  /* margin-right: 18%; */
 }
 
-#first-name-input,
-#last-name-input,
-#emailInput,
-#passwordInput,
+.emailInput,
+.passwordInput,
 #sign-up-password-input,
 #sign-up-email-input,
 #display-name-input,
+#favorite-food-input,
 #location-input,
 #favorite-food-input {
   border-radius: 18px;

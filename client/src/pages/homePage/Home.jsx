@@ -7,7 +7,7 @@ import { Box, useMediaQuery } from '@mui/material';
 import api from 'utils/API';
 import Timeline from 'components/Timeline';
 
-const Home = () => {
+const Home = ({setIsAuth}) => {
   // Make fetch call here via the home component level, will do first thing tomorrow
   const [user, setUser] = useState(null) 
   // const [userId, setUserId] = useState(null)
@@ -42,7 +42,7 @@ const Home = () => {
 
   return (
     <Box>
-      <Navigation userId={userId} />
+      <Navigation setIsAuth={setIsAuth} userId={userId} />
       <Box 
       width="100%" 
       padding="2rem 6%" 
