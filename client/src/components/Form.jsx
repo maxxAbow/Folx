@@ -52,7 +52,7 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
             <input
               type='email'
               onChange={(e) => setValues({ ...values, email: e.target.value })}
-              className='form-control form-control-sm emailInput'
+              className='form-control form-control-sm emailInput border-0'
               placeholder='Email'
             />
             <label htmlFor='floatingInput' className='text-center'>
@@ -65,7 +65,7 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
               onChange={(e) =>
                 setValues({ ...values, password: e.target.value })
               }
-              className='form-control form-control-sm passwordInput'
+              className='form-control form-control-sm passwordInput border-0'
               placeholder='Password'
             />
             <label htmlFor='floatingPassword' className='text-center'>
@@ -73,7 +73,10 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
             </label>
           </div>
           <div className='mt-3 text-center d-grid'>
-            <button id='signInButton' className='btn text-center mt-1'>
+            <button
+              id='signInButton'
+              className='btn text-center mt-1 fw-semibold'
+            >
               Sign In
             </button>
           </div>
@@ -104,7 +107,7 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
           <div className='form-floating mb-3'>
             <input
               type='text'
-              className='form-control form-control-sm'
+              className='form-control form-control-sm border-0'
               id='display-name-input'
               placeholder='Username'
             />
@@ -115,7 +118,7 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
           <div className='form-floating mb-3'>
             <input
               type='email'
-              className='form-control form-control-sm emailInput'
+              className='form-control form-control-sm emailInput border-0'
               placeholder='Email'
             />
             <label htmlFor=' floatingInput' className='text-center'>
@@ -125,7 +128,7 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
           <div className='form-floating mb-3'>
             <input
               type='password'
-              className='form-control form-control-sm passwordInput'
+              className='form-control form-control-sm passwordInput border-0'
               placeholder='Password'
             />
             <label htmlFor='floatingPassword' className='text-center'>
@@ -135,7 +138,7 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
           <div className='form-floating mb-3'>
             <input
               type='text'
-              className='form-control form-control-sm'
+              className='form-control form-control-sm border-0'
               id='location-input'
               placeholder='Location'
             />
@@ -146,7 +149,7 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
           <div className='form-floating mb-3'>
             <input
               type='text'
-              className='form-control form-control-sm'
+              className='form-control form-control-sm border-0'
               id='favorite-food-input'
               placeholder='Favorite Food'
             />
@@ -155,7 +158,7 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
             </label>
           </div>
           <div className='mt-3 text-center d-grid'>
-            <button id='sign-up-button' className='btn mt-1'>
+            <button id='sign-up-button' className='btn mt-1 fw-semibold'>
               Sign Up
             </button>
           </div>
