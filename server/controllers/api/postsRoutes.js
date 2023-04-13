@@ -112,16 +112,15 @@ router.get('/target/:userId', async (req,res)=>{
 
 //GET post data and only userImage
 router.get('/join/:id', async (req,res)=>{
-    const postUser = Posts.userId;
-    if(!postUser){
+    const userId = req.params;
+    if(!userId){
         return res.status(400).json({message: 'Post owner not found'})
     }
- //   const post = await Posts.findOne({where:{userId: postUser}});
-    const userImage = Users.userImage;
-    const imageUser = await Users.find({where:{userId:postUser}},userImage);
+    const imageUser = await Users.findOne({where:{id:userId}});
     if(!imageUser){
         return res.status(400).json({message: 'Image not found'})
     }
+    
 })
 
 
