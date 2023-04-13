@@ -15,13 +15,13 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
   // data.session.loggedIn
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(values);
+    // console.log(values);
     const authUser = await api.login(values);
     if (!authUser) {
       alert('Email and or Password is incorrect');
     }
     const userData = authUser.data;
-    console.log(userData);
+    // console.log(userData);
     if (userData.session.loggedIn === true) {
       setIsAuth(true);
     }
@@ -34,6 +34,12 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
     localStorage.setItem('activeUser', JSON.stringify(activeUser));
     navigate('/home');
   };
+
+  // useEffect(()=> {
+  //   // Check if activeUser exist, and if so confirms if they are logged in
+  //     console.log(`Form.js component ${isAuth}`)
+  
+  // }, [])
   return (
     <>
       <div

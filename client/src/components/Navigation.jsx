@@ -66,7 +66,7 @@ const Navigation = ({ userId }) => {
   useEffect(() => {
     searchUser(userId);
   }, []);
-  console.log(user);
+  // console.log(user);
 
   if (!user) {
     return null;
