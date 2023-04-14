@@ -41,6 +41,7 @@ function Timeline({userId, isProfile = false}) {
     <Post 
         key={_id}
         postId={_id}
+        userId={userId}
         username={username}
         description={description}
         location={location}

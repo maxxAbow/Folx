@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { PersonAddOutlined, PersonRemoveOutlined} from "@mui/icons-material";
 import {Box, IconButton, Typography, useTheme} from "@mui/material";
-
+import api from 'utils/API';
 import FlexBetween from "./style-components/FlexBetween";
 import ProfilePic from "./style-components/ProfilePic"; 
 
-function Friend({image, friendId, username, subtitle}) {
+function Friend({image, friendId, username, location}) {
   
   const [isFriend, setIsFriend] = useState(false);
 
@@ -18,14 +18,17 @@ function Friend({image, friendId, username, subtitle}) {
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
   
-  const addFriend = () => {
-      setIsFriend(!isFriend)
-      console.log("Friend is added");
+  const addFriend = (friendId) => {
+    setIsFriend(!isFriend)
+    console.log("Friend is added");
+    console.log(friendId)
   };
   
-  const removeFriend = () => {
+  const removeFriend = (friendId) => {
       setIsFriend(!isFriend)
       console.log("Friend is removed")
+      console.log(friendId)
+
   };
        
     return (
@@ -52,7 +55,7 @@ function Friend({image, friendId, username, subtitle}) {
               {username}
             </Typography>
             <Typography color={medium} fontSize="0.75rem">
-              {subtitle}
+              {location}
             </Typography>
           </Box>
         </FlexBetween>

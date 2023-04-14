@@ -28,6 +28,8 @@ db.once('open', async () => {
     return {
       ...post,
       userId: createdUsers[i]._id,
+      username: createdUsers[i].username,
+      location: createdUsers[i].location,
       userImage: createdUsers[i].userImage,
       createdAt: new Date(),
     }

@@ -30,7 +30,7 @@ const Post = (props) => {
     <WidgeWrap margin="2rem 0">
       <Friend 
       username={props.username}
-      subtitle={props.location}
+      location={props.location}
       image={props.userImage}
       />
       <Typography color={main} sx={{ mt: "1rem" }}>
