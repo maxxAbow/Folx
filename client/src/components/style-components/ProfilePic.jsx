@@ -11,7 +11,7 @@ const ProfilePic = ({image, size="60px"}) => {
                 height={size}
                 alt="user"
                 // Below is path for to receive image public folder
-                src={`../assets/images/${image}.jpg`}
+                src={`../assets/images/profile-pics/${image}.jpg`}
             />
         </Box>
     )

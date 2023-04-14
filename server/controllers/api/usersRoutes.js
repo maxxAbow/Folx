@@ -43,22 +43,24 @@ router.get('/:id', async (req,res) => {
 //TODO: Add new fields (location, fav_food)
 router.post('/', async (req, res) => {
   try {
-    const { username, firstName, lastName, password } = req.body
+    const { username, email, password, location, favFood, userImage } = req.body
 
-    if(!username || !firstName || !lastName || !password) {
-      return res.status(400).json({message: "userName, firstName, lastName and password must be defined"})
+    if(!username || !email || !password || !location || !favFood || !userImage) {
+      return res.status(400).json({message: "username, email, password, location, and favorite food must be defined"})
     }
 
-    if(typeof username !== 'string' || typeof firstName !== 'string' ||
-     typeof lastName !== 'string' || typeof password !== 'string') {
-      return res.status(400).json({message: "username, firstName, lastName and password must be strings"})
+    if(typeof username !== 'string' || typeof email !== 'string' || typeof password !== 'string' ||
+      typeof location !== 'string' || typeof favFood !== 'string' || typeof userImage !== 'string') {
+      return res.status(400).json({message: "username, email, password, location, and favorite food must be all strings"})
     }
 
     const user = {
       username,
-      firstName,
-      lastName,
-      password: await bcrypt.hash(password, 10)
+      email,
+      password: await bcrypt.hash(password, 10),
+      location,
+      favFood,
+      userImage
     }
 
     const createdUser = await Users.create(user)
