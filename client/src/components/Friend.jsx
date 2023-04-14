@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { PersonAddOutlined, PersonRemoveOutlined} from "@mui/icons-material";
 import {Box, IconButton, Typography, useTheme} from "@mui/material";
@@ -6,9 +6,10 @@ import api from 'utils/API';
 import FlexBetween from "./style-components/FlexBetween";
 import ProfilePic from "./style-components/ProfilePic"; 
 
-function Friend({image, friendId, username, location}) {
+function Friend({image, friendId, username, location, setFollowers, setFollowing}) {
   
-  const [following, setFollowing] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   const navigate = useNavigate();
 
@@ -18,35 +19,31 @@ function Friend({image, friendId, username, location}) {
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
 
-  let userId = {}
+  useEffect(() => {
+    const activeUserStorage = localStorage.getItem("activeUser");// Retrieves activerUsers data from local storage
+    const activeUser = JSON.parse(activeUserStorage); // parses the string into a JS object
 
-  const activeUserStorage = localStorage.getItem("activeUser");// Retrieves activerUsers data from local storage
-  const activeUser = JSON.parse(activeUserStorage); // parses the string into a JS object
-  
-  if (!activeUser || activeUser[1] !== true) {
-    navigate('/')
-  } else if (activeUser[1] === true) {
-    userId = {
-      loggedInUser: activeUser[0]
-    } // if logged in, setUserId
-    // console.log(userId)
-  }
+    if (!activeUser || activeUser[1] !== true) {
+      navigate('/');
+    } else {
+      setUserId({ loggedInUser: activeUser[0] });
+    }
+  }, []);
 
 
   
   const follow = async (friendId, userId) => {
     const followUser = await api.followUser(friendId, userId)
-    setFollowing(!following)
+    setFollowing((prevState) => (prevState + 1));
+    setIsFollowing(!isFollowing)
     console.log(`FriendId: ${friendId} is added`);
-    console.log(userId)
   };
   
   const unfollow = async (friendId) => {
     const unfollowUser = await api.unfollowUser(friendId, userId)
-    setFollowing(!following)
+    setFollowing((prevState) => (prevState === 0 ? 0 : prevState - 1));
+    setIsFollowing(!isFollowing)
     console.log(`FriendId: ${friendId} is removed`)
-    console.log(userId)
-
   };
        
     return (
@@ -77,7 +74,7 @@ function Friend({image, friendId, username, location}) {
             </Typography>
           </Box>
         </FlexBetween>
-        {following ? (
+        {isFollowing ? (
         <IconButton
             onClick={() => unfollow(friendId, userId)}
             sx={{ backgroundColor: primaryLight, p: "0.6rem" }}

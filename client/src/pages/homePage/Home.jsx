@@ -12,6 +12,10 @@ const Home = ({setIsAuth}) => {
   const [user, setUser] = useState(null) 
   // const [userId, setUserId] = useState(null)
   const [image, setImage] = useState('')
+  const [location, setLocation] = useState('')
+  const[followers, setFollowers] = useState(0)
+  const[following, setFollowing] = useState(0)
+
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
   const navigate = useNavigate()
   // let image = ''
@@ -32,9 +36,15 @@ const Home = ({setIsAuth}) => {
     userData = findUser.data;
     setUser(userData)
     setImage(userData.userImage)
-    // console.log(userData)
+    setFollowers(userData.followers)
+    if (typeof userData.following === 'string') {
+      setFollowing(userData.following.split(","))
+    } else {
+      setFollowing(userData.following)
+    }
   }
 
+  debugger
   useEffect(() => {
     getUser(userId)
 
@@ -51,14 +61,15 @@ const Home = ({setIsAuth}) => {
       justifyContent="space-between"
       >
         <Box flexBasis={isNonMobileScreen ? "26%" : undefined}>
-          <UserPanel image={image} userId={userId}/>
+          <UserPanel user={user} following={following}/>
+          {/* <UserPanel image={image} userId={userId} followers={followers} setFollowers={setFollowers} following={following} setFollowing={setFollowing}/> */}
         </Box>
         <Box 
           flexBasis={isNonMobileScreen ? "42%" : undefined}
           marginTop={isNonMobileScreen ? undefined : "2rem"}
         >
           <CreatePost image={image} userId={userId}  />
-          <Timeline />
+          <Timeline followers={followers} setFollowers={setFollowers} following={following} setFollowing={setFollowing} />
         </Box>
         {isNonMobileScreen && (
           <Box flexBasis={"26%"}></Box>

@@ -33,6 +33,10 @@ const Post = (props) => {
       username={props.username}
       location={props.location}
       image={props.userImage}
+      followers={props.followers} 
+      setFollowers={props.setFollowers}
+      following={props.following}
+      setFollowing={props.setFollowing}
       />
       <Typography color={main} sx={{ mt: "1rem" }}>
         {props.description}
