@@ -39,7 +39,7 @@ try {
 //GET followings posts by user's list of following
 router.get('/grabbing/:userId' , async (req,res)=>{
     const activeUser = req.session.userId;
-    const user = Users.findOne({where:{userId:{activeUser}}});
+    const user = Users.findOne({_id:{activeUser}});
     try{
         if(!activeUser){
             return res.status(400).json({message: 'userId must be defined'})
