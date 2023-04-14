@@ -1,12 +1,3 @@
-// //follow a user
-// addSiouxChef,
-
-// //unfollow a user
-// fireSiouxChef,
-
-// //display followed list
-// getSiouxChefs,
-
 const router = require('express').Router();
 const { Users } = require('../../models');
 const bcrypt = require('bcrypt')
@@ -40,7 +31,6 @@ router.get('/:id', async (req,res) => {
   }
 })
 
-//TODO: Add new fields (location, fav_food)
 router.post('/', async (req, res) => {
   try {
     const { username, email, password, location, favFood, userImage } = req.body
@@ -95,7 +85,6 @@ router.delete('/:id', async (req,res) => {
   }
 })
 
-//TODO: Add new fields (location, fav_food)
 router.put('/:id', async (req, res) => {
   try {
     const { username, firstName, lastName } = req.body
@@ -234,7 +223,7 @@ router.get('/session', (req, res) => {
 });
 
 router.post('/followers/:userId', async (req, res) => {
-  const { userId: loggedInUser } = req.session
+  const { loggedInUser } = req.body
 
   if (!loggedInUser) {
     return res.status(400).json({message: 'No user is present in the session'})
@@ -260,8 +249,9 @@ router.post('/followers/:userId', async (req, res) => {
  
 })
 
-router.delete('/followers/:userId', async (req, res) => {
-  const { userId: loggedInUser } = req.session
+// Had to change the unfollowing route to a put/update because axios 'delete' method doesnt accept req.body as a second argument
+router.put('/followers/:userId', async (req, res) => {
+  const { loggedInUser } = req.body
 
   if (!loggedInUser) {
     return res.status(400).json({message: 'No user is present in the session'})
@@ -286,5 +276,32 @@ router.delete('/followers/:userId', async (req, res) => {
   }
  
 })
+
+// router.delete('/followers/:userId', async (req, res) => {
+//   const { loggedInUser } = req.session;
+
+//   if (!loggedInUser) {
+//     return res.status(400).json({message: 'No user is present in the session'})
+//   }
+//   try {
+//     const user = await Users.findByIdAndUpdate(
+//       req.params.userId,
+//       { $pull: { followers: loggedInUser } }
+//     );
+//     const {_id} = user
+//     if(_id) {
+//       await Users.findByIdAndUpdate(
+//         loggedInUser,
+//         { $pull: { following: req.params.userId } }
+//       );
+//       return res.json({message: 'User successfully unfollowed'})
+//     } else {
+//       return res.status(404).json({message: 'Error removing follower from user'})
+//     }
+//   } catch (error) {
+//     res.status(500).json({message: 'Error removing follower from user'})
+//   }
+ 
+// })
 
 module.exports = router;
