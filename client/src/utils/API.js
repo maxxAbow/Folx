@@ -31,6 +31,13 @@ const api = {
         return axios.put(`${API_URL}/api/password/${userId}`, userData);
     },
 
+    followUser: (userId) => {
+        return axios.post(`${API_URL}/api/users/followers/${userId}`)
+    },
+
+    unfollowUser: (userId) => {
+        return axios.delete(`${API_URL}/api/users/followers/${userId}`)
+    },
     //For some reason there is Session routes in the userRoutes controller
     // Made these just in case
     // login: (userData) => {

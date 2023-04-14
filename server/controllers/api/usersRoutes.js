@@ -1,12 +1,3 @@
-// //follow a user
-// addSiouxChef,
-
-// //unfollow a user
-// fireSiouxChef,
-
-// //display followed list
-// getSiouxChefs,
-
 const router = require('express').Router();
 const { Users } = require('../../models');
 const bcrypt = require('bcrypt')
@@ -40,7 +31,6 @@ router.get('/:id', async (req,res) => {
   }
 })
 
-//TODO: Add new fields (location, fav_food)
 router.post('/', async (req, res) => {
   try {
     const { username, email, password, location, favFood, userImage } = req.body
@@ -95,7 +85,6 @@ router.delete('/:id', async (req,res) => {
   }
 })
 
-//TODO: Add new fields (location, fav_food)
 router.put('/:id', async (req, res) => {
   try {
     const { username, firstName, lastName } = req.body
