@@ -8,7 +8,7 @@ import ProfilePic from "./style-components/ProfilePic";
 
 function Friend({image, friendId, username, location}) {
   
-  const [isFriend, setIsFriend] = useState(false);
+  const [following, setFollowing] = useState(false);
 
   const navigate = useNavigate();
 
@@ -17,17 +17,35 @@ function Friend({image, friendId, username, location}) {
   const primaryDark = palette.primary.dark;
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
+
+  let userId = {}
+
+  const activeUserStorage = localStorage.getItem("activeUser");// Retrieves activerUsers data from local storage
+  const activeUser = JSON.parse(activeUserStorage); // parses the string into a JS object
   
-  const addFriend = (friendId) => {
-    setIsFriend(!isFriend)
-    console.log("Friend is added");
-    console.log(friendId)
+  if (!activeUser || activeUser[1] !== true) {
+    navigate('/')
+  } else if (activeUser[1] === true) {
+    userId = {
+      loggedInUser: activeUser[0]
+    } // if logged in, setUserId
+    // console.log(userId)
+  }
+
+
+  
+  const follow = async (friendId, userId) => {
+    const followUser = await api.followUser(friendId, userId)
+    setFollowing(!following)
+    console.log(`FriendId: ${friendId} is added`);
+    console.log(userId)
   };
   
-  const removeFriend = (friendId) => {
-      setIsFriend(!isFriend)
-      console.log("Friend is removed")
-      console.log(friendId)
+  const unfollow = async (friendId) => {
+    const unfollowUser = await api.unfollowUser(friendId, userId)
+    setFollowing(!following)
+    console.log(`FriendId: ${friendId} is removed`)
+    console.log(userId)
 
   };
        
@@ -59,16 +77,16 @@ function Friend({image, friendId, username, location}) {
             </Typography>
           </Box>
         </FlexBetween>
-        {isFriend ? (
+        {following ? (
         <IconButton
-            onClick={() => removeFriend()}
+            onClick={() => unfollow(friendId, userId)}
             sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
         >
             <PersonRemoveOutlined sx={{ color: primaryDark }} />
         </IconButton>
         ): (
         <IconButton
-            onClick={() => addFriend()}
+            onClick={() => follow(friendId, userId)}
             sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
         >
             <PersonAddOutlined sx={{ color: primaryDark }} />

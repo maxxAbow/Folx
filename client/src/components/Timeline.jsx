@@ -30,6 +30,7 @@ function Timeline({userId, isProfile = false}) {
         <>
         {posts.map(({
         _id,
+        userId,
         username,
         description,
         location,

@@ -29,6 +29,7 @@ const Post = (props) => {
   return (
     <WidgeWrap margin="2rem 0">
       <Friend 
+      friendId={props.userId}
       username={props.username}
       location={props.location}
       image={props.userImage}
