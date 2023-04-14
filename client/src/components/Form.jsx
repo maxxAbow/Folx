@@ -31,6 +31,7 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
         activeUser.push(userData.session[key]);
       }
     }
+    activeUser.push(userData.user.userImage)
     localStorage.setItem('activeUser', JSON.stringify(activeUser));
     navigate('/home');
   };
