@@ -6,7 +6,7 @@ import api from 'utils/API';
 import FlexBetween from "./style-components/FlexBetween";
 import ProfilePic from "./style-components/ProfilePic"; 
 
-function Friend({image, friendId, username, location, setFollowers, following, setFollowing}) {
+function Friend({image, user, friendId, username, location, setFollowers, following, setFollowing}) {
   
   const [isFollowing, setIsFollowing] = useState(false);
   const [userId, setUserId] = useState(null);
@@ -19,18 +19,22 @@ function Friend({image, friendId, username, location, setFollowers, following, s
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
 
+
   useEffect(() => {
     const activeUserStorage = localStorage.getItem("activeUser");// Retrieves activerUsers data from local storage
     const activeUser = JSON.parse(activeUserStorage); // parses the string into a JS object
-
+    
     if (!activeUser || activeUser[1] !== true) {
       navigate('/');
     } else {
       setUserId({ loggedInUser: activeUser[0] });
     }
+    for (let i = 0; i < user.following.length; i++) {
+      if (friendId === user.following[i]){
+        setIsFollowing(true);
+      }
+    }
   }, []);
-
-
   
   const follow = async (friendId, userId) => {
     await api.followUser(friendId, userId)

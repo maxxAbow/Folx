@@ -73,7 +73,7 @@ const Home = ({setIsAuth}) => {
           marginTop={isNonMobileScreen ? undefined : "2rem"}
         >
           <CreatePost image={image} userId={userId}  />
-          <Timeline followers={followers} setFollowers={setFollowers} following={following} setFollowing={setFollowing} />
+          <Timeline user={user} followers={followers} setFollowers={setFollowers} following={following} setFollowing={setFollowing} />
         </Box>
         {isNonMobileScreen && (
           <Box flexBasis={"26%"}></Box>

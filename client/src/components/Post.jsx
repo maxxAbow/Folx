@@ -22,13 +22,14 @@ const Post = (props) => {
 
   const [liked, setliked] = useState(false);
 
-  // useEffect(()=> {
-    
-  // }, [liked]);
+  // if (!props.user) {
+  //   return null
+  // }
 
   return (
     <WidgeWrap margin="2rem 0">
       <Friend 
+      user={props.user}
       friendId={props.userId}
       username={props.username}
       location={props.location}
