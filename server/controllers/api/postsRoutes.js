@@ -156,16 +156,22 @@ try {
 
 // Updates Like array with user's id that like the post, 
 router.put('/:postId/like', async (req, res) => {
-    const {userId} = req.session
-    if(!userId){
-        return res.status(400).json({message: 'userId must be defined'})
+    const { loggedInUser } = req.body
+
+    if (!loggedInUser) {
+        return res.status(400).json({message: 'No user is present in the session'})
     }
     try {
         const post = await Posts.findByIdAndUpdate(
             req.params.postId,
-            { $addToSet: { likes: req.body.userId } },
+            { $addToSet: { likes: loggedInUser } },
             { new: true }
         );
+
+        if (!post) {
+            return res.status(400).json({message: 'Found no posts with this postId'})
+        }
+
         res.json(post);
     } catch (err) {
         console.error(err);
@@ -174,19 +180,23 @@ router.put('/:postId/like', async (req, res) => {
 });
 
 //
-router.put('/:postId/dislike', async (req, res) => {
-    const { userId } = req.session;
+router.put('/:postId/unlike', async (req, res) => {
+    const { loggedInUser } = req.body
 
-    if(!userId){
-        return res.status(400).json({message: 'userId must be defined'})
+    if (!loggedInUser) {
+        return res.status(400).json({message: 'No user is present in the session'})
     }
 
     try {
         const post = await Posts.findByIdAndUpdate(
             req.params.postId,
-            { $pull: { likes: userId } },
+            { $pull: { likes: loggedInUser } },
             { new: true }
         );
+
+        if (!post) {
+            return res.status(400).json({message: 'Found no posts with this postId'})
+        }
         res.json(post);
     } catch (err) {
         console.error(err);

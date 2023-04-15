@@ -8,8 +8,12 @@ function Timeline({userId, user, isProfile = false, followers, setFollowers, fol
 
     const getAllPosts = async () => {
         const {data} = (await api.getPosts());
-        // console.log(data);
         setPosts(data);
+        // if (typeof numLikes === 'string') {
+        //     setNumLikes(numLikes.split(","))
+        //   } else {
+        //     setNumLikes(data.likes)
+        //   }
     }
     
     const getUserPosts = async () => {
@@ -24,11 +28,12 @@ function Timeline({userId, user, isProfile = false, followers, setFollowers, fol
         } else {
             getAllPosts();
         }
-    }, [isProfile])
+    }, [])
 
     if (!user) {
         return null
       }
+    
 
     return (
         <>
@@ -54,6 +59,8 @@ function Timeline({userId, user, isProfile = false, followers, setFollowers, fol
         userImage={userImage}
         postImage={postImage}
         likes={likes}
+        // numLikes={numLikes}
+        // setNumLikes={setNumLikes}
         date={createdAt}
         followers={followers} 
         setFollowers={setFollowers}

@@ -65,6 +65,14 @@ const api = {
     return axios.post(`${API_URL}/api/posts`, data);
     },
 
+    likePost: (postId, userId) => {
+        return axios.put(`${API_URL}/api/posts/${postId}/like`, userId);
+    },
+
+    unlikePost: (postId, userId) => {
+        return axios.put(`${API_URL}/api/posts/${postId}/unlike`, userId);
+    },
+
     deletePost: (postId) => {
     return axios.delete(`${API_URL}/api/posts/${postId}`);
     },
