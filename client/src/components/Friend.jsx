@@ -6,7 +6,7 @@ import api from 'utils/API';
 import FlexBetween from "./style-components/FlexBetween";
 import ProfilePic from "./style-components/ProfilePic"; 
 
-function Friend({image, friendId, username, location, setFollowers, setFollowing}) {
+function Friend({image, friendId, username, location, setFollowers, following, setFollowing}) {
   
   const [isFollowing, setIsFollowing] = useState(false);
   const [userId, setUserId] = useState(null);
@@ -33,17 +33,15 @@ function Friend({image, friendId, username, location, setFollowers, setFollowing
 
   
   const follow = async (friendId, userId) => {
-    const followUser = await api.followUser(friendId, userId)
-    setFollowing((prevState) => (prevState + 1));
+    await api.followUser(friendId, userId)
+    setFollowing(typeof following === "number" ? following + 1 : following.length + 1);
     setIsFollowing(!isFollowing)
-    console.log(`FriendId: ${friendId} is added`);
   };
   
   const unfollow = async (friendId) => {
-    const unfollowUser = await api.unfollowUser(friendId, userId)
-    setFollowing((prevState) => (prevState === 0 ? 0 : prevState - 1));
+    await api.unfollowUser(friendId, userId)
+    setFollowing(typeof following === "number" ? following - 1 : following.length - 1);
     setIsFollowing(!isFollowing)
-    console.log(`FriendId: ${friendId} is removed`)
   };
        
     return (

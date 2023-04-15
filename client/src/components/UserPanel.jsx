@@ -111,7 +111,7 @@ function UserPanel({user, following}) {
               <RemoveRedEyeOutlined fontSize='large' sx={{color:main}}/>
               <Typography color={dark} fontWeight="500">Following: </Typography>
               {/* Replace with variable with number of likes */}
-              <Typography color={dark}> {following.length} </Typography>
+              <Typography color={dark}> {typeof following === "number" ? following : following.length} </Typography>
             </Box>
           </Box>
 
