@@ -1,35 +1,35 @@
 [
   {
     "username": "David",
-    "email": "David@gmail.com",
+    "email": "david@gmail.com",
     "location": "Nashville",
     "favFood": "Pizza",
     "userImage": "david"
   },
   {
     "username": "Maxx",
-    "email": "Maxx@gmail.com",
+    "email": "maxx@gmail.com",
     "location": "Savannah",
     "favFood": "Cake",
     "userImage": "maxx"
   },
   {
     "username": "Victor",
-    "email": "Victor@gmail.com",
+    "email": "victor@gmail.com",
     "location": "Berlin",
     "favFood": "Bear Claws",
     "userImage": "victor"
   },
   {
     "username": "Daikeen",
-    "email": "Daikeen@gmail.com",
+    "email": "daikeen@gmail.com",
     "location": "Atlanta",
     "favFood": "Wings",
     "userImage": "daikeen"
   },
   {
     "username": "Sarah",
-    "email": "Sarah@gmail.com",
+    "email": "sarah@gmail.com",
     "location": "Atlanta",
     "favFood": "Fried Chicken",
     "userImage": "sarah"

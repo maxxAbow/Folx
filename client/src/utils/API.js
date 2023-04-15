@@ -31,19 +31,15 @@ const api = {
         return axios.put(`${API_URL}/api/password/${userId}`, userData);
     },
 
-    //For some reason there is Session routes in the userRoutes controller
-    // Made these just in case
-    // login: (userData) => {
-    //     return axios.post(`${API_URL}/api/users/login`, userData);
-    // },
-    // logout: () => {
-    //     return axios.post(`${API_URL}/api/users/logout`);
-    // },
+    followUser: (friendId, userId) => {
+        return axios.post(`${API_URL}/api/users/followers/${friendId}`, userId)
+    },
 
-    // getSession: () => {
-    //     return axios.get(`${API_URL}/api/users/session`);
-    // },
-
+    // Had to change the unfollowing route to a put/update because axios 'delete' method doesnt accept req.body as a second argument
+    unfollowUser: (friendId, userId) => {
+        // return axios.delete(`${API_URL}/api/users/followers/${friendId}`, userId)
+        return axios.put(`${API_URL}/api/users/followers/${friendId}`, userId)
+    },
     // Session Axios calls for sessionRoutes controller
     login: (userData) => {
         return axios.post(`${API_URL}/api/session/login`, userData);

@@ -5,13 +5,25 @@ const postSchema = new Schema(
         type: String,
         required: true
       },
+      username: {
+        type: String,
+        required: true
+      },
       description: {
         type: String,
         required: true,
         minLength: 1,
         maxLength: [140, 'Must be less than 140 characters, got {VALUE}']
       },
+      location: {
+        type: String,
+        required: true
+      },
       postImage: {
+        type: String,
+        required: false
+      },
+      userImage: {
         type: String,
         required: false
       },

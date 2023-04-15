@@ -29,9 +29,14 @@ const Post = (props) => {
   return (
     <WidgeWrap margin="2rem 0">
       <Friend 
+      friendId={props.userId}
       username={props.username}
-      subtitle={props.location}
+      location={props.location}
       image={props.userImage}
+      followers={props.followers} 
+      setFollowers={props.setFollowers}
+      following={props.following}
+      setFollowing={props.setFollowing}
       />
       <Typography color={main} sx={{ mt: "1rem" }}>
         {props.description}

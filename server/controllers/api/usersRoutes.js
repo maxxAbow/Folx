@@ -1,12 +1,3 @@
-// //follow a user
-// addSiouxChef,
-
-// //unfollow a user
-// fireSiouxChef,
-
-// //display followed list
-// getSiouxChefs,
-
 const router = require('express').Router();
 const { Users } = require('../../models');
 const bcrypt = require('bcrypt')
@@ -33,31 +24,33 @@ router.get('/:id', async (req,res) => {
     if(!user){
       return res.status(404).json({message: 'User not found'})
     }
+    console.log(user);
     return res.json(user)
   } catch (e) {
     return res.status(500).json(e)
   }
 })
 
-//TODO: Add new fields (location, fav_food)
 router.post('/', async (req, res) => {
   try {
-    const { username, firstName, lastName, password } = req.body
+    const { username, email, password, location, favFood, userImage } = req.body
 
-    if(!username || !firstName || !lastName || !password) {
-      return res.status(400).json({message: "userName, firstName, lastName and password must be defined"})
+    if(!username || !email || !password || !location || !favFood || !userImage) {
+      return res.status(400).json({message: "username, email, password, location, and favorite food must be defined"})
     }
 
-    if(typeof username !== 'string' || typeof firstName !== 'string' ||
-     typeof lastName !== 'string' || typeof password !== 'string') {
-      return res.status(400).json({message: "username, firstName, lastName and password must be strings"})
+    if(typeof username !== 'string' || typeof email !== 'string' || typeof password !== 'string' ||
+      typeof location !== 'string' || typeof favFood !== 'string' || typeof userImage !== 'string') {
+      return res.status(400).json({message: "username, email, password, location, and favorite food must be all strings"})
     }
 
     const user = {
       username,
-      firstName,
-      lastName,
-      password: await bcrypt.hash(password, 10)
+      email,
+      password: await bcrypt.hash(password, 10),
+      location,
+      favFood,
+      userImage
     }
 
     const createdUser = await Users.create(user)
@@ -92,7 +85,6 @@ router.delete('/:id', async (req,res) => {
   }
 })
 
-//TODO: Add new fields (location, fav_food)
 router.put('/:id', async (req, res) => {
   try {
     const { username, firstName, lastName } = req.body
@@ -231,7 +223,7 @@ router.get('/session', (req, res) => {
 });
 
 router.post('/followers/:userId', async (req, res) => {
-  const { userId: loggedInUser } = req.session
+  const { loggedInUser } = req.body
 
   if (!loggedInUser) {
     return res.status(400).json({message: 'No user is present in the session'})
@@ -257,8 +249,9 @@ router.post('/followers/:userId', async (req, res) => {
  
 })
 
-router.delete('/followers/:userId', async (req, res) => {
-  const { userId: loggedInUser } = req.session
+// Had to change the unfollowing route to a put/update because axios 'delete' method doesnt accept req.body as a second argument
+router.put('/followers/:userId', async (req, res) => {
+  const { loggedInUser } = req.body
 
   if (!loggedInUser) {
     return res.status(400).json({message: 'No user is present in the session'})
@@ -283,5 +276,32 @@ router.delete('/followers/:userId', async (req, res) => {
   }
  
 })
+
+// router.delete('/followers/:userId', async (req, res) => {
+//   const { loggedInUser } = req.session;
+
+//   if (!loggedInUser) {
+//     return res.status(400).json({message: 'No user is present in the session'})
+//   }
+//   try {
+//     const user = await Users.findByIdAndUpdate(
+//       req.params.userId,
+//       { $pull: { followers: loggedInUser } }
+//     );
+//     const {_id} = user
+//     if(_id) {
+//       await Users.findByIdAndUpdate(
+//         loggedInUser,
+//         { $pull: { following: req.params.userId } }
+//       );
+//       return res.json({message: 'User successfully unfollowed'})
+//     } else {
+//       return res.status(404).json({message: 'Error removing follower from user'})
+//     }
+//   } catch (error) {
+//     res.status(500).json({message: 'Error removing follower from user'})
+//   }
+ 
+// })
 
 module.exports = router;

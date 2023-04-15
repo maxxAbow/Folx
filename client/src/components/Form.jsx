@@ -6,19 +6,30 @@ import { useNavigate } from 'react-router-dom';
 
 const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
   const navigate = useNavigate();
-  const [values, setValues] = useState({
-    email: '',
-    password: '',
-  });
+
+  // Login Values from login form
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  // Sign=up values from Sign-up form
+  const [createdUsername, setcreatedUsername] = useState("");
+  const [createdEmail, setcreatedEmail] = useState("");
+  const [createdPassword, setcreatedPassword] = useState("");
+  const [createdLocation, setcreatedLocation] = useState("");
+  const [createdFavFood, setcreatedFavFood] = useState("");
 
   const activeUser = [];
-  // data.session.loggedIn
-  const handleSubmit = async (e) => {
+
+  const loginUser = async (e) => {
     e.preventDefault();
-    console.log(values);
-    const authUser = await api.login(values);
+  
+    const authUser = await api.login({
+      email: loginEmail.toLowerCase(),
+      password: loginPassword
+    });
+
     if (!authUser) {
-      alert('Email and or Password is incorrect');
+      console.log('Email and or Password is incorrect');
     }
     const userData = authUser.data;
     console.log(userData);
@@ -31,9 +42,53 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
         activeUser.push(userData.session[key]);
       }
     }
+    activeUser.push(userData.user.userImage)
     localStorage.setItem('activeUser', JSON.stringify(activeUser));
     navigate('/home');
   };
+
+  const createUser = async (e) => {
+    e.preventDefault();
+    const createdUser = await api.createUser({
+      username: createdUsername,
+      email: createdEmail.toLowerCase(),
+      password: createdPassword,
+      location: createdLocation,
+      favFood: createdFavFood,
+      userImage: Math.floor(Math.random() * 5 + 1).toString()
+    });
+    
+    if (!createdUser) {
+      return null
+    }
+
+    console.log(createdUser)
+    
+    const authUser = await api.login({
+      email: createdEmail,
+      password: createdPassword,
+    });
+
+    if (!authUser) {
+      alert('Email and or Password is incorrect');
+    }
+    const userData = authUser.data;
+    // console.log(userData);
+    if (userData.session.loggedIn === true) {
+      setIsAuth(true);
+    }
+
+    for (let key in userData.session) {
+      if (key === 'userId' || key === 'loggedIn') {
+        activeUser.push(userData.session[key]);
+      }
+    }
+    activeUser.push(userData.user.userImage)
+    localStorage.setItem('activeUser', JSON.stringify(activeUser));
+    navigate('/home');
+    
+  };
+
   return (
     <>
       <div
@@ -47,13 +102,14 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
           </div>
           <h2 className='fw-bold mb-4 text-center mt-2'>Sign In</h2>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={loginUser}>
           <div className='form-floating mb-3'>
             <input
               type='email'
-              onChange={(e) => setValues({ ...values, email: e.target.value })}
+              onChange={(e) => setLoginEmail(e.target.value)}
               className='form-control form-control-sm emailInput border-0'
               placeholder='Email'
+              autoComplete="new-password"
             />
             <label htmlFor='floatingInput' className='text-center'>
               Email
@@ -62,11 +118,10 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
           <div className='form-floating mb-3'>
             <input
               type='password'
-              onChange={(e) =>
-                setValues({ ...values, password: e.target.value })
-              }
+              onChange={(e) => setLoginPassword(e.target.value)}
               className='form-control form-control-sm passwordInput border-0'
               placeholder='Password'
+              autoComplete="new-password"
             />
             <label htmlFor='floatingPassword' className='text-center'>
               Password
@@ -103,13 +158,15 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
           </div>
           <h2 className='fw-bold mb-4 text-center mt-2'>Sign Up</h2>
         </div>
-        <form action=''>
+        <form onSubmit={createUser}>
           <div className='form-floating mb-3'>
             <input
               type='text'
+              onChange={(e) => setcreatedUsername( e.target.value )}
               className='form-control form-control-sm border-0'
               id='display-name-input'
               placeholder='Username'
+              autoComplete="new-password"
             />
             <label htmlFor='floatingInput' className='text-center'>
               Username
@@ -118,8 +175,10 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
           <div className='form-floating mb-3'>
             <input
               type='email'
+              onChange={(e) => setcreatedEmail(e.target.value)}
               className='form-control form-control-sm emailInput border-0'
               placeholder='Email'
+              autoComplete="new-password"
             />
             <label htmlFor=' floatingInput' className='text-center'>
               Email
@@ -128,8 +187,10 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
           <div className='form-floating mb-3'>
             <input
               type='password'
+              onChange={(e) => setcreatedPassword(e.target.value )}
               className='form-control form-control-sm passwordInput border-0'
               placeholder='Password'
+              autoComplete="new-password"
             />
             <label htmlFor='floatingPassword' className='text-center'>
               Password
@@ -138,9 +199,11 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
           <div className='form-floating mb-3'>
             <input
               type='text'
+              onChange={(e) => setcreatedLocation(e.target.value)}
               className='form-control form-control-sm border-0'
               id='location-input'
               placeholder='Location'
+              autoComplete="new-password"
             />
             <label htmlFor='floatingInput' className='text-center'>
               Location
@@ -149,9 +212,11 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
           <div className='form-floating mb-3'>
             <input
               type='text'
+              onChange={(e) => setcreatedFavFood( e.target.value )}
               className='form-control form-control-sm border-0'
               id='favorite-food-input'
               placeholder='Favorite Food'
+              autoComplete="new-password"
             />
             <label htmlFor='floatingInput' className='text-center'>
               Favorite Food

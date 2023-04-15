@@ -1,19 +1,14 @@
 import React, {useEffect, useState} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import {setPosts} from "state";
 import Post from './Post';
 import api from 'utils/API';
 
-function Timeline({userId, isProfile = false}) {
-    // const dispatch = useDispatch();
-    // const posts = useSelector((state) => state.posts);
-    // const token = useSelector((state) => state.token);
-
+function Timeline({userId, isProfile = false, followers, setFollowers, following, setFollowing}) {
+   
     const [posts, setPosts] = useState([]);
 
     const getAllPosts = async () => {
         const {data} = (await api.getPosts());
-        console.log(data);
+        // console.log(data);
         setPosts(data);
     }
     
@@ -21,7 +16,8 @@ function Timeline({userId, isProfile = false}) {
         const {data} = await api.getPostById();
     }
 
-    // If User is on a profile, it will only retrieve made by that specific user, otherwise will retreive posts from everyone
+    // If User is on a profile, it will only retrieve post made by that specific user, otherwise will retreive posts from everyone
+    // debugger
     useEffect(() => {
         if(isProfile) {
             // getUserPosts();
@@ -35,6 +31,7 @@ function Timeline({userId, isProfile = false}) {
         <>
         {posts.map(({
         _id,
+        userId,
         username,
         description,
         location,
@@ -46,6 +43,7 @@ function Timeline({userId, isProfile = false}) {
     <Post 
         key={_id}
         postId={_id}
+        userId={userId}
         username={username}
         description={description}
         location={location}
@@ -53,6 +51,10 @@ function Timeline({userId, isProfile = false}) {
         postImage={postImage}
         likes={likes}
         date={createdAt}
+        followers={followers} 
+        setFollowers={setFollowers}
+        following={following}
+        setFollowing={setFollowing}
     />
     ))}
 

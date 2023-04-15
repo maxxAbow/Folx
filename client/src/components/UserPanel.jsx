@@ -13,58 +13,54 @@ import {Box, Typography, Divider, useTheme } from "@mui/material";
 import ProfilePic from './style-components/ProfilePic';
 import FlexBetween from './style-components/FlexBetween';
 import WidgeWrap from './style-components/WidgeWrap';
-import { useSelector } from 'react-redux';
 import api from 'utils/API';
 
-function UserPanel({userId, image}) {
-    const [user, setUser] = useState(null);
+function UserPanel({user, following}) {
+    // const [user, setUser] = useState(null);
     const {palette} = useTheme();
     const navigate = useNavigate()
-    const token = useSelector((state) => state.token);
     const dark = palette.neutral.dark;
     const medium = palette.neutral.medium;
     const main = palette.neutral.main;
 
 
-    const searchUser = async (userId) => {
-      const response = await api.getUserById(userId);
-      const userInfo = await setUser(response.data);
-    }
+    // const searchUser = async (userId) => {
+    //   const response = await api.getUserById(userId);
+    //   const userInfo = await setUser(response.data);
+    // }
     
-    useEffect(() => {
-      searchUser(userId);
-    }, [])
-
+    // debugger
     // useEffect(() => {
-    //   console.log(user);
-    // }, [user]);
+    //   searchUser(userId);
+    // }, [])
     
     if (!user) {
       return null
     }
 
     const {
+      _id,
       username,
-      friends,
       location,
       favFood,
+      userImage,
       followers,
-      following
     } = user;
 
+    // debugger
   return (
     <WidgeWrap>
       <FlexBetween
         gap="0.5rem"
         paddingBottom="1.1rem"
-        onClick={() => navigate(`/profile/:${userId}`)}
+        onClick={() => navigate(`/profile/:${_id}`)}
       >
         {/* First Row */}
         <FlexBetween gap="1rem">
           {/* Need to import image soon, work with Backend for this as well */}
           <Box>
             <ProfilePic 
-              image={image} 
+              image={userImage} 
             />
           </Box>
           <Box>
@@ -81,7 +77,7 @@ function UserPanel({userId, image}) {
                 {username}
             </Typography>
               {/* Need to work with Back-end to add number of friends to User Model */}
-              <Typography color={medium}>{followers.length} Friends</Typography>
+              <Typography color={medium}>{followers.length} Followers</Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />
