@@ -1,2 +1,1 @@
-//Procfile
 web: npm start
