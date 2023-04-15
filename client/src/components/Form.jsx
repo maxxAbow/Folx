@@ -109,7 +109,6 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
               onChange={(e) => setLoginEmail(e.target.value)}
               className='form-control form-control-sm emailInput border-0'
               placeholder='Email'
-              autoComplete="new-password"
             />
             <label htmlFor='floatingInput' className='text-center'>
               Email
@@ -121,7 +120,6 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
               onChange={(e) => setLoginPassword(e.target.value)}
               className='form-control form-control-sm passwordInput border-0'
               placeholder='Password'
-              autoComplete="new-password"
             />
             <label htmlFor='floatingPassword' className='text-center'>
               Password
@@ -166,7 +164,6 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
               className='form-control form-control-sm border-0'
               id='display-name-input'
               placeholder='Username'
-              autoComplete="new-password"
             />
             <label htmlFor='floatingInput' className='text-center'>
               Username
@@ -178,7 +175,6 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
               onChange={(e) => setcreatedEmail(e.target.value)}
               className='form-control form-control-sm emailInput border-0'
               placeholder='Email'
-              autoComplete="new-password"
             />
             <label htmlFor=' floatingInput' className='text-center'>
               Email
@@ -190,7 +186,6 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
               onChange={(e) => setcreatedPassword(e.target.value )}
               className='form-control form-control-sm passwordInput border-0'
               placeholder='Password'
-              autoComplete="new-password"
             />
             <label htmlFor='floatingPassword' className='text-center'>
               Password
@@ -203,7 +198,6 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
               className='form-control form-control-sm border-0'
               id='location-input'
               placeholder='Location'
-              autoComplete="new-password"
             />
             <label htmlFor='floatingInput' className='text-center'>
               Location
@@ -216,7 +210,6 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
               className='form-control form-control-sm border-0'
               id='favorite-food-input'
               placeholder='Favorite Food'
-              autoComplete="new-password"
             />
             <label htmlFor='floatingInput' className='text-center'>
               Favorite Food

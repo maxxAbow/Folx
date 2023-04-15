@@ -14,7 +14,10 @@ const Home = ({setIsAuth}) => {
   const [image, setImage] = useState('')
   const [location, setLocation] = useState('')
   const[followers, setFollowers] = useState(0)
+  // debugger
   const[following, setFollowing] = useState(0)
+  
+  // console.log(following)
 
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
   const navigate = useNavigate()
@@ -36,15 +39,16 @@ const Home = ({setIsAuth}) => {
     userData = findUser.data;
     setUser(userData)
     setImage(userData.userImage)
-    setFollowers(userData.followers)
-    if (typeof userData.following === 'string') {
-      setFollowing(userData.following.split(","))
+    setFollowers(userData.followers.length)
+    if (typeof following === 'string') {
+      setFollowing(following.split(","))
     } else {
       setFollowing(userData.following)
     }
   }
+  
 
-  debugger
+  // debugger
   useEffect(() => {
     getUser(userId)
 
@@ -69,7 +73,7 @@ const Home = ({setIsAuth}) => {
           marginTop={isNonMobileScreen ? undefined : "2rem"}
         >
           <CreatePost image={image} userId={userId}  />
-          <Timeline followers={followers} setFollowers={setFollowers} following={following} setFollowing={setFollowing} />
+          <Timeline user={user} followers={followers} setFollowers={setFollowers} following={following} setFollowing={setFollowing} />
         </Box>
         {isNonMobileScreen && (
           <Box flexBasis={"26%"}></Box>

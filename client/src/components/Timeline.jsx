@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import Post from './Post';
 import api from 'utils/API';
 
-function Timeline({userId, isProfile = false, followers, setFollowers, following, setFollowing}) {
+function Timeline({userId, user, isProfile = false, followers, setFollowers, following, setFollowing}) {
    
     const [posts, setPosts] = useState([]);
 
@@ -17,7 +17,6 @@ function Timeline({userId, isProfile = false, followers, setFollowers, following
     }
 
     // If User is on a profile, it will only retrieve post made by that specific user, otherwise will retreive posts from everyone
-    // debugger
     useEffect(() => {
         if(isProfile) {
             // getUserPosts();
@@ -26,6 +25,10 @@ function Timeline({userId, isProfile = false, followers, setFollowers, following
             getAllPosts();
         }
     }, [isProfile])
+
+    if (!user) {
+        return null
+      }
 
     return (
         <>
@@ -42,6 +45,7 @@ function Timeline({userId, isProfile = false, followers, setFollowers, following
     }) => (
     <Post 
         key={_id}
+        user={user}
         postId={_id}
         userId={userId}
         username={username}
