@@ -5,7 +5,7 @@ import {
   NoMealsOutlined, 
   LocationOnOutlined,
   CommentOutlined,
-  ShareOutlined
+  DeleteOutlined
 } from "@mui/icons-material"
 import {Box, Divider, IconButton, Typography, useTheme} from "@mui/material";
 import ProfilePic from './style-components/ProfilePic';
@@ -29,16 +29,17 @@ const Post = ({
   followers,
   setFollowers,
   following,
-  setFollowing
+  setFollowing,
+  setPostState
 }) => {
   const { palette } = useTheme();
   const main = palette.neutral.main;
   const primary = palette.primary.main;
 
   const [liked, setLiked] = useState(false);
-  const [loggedInUserId, setLoggedInUserId] = useState(null)
-  const [numLikes, setNumLikes] = useState(likes.length)
-
+  const [loggedInUserId, setLoggedInUserId] = useState(null);
+  const [numLikes, setNumLikes] = useState(likes.length);
+  const [userPost, setUserPost] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -55,6 +56,10 @@ const Post = ({
       if (activeUser[0] === likes[i]){
         setLiked(true);
       }
+    }
+
+    if (activeUser[0] === userId) {
+      setUserPost(true)
     }
   }, []);
 
@@ -73,6 +78,11 @@ const Post = ({
     setNumLikes(numLikes - 1);
     setLiked(!liked)
   };
+
+  const deletePost = async (postId) => {
+    await api.deletePostById(postId);
+    setPostState((prevState) => (!prevState))
+  }
 
   return (
     <WidgeWrap margin="2rem 0">
@@ -118,10 +128,12 @@ const Post = ({
               <CommentOutlined />
             </IconButton>
             {/* <Typography></Typography> */}
+            {userPost && (
+            <IconButton onClick={() => deletePost(postId)}>
+              <DeleteOutlined />
+            </IconButton>
+            )}
           </FlexBetween>
-            <IconButton>
-              <ShareOutlined />
-          </IconButton>
         </FlexBetween>
       </FlexBetween>
     </WidgeWrap>

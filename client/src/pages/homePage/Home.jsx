@@ -76,8 +76,8 @@ const Home = ({setIsAuth}) => {
           flexBasis={isNonMobileScreen ? "42%" : undefined}
           marginTop={isNonMobileScreen ? undefined : "2rem"}
         >
-          <CreatePost user={user} image={image} userId={userId} setPost={postState} setPostState={setPostState} />
-          <Timeline user={user} posts={posts} setPosts={setPosts} updatePosts={updatePosts} postState={postState} followers={followers} setFollowers={setFollowers} following={following} setFollowing={setFollowing} />
+          <CreatePost user={user} image={image} userId={userId} setPostState={setPostState} />
+          <Timeline user={user} posts={posts} setPosts={setPosts} setPostState={setPostState} updatePosts={updatePosts} postState={postState} followers={followers} setFollowers={setFollowers} following={following} setFollowing={setFollowing} />
         </Box>
         {isNonMobileScreen && (
           <Box flexBasis={"26%"}></Box>

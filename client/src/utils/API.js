@@ -73,7 +73,7 @@ const api = {
         return axios.put(`${API_URL}/api/posts/${postId}/unlike`, userId);
     },
 
-    deletePost: (postId) => {
+    deletePostById: (postId) => {
     return axios.delete(`${API_URL}/api/posts/${postId}`);
     },
 

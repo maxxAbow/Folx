@@ -27,7 +27,7 @@ import FlexBetween from './style-components/FlexBetween';
 import ProfilePic from './style-components/ProfilePic';
 import WidgeWrap from './style-components/WidgeWrap';
 
-function CreatePost({user, image, postState, setPostState}) {
+function CreatePost({user, image, setPostState}) {
     // State to represent if the user clicks the 'image button' to open up a place to drop an image
     const [isImage, setIsImage] = useState(false);
     // State to represent post content
