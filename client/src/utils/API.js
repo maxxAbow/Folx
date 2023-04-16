@@ -1,4 +1,4 @@
-import userEvent from "@testing-library/user-event";
+// import userEvent from "@testing-library/user-event";
 import axios from "axios";
 import { API_URL } from "config";
 
@@ -7,7 +7,7 @@ import { API_URL } from "config";
 const api = {
     // User Axios calls for userRoutes controller
     // Notice we are only asking for username and not password
-    getUsers : () => {
+    getUsers: () => {
         return axios.get(`${API_URL}/api/users`);
     },
 
@@ -15,10 +15,10 @@ const api = {
         return axios.get(`${API_URL}/api/users/${userId}`);
     },
 
-    createUser : (data) => {
-        return axios.post(`${API_URL}/api/users`, data)
+    createUser: (data) => {
+        return axios.post(`${API_URL}/api/users`, data);
     },
-    
+
     deleteUser: (userId) => {
         return axios.delete(`${API_URL}/api/users/${userId}`);
     },
@@ -32,13 +32,13 @@ const api = {
     },
 
     followUser: (friendId, userId) => {
-        return axios.post(`${API_URL}/api/users/followers/${friendId}`, userId)
+        return axios.post(`${API_URL}/api/users/followers/${friendId}`, userId);
     },
 
     // Had to change the unfollowing route to a put/update because axios 'delete' method doesnt accept req.body as a second argument
     unfollowUser: (friendId, userId) => {
         // return axios.delete(`${API_URL}/api/users/followers/${friendId}`, userId)
-        return axios.put(`${API_URL}/api/users/followers/${friendId}`, userId)
+        return axios.put(`${API_URL}/api/users/followers/${friendId}`, userId);
     },
     // Session Axios calls for sessionRoutes controller
     login: (userData) => {
@@ -54,15 +54,15 @@ const api = {
 
     // Post Axios calls for all postController request (Post Request endpoints are unfinished in backend)
     getPosts: () => {
-    return axios.get(`${API_URL}/api/posts`);
+        return axios.get(`${API_URL}/api/posts`);
     },
 
     getPostById: (postId) => {
-    return axios.get(`${API_URL}/api/posts/${postId}`);
+        return axios.get(`${API_URL}/api/posts/${postId}`);
     },
 
     createPost: (data) => {
-    return axios.post(`${API_URL}/api/posts`, data);
+        return axios.post(`${API_URL}/api/posts`, data);
     },
 
     likePost: (postId, userId) => {
@@ -74,12 +74,12 @@ const api = {
     },
 
     deletePostById: (postId) => {
-    return axios.delete(`${API_URL}/api/posts/${postId}`);
+        return axios.delete(`${API_URL}/api/posts/${postId}`);
     },
 
     updatePost: (postId, postData) => {
-    return axios.put(`${API_URL}/api/posts/${postId}`, postData);
+        return axios.put(`${API_URL}/api/posts/${postId}`, postData);
     },
-} 
+};
 
 export default api;
