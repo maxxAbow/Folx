@@ -25,6 +25,7 @@ function UserPanel({user, following}) {
     const medium = palette.neutral.medium;
     const main = palette.neutral.main;
     
+    debugger
     if (!user) {
       return null
     }
@@ -38,6 +39,9 @@ function UserPanel({user, following}) {
       followers,
     } = user;
 
+    // if(!user){
+    //   null
+    // }
     // debugger
   return (
     <>

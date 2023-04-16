@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useParams} from 'react-router-dom';
 import Navigation from 'components/Navigation';
 import UserPanel from 'components/UserPanel';
 import CreatePost from 'components/CreatePost';
@@ -7,10 +7,10 @@ import { Box, useMediaQuery } from '@mui/material';
 import api from 'utils/API';
 import Timeline from 'components/Timeline';
 
-const Profile = ({setIsAuth, profileId, setProfileId}) => {
+const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
   // Make fetch call here via the home component level, will do first thing tomorrow
   const [user, setUser] = useState(null) 
-  // const [userId, setUserId] = useState(null)
+  const [loggedInId, setLoggedInId] = useState(null)
   const [image, setImage] = useState('')
   const [location, setLocation] = useState('')
   const [followers, setFollowers] = useState(0)
@@ -22,8 +22,9 @@ const Profile = ({setIsAuth, profileId, setProfileId}) => {
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
   const navigate = useNavigate();
   const param = useLocation();
-  let userId = ''
+  // let userId = ''
   let userData = {}
+  let { userId } = useParams();
 
   // change this to profileId
   const activeUserStorage = localStorage.getItem("activeUser");// Retrieves activerUsers data from local storage
@@ -32,14 +33,13 @@ const Profile = ({setIsAuth, profileId, setProfileId}) => {
   // change this to profileId
   if (!activeUser || activeUser[1] !== true) {
     navigate('/')
-  } else if (activeUser[1] === true) {
-    userId = activeUser[0] // if logged in, setUserId
-  }
+  } 
 
   // change this to profileId
-  const getUser = async (userId) => {
-    const findUser = await api.getUserById(userId);
+  const getUser = async (profileId) => {
+    const findUser = await api.getUserById(profileId);
     userData = findUser.data;
+    debugger
     setUser(userData)
     setImage(userData.userImage)
     setFollowers(userData.followers.length)
@@ -55,14 +55,16 @@ const Profile = ({setIsAuth, profileId, setProfileId}) => {
     setPosts(posts.data);
   };
 
-  useEffect(() => {
-    getUser(userId)
+  useEffect(async () => {
+    debugger
+    await getUser(userId)
+    await setProfileId(userId)
 
-  }, [userId]);
+  }, [param]);
 
-  useEffect(() => {
-    console.log(location);
-  }, [location])
+  // useEffect(() => {
+  //   console.log(param);
+  // }, [param])
 
   if (!user) {
     return null
@@ -110,3 +112,16 @@ const Profile = ({setIsAuth, profileId, setProfileId}) => {
 };
 
 export default Profile;
+
+// function Profile({ isAuth, setIsAuth, profileId, setProfileId }) {
+//   const { userId } = useParams();
+
+//   return (
+//     <div>
+//       <h1>Profile Page</h1>
+//       <p>User ID: {userId}</p>
+//     </div>
+//   );
+// }
+
+// export default Profile;
