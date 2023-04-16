@@ -77,7 +77,6 @@ const Navigation = ({ userId, setIsAuth }) => {
   }
 
   const { username } = user;
-  // const fullName = `${user.firstName} ${user.lastName}`
 
   return (
     // The Box component from @mui/material allows us to pass in CSS properties as component properties
