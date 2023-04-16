@@ -5,7 +5,7 @@ const { Posts, Users } = require('../../models');
 // GET all posts
 router.get('/', async (req, res) => {
     try {
-      const posts = await Posts.find();
+      const posts = await Posts.find().sort({createdAt: -1});
       res.json(posts);
     } catch (err) {
         console.log(err)
