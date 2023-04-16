@@ -10,7 +10,7 @@ import Timeline from 'components/Timeline';
 const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
   // Make fetch call here via the home component level, will do first thing tomorrow
   const [user, setUser] = useState(null) 
-  const [loggedInId, setLoggedInId] = useState(null)
+  // const [loggedInId, setLoggedInId] = useState(null)
   const [image, setImage] = useState('')
   const [location, setLocation] = useState('')
   const [followers, setFollowers] = useState(0)
@@ -22,7 +22,7 @@ const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
   const navigate = useNavigate();
   const param = useLocation();
-  // let userId = ''
+  let loggedInId = ''
   let userData = {}
   let { userId } = useParams();
 
@@ -33,7 +33,9 @@ const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
   // change this to profileId
   if (!activeUser || activeUser[1] !== true) {
     navigate('/')
-  } 
+  } else if (activeUser[1] === true) {
+    loggedInId = activeUser[0] // if logged in, setUserId
+  }
 
   // change this to profileId
   const getUser = async (profileId) => {
@@ -72,7 +74,7 @@ const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
   
   return (
     <Box>
-      <Navigation setIsAuth={setIsAuth} userId={userId} />
+      <Navigation setIsAuth={setIsAuth} userId={loggedInId} />
       <Box 
       width="100%" 
       padding="2rem 6%" 
