@@ -27,7 +27,7 @@ import FlexBetween from './style-components/FlexBetween';
 import ProfilePic from './style-components/ProfilePic';
 import WidgeWrap from './style-components/WidgeWrap';
 
-function CreatePost({user, image}) {
+function CreatePost({user, image, postState, setPostState}) {
     // State to represent if the user clicks the 'image button' to open up a place to drop an image
     const [isImage, setIsImage] = useState(false);
     // State to represent post content
@@ -45,9 +45,7 @@ function CreatePost({user, image}) {
     const medium = palette.neutral.medium; 
 
     const newPost = async () => {
-        // e.preventDefault()
-        // const newPost = await api.createPost(data);
-        const createdPost = await api.createPost({
+       await api.createPost({
             userId: user._id,
             username: user.username,
             description,
@@ -57,6 +55,7 @@ function CreatePost({user, image}) {
         })
 
         setDescription("");
+        setPostState((prevState) => (!prevState))
     };
 
   return (
