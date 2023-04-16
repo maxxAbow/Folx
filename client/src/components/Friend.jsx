@@ -71,6 +71,7 @@ function Friend({
           <Box
             onClick={() => {
               navigate(`/profile/${friendId}`);
+              setProfileId(friendId)
               navigate(0);
             }}
           >

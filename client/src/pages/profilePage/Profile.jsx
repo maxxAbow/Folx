@@ -17,6 +17,7 @@ const Profile = ({setIsAuth, profileId, setProfileId}) => {
   const [following, setFollowing] = useState(0)
   const [posts, setPosts] = useState([]);
   const [postState, setPostState ] = useState(false)
+  // const [profileId, setProfileId] = useState("");
   
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
   const navigate = useNavigate();

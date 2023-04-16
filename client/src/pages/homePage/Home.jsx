@@ -7,7 +7,7 @@ import { Box, useMediaQuery } from '@mui/material';
 import api from 'utils/API';
 import Timeline from 'components/Timeline';
 
-const Home = ({setIsAuth}) => {
+const Home = ({setIsAuth, profileId, setProfileId}) => {
   // Make fetch call here via the home component level, will do first thing tomorrow
   const [user, setUser] = useState(null) 
   // const [userId, setUserId] = useState(null)
@@ -77,8 +77,21 @@ const Home = ({setIsAuth}) => {
           marginTop={isNonMobileScreen ? undefined : "2rem"}
         >
           <CreatePost user={user} image={image} userId={userId} setPostState={setPostState} />
-          <Timeline user={user} posts={posts} setPosts={setPosts} setPostState={setPostState} updatePosts={updatePosts} postState={postState} followers={followers} setFollowers={setFollowers} following={following} setFollowing={setFollowing} />
-        </Box>
+          <Timeline 
+            user={user} 
+            posts={posts} 
+            setPosts={setPosts} 
+            setPostState={setPostState} 
+            updatePosts={updatePosts} 
+            postState={postState} 
+            followers={followers} 
+            setFollowers={setFollowers} 
+            following={following} 
+            setFollowing={setFollowing} 
+            profileId={profileId} 
+            setProfileId={setProfileId}
+            />
+          </Box>
         {isNonMobileScreen && (
           <Box flexBasis={"26%"}></Box>
         )}
