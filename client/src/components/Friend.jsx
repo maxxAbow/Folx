@@ -16,7 +16,8 @@ function Friend({
   following, 
   setFollowing,
   profileId, 
-  setProfileId }) {
+  setProfileId,
+  isProfilePage}) {
   
   const [isFollowing, setIsFollowing] = useState(false);
   const [userId, setUserId] = useState(null);
@@ -25,7 +26,7 @@ function Friend({
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const route = useParams()
-
+    console.log(isProfilePage)
 
   const { palette } = useTheme();
   const primaryLight = palette.primary.light;
@@ -69,53 +70,53 @@ function Friend({
   };
        
     return (
-        <FlexBetween>
-        <FlexBetween gap="1rem">
-          <ProfilePic image={image} size="55px" />
-          <Box
-            onClick={() => {
-              navigate(`/profile/${friendId}`);
-              setProfileId()
-              navigate(0);
+      <FlexBetween>
+      <FlexBetween gap="1rem">
+        <ProfilePic image={image} size="55px" />
+        <Box
+          onClick={() => {
+            navigate(`/profile/${friendId}`);
+            setProfileId()
+            navigate(0);
+          }}
+        >
+          <Typography
+            color={main}
+            variant="h5"
+            fontWeight="500"
+            sx={{
+              "&:hover": {
+                color: palette.primary.light,
+                cursor: "pointer",
+              },
             }}
           >
-            <Typography
-              color={main}
-              variant="h5"
-              fontWeight="500"
-              sx={{
-                "&:hover": {
-                  color: palette.primary.light,
-                  cursor: "pointer",
-                },
-              }}
-            >
-              {username}
-            </Typography>
-            <Typography color={medium} fontSize="0.75rem">
-              {location}
-            </Typography>
-          </Box>
-        </FlexBetween>
-        {!userPost && (
-          isFollowing ? (
+            {username}
+          </Typography>
+          <Typography color={medium} fontSize="0.75rem">
+            {location}
+          </Typography>
+        </Box>
+      </FlexBetween>
+      {!isProfilePage && (
+        (!userPost && isFollowing ? (
           <IconButton
-              onClick={() => unfollow(friendId, userId)}
-              sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
+            onClick={() => unfollow(friendId, userId)}
+            sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
           >
-              <PersonRemoveOutlined sx={{ color: primaryDark }} />
+            <PersonRemoveOutlined sx={{ color: primaryDark }} />
           </IconButton>
-          ): (
+        ) : (
           <IconButton
-              onClick={() => follow(friendId, userId)}
-              sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
+            onClick={() => follow(friendId, userId)}
+            sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
           >
-              <PersonAddOutlined sx={{ color: primaryDark }} />
+            <PersonAddOutlined sx={{ color: primaryDark }} />
           </IconButton>
-          )
+          ))
         )}
       </FlexBetween>
-  )
+    )
 }
 
 export default Friend

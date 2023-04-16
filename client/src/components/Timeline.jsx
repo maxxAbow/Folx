@@ -16,7 +16,8 @@ function Timeline({
     following, 
     setFollowing,
     profileId, 
-    setProfileId}) {
+    setProfileId,
+    isProfilePage}) {
    
     const getAllPosts = async () => {
         const {data} = (await api.getPosts());
@@ -75,6 +76,7 @@ function Timeline({
         setPostState={setPostState}
         profileId={profileId} 
         setProfileId={setProfileId}
+        isProfilePage={isProfilePage}
     />
     ))}
 

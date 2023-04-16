@@ -33,7 +33,8 @@ const Post = ({
   setFollowing,
   setPostState,
   profileId, 
-  setProfileId}) => {
+  setProfileId,
+  isProfilePage}) => {
   const { palette } = useTheme();
   const main = palette.neutral.main;
   const primary = palette.primary.main;
@@ -100,6 +101,7 @@ const Post = ({
       setFollowing={setFollowing}
       profileId={profileId} 
       setProfileId={setProfileId}
+      isProfilePage={isProfilePage}
       />
       <Typography color={main} sx={{ mt: "1rem" }}>
         {description}

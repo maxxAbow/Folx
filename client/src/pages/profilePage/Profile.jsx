@@ -96,6 +96,7 @@ const Profile = ({isAuth, setIsAuth, user, setUser, profileId, setProfileId, isP
             setFollowing={setFollowing} 
             profileId={profileId} 
             setProfileId={setProfileId}
+            isProfilePage={isProfilePage}
             />
         </Box>
         {isNonMobileScreen && (
