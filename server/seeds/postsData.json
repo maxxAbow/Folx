@@ -3,8 +3,14 @@
     "description": "Just tried the best pizza in town at Luigi's! The crust was perfectly crispy and the toppings were so fresh. Highly recommend!",
     "postImage": "pizza",
     "likes": [],
-    "createdAt": "4/7/2023"
+    "createdAt": "4/8/2023"
   },
+  {
+    "description": "Lafayette Grand Café & Bakery croissants in NY are good, but not like the ones in France.",
+    "postImage": "croissants",
+    "likes": [],
+    "createdAt": "4/9/2023"
+  },  
   {
     "description": "Just had the most amazing slice of cake at my favorite bakery in town! The frosting was perfect and the cake was so moist. 😍",
     "postImage": "cake",
@@ -18,16 +24,27 @@
     "createdAt": "4/1/2023"
   },
   {
+    "description": "Cosmopolitan cocktails at Dante West Village were weak. Needed 3 to feel a buzz.",
+    "postImage": "cocktails",
+    "likes": [],
+    "createdAt": "4/7/2023"
+  },  
+  {
     "description": "Atlanta has the best wings I've ever had! Perfectly spicy sauce and perfectly cooked wings. Highly recommend for all wing lovers out there!",
     "postImage": "wings",
     "likes": [],
-    "createdAt": "4/7/2023"
+    "createdAt": "4/10/2023"
   },
   {
     "description": "I had the best fried chicken at this new spot in Atlanta! The batter was perfectly crispy and the meat was so juicy. Definitely going back!",
     "postImage": "fried-chicken",
     "likes": [],
     "createdAt": "04/08/2023"
-}
-
+  },
+  {
+    "description": "Hated the steak at Capital Grille in Las Vegas. Steak was overcooked to be over $200, S##T. -10 out of 5 stars.",
+    "postImage": "steak",
+    "likes": [],
+    "createdAt": "4/6/2023"
+  }
 ]

@@ -62,9 +62,17 @@ const Navigation = ({ userId, setIsAuth }) => {
     // navigate('/');
   };
 
+  const returnHome = () => {
+      navigate('/home')
+      // This value causes the scrolling to occur immediately, without any animation or smoothing.
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      // This value causes the scrolling to occur with a smooth animation, making it appear more gradual and controlled.
+      // window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const searchUser = async (userId) => {
     const response = await api.getUserById(userId);
-    await setUser(response.data);
+    setUser(response.data);
   };
 
   useEffect(() => {
@@ -88,7 +96,7 @@ const Navigation = ({ userId, setIsAuth }) => {
           fontWeight='bold'
           fontSize='clamp(1rem, 2rem, 2.25rem)'
           color='primary'
-          onClick={() => navigate('/home')}
+          onClick={() => returnHome()}
           // Add 'sx' property to add psuedo CSS
           sx={{
             '&:hover': {

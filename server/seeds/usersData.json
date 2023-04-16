@@ -7,6 +7,13 @@
     "userImage": "david"
   },
   {
+    "username": "Stop_pugging_me95",
+    "email": "pug@gmail.com",
+    "location": "Milan, Italy",
+    "favFood": "Melanzane alla Parmigiana",
+    "userImage": "stop_pugging_me"
+  },
+  {
     "username": "Maxx",
     "email": "maxx@gmail.com",
     "location": "Savannah",
@@ -21,6 +28,13 @@
     "userImage": "victor"
   },
   {
+    "username": "Carrie_Brads_City",
+    "email": "carrie@gmail.com",
+    "location": "New York City",
+    "favFood": "Holiday Steak Bruschetta",
+    "userImage": "carrie"
+  },
+  {
     "username": "Daikeen",
     "email": "daikeen@gmail.com",
     "location": "Atlanta",
@@ -33,5 +47,12 @@
     "location": "Atlanta",
     "favFood": "Fried Chicken",
     "userImage": "sarah"
+  },
+  {
+    "username": "Chef_Rams",
+    "email": "gordon@gmail.com",
+    "location": "United Kingdom",
+    "favFood": "Beef Wellington",
+    "userImage": "gordon"
   }
 ]
