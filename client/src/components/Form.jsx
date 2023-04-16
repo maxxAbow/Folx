@@ -32,7 +32,6 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
       console.log('Email and or Password is incorrect');
     }
     const userData = authUser.data;
-    console.log(userData);
     if (userData.session.loggedIn === true) {
       setIsAuth(true);
     }
@@ -61,8 +60,6 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
     if (!createdUser) {
       return null
     }
-
-    console.log(createdUser)
     
     const authUser = await api.login({
       email: createdEmail,
@@ -73,7 +70,6 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
       alert('Email and or Password is incorrect');
     }
     const userData = authUser.data;
-    // console.log(userData);
     if (userData.session.loggedIn === true) {
       setIsAuth(true);
     }

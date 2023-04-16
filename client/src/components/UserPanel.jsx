@@ -9,30 +9,21 @@ import {
     DeliveryDiningOutlined
 } from "@mui/icons-material";
 
-import {Box, Typography, Divider, useTheme } from "@mui/material";
+import {Box, Typography, Divider, useTheme, useMediaQuery } from "@mui/material";
 import ProfilePic from './style-components/ProfilePic';
 import FlexBetween from './style-components/FlexBetween';
 import WidgeWrap from './style-components/WidgeWrap';
 import api from 'utils/API';
 
 function UserPanel({user, following}) {
-    // const [user, setUser] = useState(null);
+
+    const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
+
     const {palette} = useTheme();
     const navigate = useNavigate()
     const dark = palette.neutral.dark;
     const medium = palette.neutral.medium;
     const main = palette.neutral.main;
-
-
-    // const searchUser = async (userId) => {
-    //   const response = await api.getUserById(userId);
-    //   const userInfo = await setUser(response.data);
-    // }
-    
-    // debugger
-    // useEffect(() => {
-    //   searchUser(userId);
-    // }, [])
     
     if (!user) {
       return null
@@ -49,11 +40,13 @@ function UserPanel({user, following}) {
 
     // debugger
   return (
-    <WidgeWrap>
+    <>
+    {isNonMobileScreen ? (
+      <WidgeWrap sx={{ position: "fixed", width: "23.5%" }}>
       <FlexBetween
         gap="0.5rem"
         paddingBottom="1.1rem"
-        onClick={() => navigate(`/profile/:${_id}`)}
+        onClick={() => navigate(`/profile/${_id}`)}
       >
         {/* First Row */}
         <FlexBetween gap="1rem">
@@ -117,6 +110,77 @@ function UserPanel({user, following}) {
 
           {/* Future Dev, add new rows for social profiles */}
     </WidgeWrap>
+    ) : (
+      <WidgeWrap>
+      <FlexBetween
+        gap="0.5rem"
+        paddingBottom="1.1rem"
+        onClick={() => navigate(`/profile/${_id}`)}
+      >
+        {/* First Row */}
+        <FlexBetween gap="1rem">
+          {/* Need to import image soon, work with Backend for this as well */}
+          <Box>
+            <ProfilePic 
+              image={userImage} 
+            />
+          </Box>
+          <Box>
+            <Typography 
+              variant="h4"
+              color={dark}
+              fontWeight="500"
+              sx={{
+                "&:hover": {
+                  color: palette.primary.light,
+                  cursor: "pointer"
+                }
+              }}>
+                {username}
+            </Typography>
+              {/* Need to work with Back-end to add number of friends to User Model */}
+              <Typography color={medium}>{followers.length} Followers</Typography>
+          </Box>
+        </FlexBetween>
+        <ManageAccountsOutlined />
+      </FlexBetween>
+
+        <Divider />
+
+        {/* Next Row */}
+          <Box padding="1rem 0">
+              <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
+                <LocationOnOutlined  fontSize='large' sx={{color:main}}/>
+                <Typography color={dark} fontWeight="500">{location}</Typography>
+              </Box>
+              <Box display="flex" alignItems="center" gap="1rem">
+                <DinnerDiningOutlined  fontSize='large' sx={{color:main}}/>
+                {/* Might change this to favorite cuisine instead, talk to back-end */}
+                <Typography color={dark} fontWeight="500">Favorite Food: </Typography>
+                <Typography color={dark} >{favFood} </Typography>
+              </Box>
+          </Box>
+          <Divider />
+
+          {/* New Row */}
+          <Box padding="1rem 0">
+            <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
+              <DeliveryDiningOutlined fontSize='large' sx={{color:main}}/>
+              <Typography color={dark} fontWeight="500">Followers: </Typography>
+              <Typography color={dark}> {followers.length}</Typography>
+            </Box>
+            <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
+              <RemoveRedEyeOutlined fontSize='large' sx={{color:main}}/>
+              <Typography color={dark} fontWeight="500">Following: </Typography>
+              {/* Replace with variable with number of likes */}
+              <Typography color={dark}> {typeof following === "number" ? following : following.length} </Typography>
+            </Box>
+          </Box>
+
+          {/* Future Dev, add new rows for social profiles */}
+    </WidgeWrap>
+    )}
+    </>
   )
 }
 

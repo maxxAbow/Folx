@@ -23,7 +23,7 @@ function App() {
   // Always sets the initial value of isAuth to be true or false, by checking if activeUser object is in data base
   // and if the activeUser's second value is true
   const [isAuth, setIsAuth] = useState(activeUser && activeUser[1] === true ? true : false);
-  // console.log(`Refreshed state of App.js is ${isAuth}`)
+  const [profileId, setProfileId] = useState("");
 
 useEffect(()=> {
   // Check if activeUser exist, and if so confirms if they are logged in
@@ -32,11 +32,9 @@ useEffect(()=> {
     } else if (activeUser[1] === true) {
       setIsAuth(true) // if logged in, isAuth = true
     }
-    // console.log(`App.js component ${isAuth}`)
 
 }, [])
 
-//console.log(`App.js component ${isAuth}`)
   return (
     <Container fluid className='p-0 app'>
       <BrowserRouter>

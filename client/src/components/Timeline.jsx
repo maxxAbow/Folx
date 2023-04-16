@@ -38,6 +38,7 @@ function Timeline({userId, posts, setPosts, updatePosts, postState, setPostState
         userImage,
         postImage,
         likes,
+        comments,
         createdAt
     }) => (
     <Post 
@@ -51,6 +52,7 @@ function Timeline({userId, posts, setPosts, updatePosts, postState, setPostState
         userImage={userImage}
         postImage={postImage}
         likes={likes}
+        comments={comments}
         date={createdAt}
         followers={followers} 
         setFollowers={setFollowers}

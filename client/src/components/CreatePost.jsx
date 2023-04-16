@@ -157,7 +157,7 @@ function CreatePost({user, image, setPostState}) {
             disabled={!description} 
             onClick={()=> newPost()}
             sx={{
-                color: palette.background.alt,
+                color: "#FFFFFF",
                 backgroundColor: palette.primary.main,
                 borderRadius: "3rem"
             }}
