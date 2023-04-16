@@ -1,0 +1,7 @@
+.lollipops {
+  width: 100vw;
+  background-image: url('../../../public/assets/images/lolli.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
