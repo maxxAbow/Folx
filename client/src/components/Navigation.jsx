@@ -13,11 +13,11 @@ import {
 } from '@mui/material';
 
 import {
-  LocalPizza,
+  // LocalPizza,
   LightMode,
   DarkMode,
   Search,
-  FastFood,
+  // FastFood,
   FoodBank,
   Message,
   Notifications,
@@ -234,6 +234,5 @@ const Navigation = ({ userId, setIsAuth }) => {
     </FlexBetween>
   );
 };
-
 
 export default Navigation;
