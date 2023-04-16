@@ -54,6 +54,10 @@ const Home = ({setIsAuth}) => {
 
   }, [userId]);
 
+  if (!user) {
+    return null
+  }
+  
   return (
     <Box>
       <Navigation setIsAuth={setIsAuth} userId={userId} />
@@ -72,7 +76,7 @@ const Home = ({setIsAuth}) => {
           flexBasis={isNonMobileScreen ? "42%" : undefined}
           marginTop={isNonMobileScreen ? undefined : "2rem"}
         >
-          <CreatePost image={image} userId={userId}  />
+          <CreatePost user={user} image={image} userId={userId}  />
           <Timeline user={user} followers={followers} setFollowers={setFollowers} following={following} setFollowing={setFollowing} />
         </Box>
         {isNonMobileScreen && (

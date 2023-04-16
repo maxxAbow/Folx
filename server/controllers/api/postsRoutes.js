@@ -128,11 +128,13 @@ router.get('/join/:id', async (req,res)=>{
 router.post('/', async (req, res) => {  
 try {
     const {
+        userId,
+        username,
         description,
-        postImage
+        location,
+        postImage,
+        userImage
     } = req.body
-
-    const userId = req.session.userId
 
     if(!userId || !description) {
         return res.status(400).json({message: "userId and description must be defined"})
@@ -142,8 +144,11 @@ try {
     }
     const newPost = {
         userId,
+        username,
         description,
-        postImage
+        location,
+        postImage,
+        userImage
     }
 
     const createdPost = await Posts.create(newPost)
