@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const db = require('./config/connection');
+const path = require('path');
 const routes = require('./controllers');
 const cors = require('cors');
 
@@ -9,6 +10,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname + '/public')));
 
 const sess = {
   secret: 'Folx secret',
@@ -23,13 +25,13 @@ const sess = {
 
 // Enable CORS for all routes
 app.use(cors());
-app.use(session(sess))
+app.use(session(sess));
 app.use(routes);
 
 app.use((req, res, next) => {
   console.log(req.session);
   next();
-})
+});
 
 db.once('open', () => {
   app.listen(PORT, () => {
