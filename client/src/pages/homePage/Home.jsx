@@ -7,9 +7,9 @@ import { Box, useMediaQuery } from '@mui/material';
 import api from 'utils/API';
 import Timeline from 'components/Timeline';
 
-const Home = ({setIsAuth, profileId, setProfileId}) => {
+const Home = ({setIsAuth, user, setUser, profileId, setProfileId, setIsProfilePage}) => {
   // Make fetch call here via the home component level, will do first thing tomorrow
-  const [user, setUser] = useState(null) 
+  // const [user, setUser] = useState(null) 
   // const [userId, setUserId] = useState(null)
   const [image, setImage] = useState('')
   const [location, setLocation] = useState('')
@@ -52,6 +52,7 @@ const Home = ({setIsAuth, profileId, setProfileId}) => {
 
   useEffect(() => {
     getUser(userId)
+    setIsProfilePage(false);
 
   }, [userId]);
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { PersonAddOutlined, PersonRemoveOutlined} from "@mui/icons-material";
 import {Box, IconButton, Typography, useTheme} from "@mui/material";
 import api from 'utils/API';
@@ -21,8 +21,11 @@ function Friend({
   const [isFollowing, setIsFollowing] = useState(false);
   const [userId, setUserId] = useState(null);
   const [userPost, setUserPost] = useState(false);
-
+  const [params, setParams] = useState("")
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const route = useParams()
+
 
   const { palette } = useTheme();
   const primaryLight = palette.primary.light;
@@ -30,8 +33,8 @@ function Friend({
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
 
-
   useEffect(() => {
+    setParams(route);
     const activeUserStorage = localStorage.getItem("activeUser");// Retrieves activerUsers data from local storage
     const activeUser = JSON.parse(activeUserStorage); // parses the string into a JS object
     
@@ -41,6 +44,7 @@ function Friend({
       setUserId({ loggedInUser: activeUser[0] });
     }
     for (let i = 0; i < user.following.length; i++) {
+      debugger
       if (friendId === user.following[i]){
         setIsFollowing(true);
       }
@@ -50,7 +54,7 @@ function Friend({
       setUserPost(true)
     }
 
-  }, []);
+  }, [pathname]);
   
   const follow = async (friendId, userId) => {
     await api.followUser(friendId, userId)

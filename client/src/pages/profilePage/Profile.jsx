@@ -7,9 +7,9 @@ import { Box, useMediaQuery } from '@mui/material';
 import api from 'utils/API';
 import Timeline from 'components/Timeline';
 
-const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
+const Profile = ({isAuth, setIsAuth, user, setUser, profileId, setProfileId, isProfilePage, setIsProfilePage}) => {
   // Make fetch call here via the home component level, will do first thing tomorrow
-  const [user, setUser] = useState(null) 
+  const [friend, setFriend] = useState(null) 
   // const [loggedInId, setLoggedInId] = useState(null)
   const [image, setImage] = useState('')
   const [location, setLocation] = useState('')
@@ -20,7 +20,7 @@ const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
   const [loggedInUserDataLoaded, setLoggedInUserDataLoaded] = useState(false);
 
   // const [profileId, setProfileId] = useState("");
-  
+  // console.log(isProfilePage)
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
   const navigate = useNavigate();
   const param = useLocation();
@@ -41,7 +41,7 @@ const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
   const getUser = async (profileId) => {
     const friend = await api.getUserById(profileId);
     friendData = friend.data;
-    setUser(friendData)
+    setFriend(friendData)
     setImage(friendData.userImage)
    
   }
@@ -54,18 +54,18 @@ const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
   useEffect( () => {
     getUser(userId)
     setProfileId(userId)
+    setIsProfilePage(true)
 
   }, [param]);
 
   useEffect( () => {
-    if ( user?._id === loggedInId){
+    if ( friend?._id === loggedInId){
+      setUser(friend)
       setLoggedInUserDataLoaded(true); 
     }
-  }, [user]);
+  }, [friend]);
 
-  if (!user) { 
-    return null
-  }
+  debugger
   
   return (
     <Box>
@@ -78,7 +78,7 @@ const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
       justifyContent="space-between"
       >
         <Box flexBasis={isNonMobileScreen ? "26%" : undefined}>
-          <UserPanel user={user} following={following}/>
+          <UserPanel user={friend} following={following} isProfilePage={isProfilePage}/>
         </Box>
         <Box 
           flexBasis={isNonMobileScreen ? "42%" : undefined}
@@ -86,7 +86,7 @@ const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
         >
           {loggedInUserDataLoaded && <CreatePost user={user} setPostState={setPostState} />}
           <Timeline 
-            user={user} 
+            user={friend} 
             posts={posts} 
             setPosts={setPosts} 
             setPostState={setPostState} 

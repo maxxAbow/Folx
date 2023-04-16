@@ -9,7 +9,7 @@ function Timeline({
     updatePosts, 
     postState, 
     setPostState, 
-    user, 
+    user,
     isProfile = false, 
     followers, 
     setFollowers, 

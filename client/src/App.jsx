@@ -23,7 +23,10 @@ function App() {
   // Always sets the initial value of isAuth to be true or false, by checking if activeUser object is in data base
   // and if the activeUser's second value is true
   const [isAuth, setIsAuth] = useState(activeUser && activeUser[1] === true ? true : false);
+  const [isProfilePage, setIsProfilePage] = useState(true);
   const [profileId, setProfileId] = useState("");
+  const [user, setUser] = useState(null) 
+
 
 useEffect(()=> {
   // Check if activeUser exist, and if so confirms if they are logged in
@@ -43,9 +46,9 @@ useEffect(()=> {
       <Routes>
         <Route path='/' element={isAuth === false ? <Login isAuth={isAuth} setIsAuth={setIsAuth}/> : <Navigate to={"/home"} />} />
         {/* If isAuth is not equal to True, then user will be routed to login page */}
-        <Route path='/home' element={isAuth ? <Home setIsAuth={setIsAuth} profileId={profileId} setProfileId={setProfileId}/> : <Navigate to="/" />} />
+        <Route path='/home' element={isAuth ? <Home user={user} setUser={setUser} setIsAuth={setIsAuth} profileId={profileId} setProfileId={setProfileId} setIsProfilePage={setIsProfilePage}/> : <Navigate to="/" />} />
         {/* <Route path='/profile/:userId' element={isAuth ? <Profile /> : <Navigate to="/" />} /> */}
-        <Route path='/profile/:userId' element={isAuth ? <Profile profileId={profileId} setProfileId={setProfileId} isAuth={isAuth} setIsAuth={setIsAuth} /> : <Navigate to="/" />} />
+        <Route path='/profile/:userId' element={isAuth ? <Profile user={user} setUser={setUser} profileId={profileId} setProfileId={setProfileId} isAuth={isAuth} setIsAuth={setIsAuth} isProfilePage={isProfilePage} setIsProfilePage={setIsProfilePage} /> : <Navigate to="/" />} />
       </Routes>
       </ThemeProvider>
       </BrowserRouter>
