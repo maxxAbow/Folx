@@ -6,7 +6,17 @@ import api from 'utils/API';
 import FlexBetween from "./style-components/FlexBetween";
 import ProfilePic from "./style-components/ProfilePic"; 
 
-function Friend({image, user, friendId, username, location, setFollowers, following, setFollowing}) {
+function Friend({
+  image, 
+  user, 
+  friendId, 
+  username, 
+  location, 
+  setFollowers, 
+  following, 
+  setFollowing,
+  profileId, 
+  setProfileId }) {
   
   const [isFollowing, setIsFollowing] = useState(false);
   const [userId, setUserId] = useState(null);

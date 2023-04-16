@@ -44,7 +44,7 @@ useEffect(()=> {
         <Route path='/' element={isAuth === false ? <Login isAuth={isAuth} setIsAuth={setIsAuth}/> : <Navigate to={"/home"} />} />
         {/* If isAuth is not equal to True, then user will be routed to login page */}
         <Route path='/home' element={isAuth ? <Home setIsAuth={setIsAuth}/> : <Navigate to="/" />} />
-        <Route path='/profile/:userId' element={isAuth ? <Profile /> : <Navigate to="/" />} />
+        <Route path='/profile/:userId' element={isAuth ? <Profile profileId={profileId} setProfileId={setProfileId} /> : <Navigate to="/" />} />
       </Routes>
       </ThemeProvider>
       </BrowserRouter>

@@ -31,8 +31,9 @@ const Post = ({
   setFollowers,
   following,
   setFollowing,
-  setPostState
-}) => {
+  setPostState,
+  profileId, 
+  setProfileId}) => {
   const { palette } = useTheme();
   const main = palette.neutral.main;
   const primary = palette.primary.main;
@@ -97,6 +98,8 @@ const Post = ({
       setFollowers={setFollowers}
       following={following}
       setFollowing={setFollowing}
+      profileId={profileId} 
+      setProfileId={setProfileId}
       />
       <Typography color={main} sx={{ mt: "1rem" }}>
         {description}
