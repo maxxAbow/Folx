@@ -27,13 +27,13 @@ import FlexBetween from './style-components/FlexBetween';
 import ProfilePic from './style-components/ProfilePic';
 import WidgeWrap from './style-components/WidgeWrap';
 
-function CreatePost({image}) {
+function CreatePost({user, image, setPostState}) {
     // State to represent if the user clicks the 'image button' to open up a place to drop an image
     const [isImage, setIsImage] = useState(false);
+    // State to represent post content
+    const [description, setDescription] = useState("");
     // State to store the actuall image if the decide to dropit/upload it
     const [uploadImage, setUploadImage] = useState(null)
-    // State to represent post content
-    const [post, setPost] = useState("");
 
     const {palette} = useTheme();
 
@@ -41,19 +41,29 @@ function CreatePost({image}) {
     const mediumMain = palette.neutral.mediumMain;
     const medium = palette.neutral.medium; 
 
-    const newPost = async (data) => {
-        // const newPost = await api.createPost(data);
-        console.log(post)
+    const newPost = async () => {
+       await api.createPost({
+            userId: user._id,
+            username: user.username,
+            description,
+            location: user.location,
+            userImage: user.userImage
+        })
+
+        setDescription("");
+        setUploadImage(null);
+        setIsImage(false);
+        setPostState((prevState) => (!prevState))
     };
 
   return (
     <WidgeWrap>
        <FlexBetween gap="1.5rem">
-        <ProfilePic image={image} />
+        <ProfilePic image={user.userImage} />
         <InputBase
             placeholder='Tell us about your meal?'
-            value={post}
-            onChange={(e) => setPost(e.target.value)}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             sx={{
                width: "100%",
                backgroundColor: palette.neutral.light ,
@@ -144,7 +154,7 @@ function CreatePost({image}) {
 
            <Button 
            //If user has not updated post's state, the button is disabled
-            disabled={!post} 
+            disabled={!description} 
             onClick={()=> newPost()}
             sx={{
                 color: palette.background.alt,

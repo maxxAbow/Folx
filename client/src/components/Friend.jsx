@@ -10,6 +10,7 @@ function Friend({image, user, friendId, username, location, setFollowers, follow
   
   const [isFollowing, setIsFollowing] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [userPost, setUserPost] = useState(false);
 
   const navigate = useNavigate();
 
@@ -34,6 +35,11 @@ function Friend({image, user, friendId, username, location, setFollowers, follow
         setIsFollowing(true);
       }
     }
+
+    if (activeUser[0] === friendId) {
+      setUserPost(true)
+    }
+
   }, []);
   
   const follow = async (friendId, userId) => {
@@ -76,20 +82,22 @@ function Friend({image, user, friendId, username, location, setFollowers, follow
             </Typography>
           </Box>
         </FlexBetween>
-        {isFollowing ? (
-        <IconButton
-            onClick={() => unfollow(friendId, userId)}
-            sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
-        >
-            <PersonRemoveOutlined sx={{ color: primaryDark }} />
-        </IconButton>
-        ): (
-        <IconButton
-            onClick={() => follow(friendId, userId)}
-            sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
-        >
-            <PersonAddOutlined sx={{ color: primaryDark }} />
-        </IconButton>
+        {!userPost && (
+          isFollowing ? (
+          <IconButton
+              onClick={() => unfollow(friendId, userId)}
+              sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
+          >
+              <PersonRemoveOutlined sx={{ color: primaryDark }} />
+          </IconButton>
+          ): (
+          <IconButton
+              onClick={() => follow(friendId, userId)}
+              sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
+          >
+              <PersonAddOutlined sx={{ color: primaryDark }} />
+          </IconButton>
+          )
         )}
       </FlexBetween>
   )
