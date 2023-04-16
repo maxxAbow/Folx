@@ -25,6 +25,7 @@ const Post = ({
   userImage,
   postImage,
   likes,
+  comments,
   date,
   followers,
   setFollowers,
@@ -110,7 +111,6 @@ const Post = ({
       />
       )}
       <FlexBetween marginTop="0.25rem">
-        <FlexBetween gap="1rem">
           <FlexBetween gap="0.3rem">
             {!liked ? (
               <IconButton onClick={() => like(postId, loggedInUserId)}>
@@ -122,19 +122,18 @@ const Post = ({
               </IconButton>
             )}
             <Typography>{numLikes}</Typography>
-          </FlexBetween>
-          <FlexBetween gap="0.3rem">
             <IconButton>
               <CommentOutlined />
             </IconButton>
-            {/* <Typography></Typography> */}
+            <Typography> {comments.length} </Typography>
+          </FlexBetween>
+          <FlexBetween gap="0.3rem">
             {userPost && (
             <IconButton onClick={() => deletePost(postId)}>
               <DeleteOutlined />
             </IconButton>
             )}
           </FlexBetween>
-        </FlexBetween>
       </FlexBetween>
     </WidgeWrap>
   )

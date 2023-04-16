@@ -30,6 +30,7 @@ import { useDispatch } from 'react-redux';
 import { setMode } from 'state';
 import { useNavigate } from 'react-router-dom';
 import FlexBetween from './style-components/FlexBetween';
+import '../assets/css/Navigation.css'
 
 const Navigation = ({ userId, setIsAuth }) => {
   // State to determine to open up mobile menu on smaller/mobile screens
@@ -80,7 +81,7 @@ const Navigation = ({ userId, setIsAuth }) => {
 
   return (
     // The Box component from @mui/material allows us to pass in CSS properties as component properties
-    <FlexBetween padding='1rem 6%' backgroundColor={alt}>
+    <FlexBetween padding='1rem 6%' backgroundColor={alt} className='navbar'>
       <FlexBetween gap='1.75rem'>
         {/* Logo will go here, but Typogrpahy Component is a placeholder for now */}
         <Typography
