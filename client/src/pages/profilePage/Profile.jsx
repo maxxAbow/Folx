@@ -17,20 +17,20 @@ const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
   const [following, setFollowing] = useState(0)
   const [posts, setPosts] = useState([]);
   const [postState, setPostState ] = useState(false)
+  const [loggedInUserDataLoaded, setLoggedInUserDataLoaded] = useState(false);
+
   // const [profileId, setProfileId] = useState("");
   
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
   const navigate = useNavigate();
   const param = useLocation();
   let loggedInId = ''
-  let userData = {}
+  let friendData = {}
   let { userId } = useParams();
 
-  // change this to profileId
   const activeUserStorage = localStorage.getItem("activeUser");// Retrieves activerUsers data from local storage
   const activeUser = JSON.parse(activeUserStorage); // parses the string into a JS object
 
-  // change this to profileId
   if (!activeUser || activeUser[1] !== true) {
     navigate('/')
   } else if (activeUser[1] === true) {
@@ -39,17 +39,11 @@ const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
 
   // change this to profileId
   const getUser = async (profileId) => {
-    const findUser = await api.getUserById(profileId);
-    userData = findUser.data;
-    debugger
-    setUser(userData)
-    setImage(userData.userImage)
-    setFollowers(userData.followers.length)
-    if (typeof following === 'string') {
-      setFollowing(following.split(","))
-    } else {
-      setFollowing(userData.following)
-    }
+    const friend = await api.getUserById(profileId);
+    friendData = friend.data;
+    setUser(friendData)
+    setImage(friendData.userImage)
+   
   }
   
   const updatePosts = async () => {
@@ -57,18 +51,19 @@ const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
     setPosts(posts.data);
   };
 
-  useEffect(async () => {
-    debugger
-    await getUser(userId)
-    await setProfileId(userId)
+  useEffect( () => {
+    getUser(userId)
+    setProfileId(userId)
 
   }, [param]);
 
-  // useEffect(() => {
-  //   console.log(param);
-  // }, [param])
+  useEffect( () => {
+    if ( user?._id === loggedInId){
+      setLoggedInUserDataLoaded(true); 
+    }
+  }, [user]);
 
-  if (!user) {
+  if (!user) { 
     return null
   }
   
@@ -89,7 +84,7 @@ const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
           flexBasis={isNonMobileScreen ? "42%" : undefined}
           marginTop={isNonMobileScreen ? undefined : "2rem"}
         >
-          <CreatePost user={user} image={image} userId={userId} setPostState={setPostState} />
+          {loggedInUserDataLoaded && <CreatePost user={user} setPostState={setPostState} />}
           <Timeline 
             user={user} 
             posts={posts} 
@@ -97,8 +92,6 @@ const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
             setPostState={setPostState} 
             updatePosts={updatePosts} 
             postState={postState} 
-            followers={followers} 
-            setFollowers={setFollowers} 
             following={following} 
             setFollowing={setFollowing} 
             profileId={profileId} 
@@ -114,16 +107,3 @@ const Profile = ({isAuth, setIsAuth, profileId, setProfileId}) => {
 };
 
 export default Profile;
-
-// function Profile({ isAuth, setIsAuth, profileId, setProfileId }) {
-//   const { userId } = useParams();
-
-//   return (
-//     <div>
-//       <h1>Profile Page</h1>
-//       <p>User ID: {userId}</p>
-//     </div>
-//   );
-// }
-
-// export default Profile;
