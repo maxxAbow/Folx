@@ -50,11 +50,12 @@ function CreatePost({user, image, postState, setPostState}) {
             username: user.username,
             description,
             location: user.location,
-            postImage: uploadImage,
             userImage: user.userImage
         })
 
         setDescription("");
+        setUploadImage(null);
+        setIsImage(!isImage);
         setPostState((prevState) => (!prevState))
     };
 
