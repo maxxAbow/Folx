@@ -1,8 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-
-const connectionString = process.env.MONGODB_URI;
+const connectionString = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/paradise';
 
 mongoose.connect(
   connectionString,
