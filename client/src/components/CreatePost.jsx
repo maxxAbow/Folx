@@ -31,10 +31,7 @@ function CreatePost({user, image, postState, setPostState}) {
     // State to represent if the user clicks the 'image button' to open up a place to drop an image
     const [isImage, setIsImage] = useState(false);
     // State to represent post content
-    const [userID, setUserId] = useState("");
-    const [username, setUsername] = useState("");
     const [description, setDescription] = useState("");
-    const [location, setLocation] = useState("");
     // State to store the actuall image if the decide to dropit/upload it
     const [uploadImage, setUploadImage] = useState(null)
 
@@ -55,7 +52,7 @@ function CreatePost({user, image, postState, setPostState}) {
 
         setDescription("");
         setUploadImage(null);
-        setIsImage(!isImage);
+        setIsImage(false);
         setPostState((prevState) => (!prevState))
     };
 
