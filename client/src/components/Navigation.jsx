@@ -45,6 +45,8 @@ const Navigation = ({ userId, setIsAuth, user, setUser }) => {
   // Hook to determine if current screensize to determine users screensize
   const isNonMobileScreens = useMediaQuery('(min-width: 1000px)');
 
+  const [username, setUsername] = useState("");
+
   // Refers themes from theme js file
   const theme = useTheme();
   const neutralLight = theme.palette.neutral.light;
@@ -73,7 +75,8 @@ const Navigation = ({ userId, setIsAuth, user, setUser }) => {
 
   const searchUser = async (userId) => {
     const response = await api.getUserById(userId);
-    setUser(response.data);
+    debugger
+    setUsername(response.data.username)
   };
 
   useEffect(() => {
@@ -81,11 +84,14 @@ const Navigation = ({ userId, setIsAuth, user, setUser }) => {
   }, []);
   // console.log(user);
 
-  if (!user) {
-    return null;
-  }
+  // if (!user) {
+  //   return null;
+  // }
 
-  const { username } = user;
+  // debugger
+  // const { username } = user;
+
+  // console.log()
 
   return (
     // The Box component from @mui/material allows us to pass in CSS properties as component properties

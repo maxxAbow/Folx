@@ -65,9 +65,9 @@ const Profile = ({isAuth, setIsAuth, user, setUser, profileId, setProfileId, isP
     }
   }, [friend]);
 
-  if (!user) {
-    return null
-  }
+  // if (!user) {
+  //   return null
+  // }
   
   return (
     <Box>

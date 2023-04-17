@@ -52,8 +52,6 @@ function UserPanel({user, following, isProfilePage}) {
       isUserProfile = true;
     }
 
-    // debugger
-
   return (
     <>
     {isNonMobileScreen ? (

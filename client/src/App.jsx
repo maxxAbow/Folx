@@ -37,7 +37,7 @@ useEffect(()=> {
     }
 
 }, [])
-debugger
+
 
   return (
     <Container fluid className='p-0 app'>

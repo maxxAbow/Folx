@@ -24,8 +24,8 @@ function Friend({
   const [userPost, setUserPost] = useState(false);
   const [params, setParams] = useState("")
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const route = useParams()
-    console.log(isProfilePage)
 
   const { palette } = useTheme();
   const primaryLight = palette.primary.light;
@@ -44,7 +44,7 @@ function Friend({
       setUserId({ loggedInUser: activeUser[0] });
     }
     for (let i = 0; i < user.following.length; i++) {
-      debugger
+      
       if (friendId === user.following[i]){
         setIsFollowing(true);
       }
@@ -54,7 +54,7 @@ function Friend({
       setUserPost(true)
     }
 
-  }, []);
+  }, [pathname]);
   
   const follow = async (friendId, userId) => {
     await api.followUser(friendId, userId)

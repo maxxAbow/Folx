@@ -60,7 +60,7 @@ const Home = ({setIsAuth, user, setUser, profileId, setProfileId, setIsProfilePa
     return null
   }
   
-  debugger
+  
   return (
     <Box>
       <Navigation setIsAuth={setIsAuth} user={user} setUser={setUser} userId={userId} />
