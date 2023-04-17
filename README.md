@@ -1,4 +1,4 @@
-# <img src="./client/public/assets/images/logos/folx-1.png" width="200">
+# <img src="./client/public/assets/images/logos/folx-1.png" width="400">
 
 ## License
 
@@ -20,11 +20,14 @@
 - [Credits](#credits)
 - [License](#license)
 - [Contribute](#contribute)
-- [Tests](#tests)
 - [Questions](#questions)
 
 ## Description
-Looking for a foodie community that is inclusive, diverse, and full of culinary inspiration? Look no further than Folx, the social media app for food enthusiasts from all backgrounds. With our app, you can follow other food enthusiasts and discover new dishes to try on our Explore page. See the latest updates from the foodies you follow on your Timeline, where you can like their posts. Our Profile page displays all of your own posts, so you can share your favorite recipes and cooking tips with your followers. Plus, you can build your own community of foodies by following and being followed by other users. Whether you're looking for inspiration, want to share your culinary creations, or just love everything food-related, Folx is the perfect platform for you. Join our inclusive and diverse community of foodies today and start exploring the delicious world of cuisine together!
+
+Looking for a foodie community that is inclusive, diverse, and full of culinary inspiration?<br>
+Look no further than Folx, the social media app for food enthusiasts from all backgrounds.<br><br>
+With our app, you can follow other food enthusiasts and discover new dishes to try on the home page. See the latest updates from the foodies you follow on your timeline, where you can like other engaged users' posts. Our profile page displays all of your own posts, so you can share your favorite recipes and cooking tips with your followers. Plus, you can build your own community of foodies by following other users. And they can follow you too.<br><br>
+Whether you're looking for inspiration, want to share your culinary creations, or just love everything food-related, Folx is the perfect platform for you. Join our inclusive and diverse community of foodies today and start exploring the delicious world of cuisine together!
 
 ## Installation
 Follow these commands to run the command-line application:  
