@@ -67,11 +67,15 @@ Follow these commands to run the command-line application:
 
 ### Collaborators
 
-    Daikeen Lockett
-    David Mackey
-    Maxx Bowman
-    Victor Rivera
-    Sarah Wattles
+  Daikeen Lockett
+  
+  David Mackey
+  
+  Maxx Bowman
+  
+  Victor Rivera
+  
+  Sarah Wattles
 
 ### Resources
 
