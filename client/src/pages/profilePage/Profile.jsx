@@ -65,7 +65,9 @@ const Profile = ({isAuth, setIsAuth, user, setUser, profileId, setProfileId, isP
     }
   }, [friend]);
 
-  debugger
+  if (!user) {
+    return null
+  }
   
   return (
     <Box>

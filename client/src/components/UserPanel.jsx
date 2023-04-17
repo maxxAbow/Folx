@@ -18,7 +18,6 @@ import api from 'utils/API';
 function UserPanel({user, following, isProfilePage}) {
 
     const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
-
     const {palette} = useTheme();
     const navigate = useNavigate()
     const dark = palette.neutral.dark;
@@ -27,12 +26,14 @@ function UserPanel({user, following, isProfilePage}) {
     
     const activeUserStorage = localStorage.getItem("activeUser");// Retrieves activerUsers data from local storage
     const activeUser = JSON.parse(activeUserStorage); // parses the string into a JS object
+    let isUserProfile = false;
+    let loggedInId = "";
 
-    // if (!activeUser || activeUser[1] !== true) {
-    //   navigate('/')
-    // } else if (activeUser[1] === true) {
-    //   loggedInId = activeUser[0] // if logged in, setUserId
-    // }
+    if (!activeUser || activeUser[1] !== true) {
+      navigate('/')
+    } else if (activeUser[1] === true) {
+      loggedInId = activeUser[0];
+    }
 
     if (!user) {
       return null
@@ -46,6 +47,12 @@ function UserPanel({user, following, isProfilePage}) {
       userImage,
       followers,
     } = user;
+
+    if (loggedInId === _id) {
+      isUserProfile = true;
+    }
+
+    // debugger
 
   return (
     <>
@@ -100,22 +107,37 @@ function UserPanel({user, following, isProfilePage}) {
           <Divider />
 
           {/* New Row */}
+          {!isProfilePage &&(
           <Box padding="1rem 0">
               <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
                 <DeliveryDiningOutlined fontSize='large' sx={{color:main}}/>
                 <Typography color={dark} fontWeight="500">Followers: </Typography>
                 <Typography color={dark}> {followers.length}</Typography>
               </Box>
-             {!isProfilePage && (
               <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
                 <RemoveRedEyeOutlined fontSize='large' sx={{color:main}}/>
                 <Typography color={dark} fontWeight="500">Following: </Typography>
                 {/* Replace with variable with number of likes */}
                 <Typography color={dark}> {typeof following === "number" ? following : following.length} </Typography>
               </Box>
-              )}
            </Box>
+          )}
 
+          {isProfilePage && isUserProfile &&(
+          <Box padding="1rem 0">
+              <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
+                <DeliveryDiningOutlined fontSize='large' sx={{color:main}}/>
+                <Typography color={dark} fontWeight="500">Followers: </Typography>
+                <Typography color={dark}> {followers.length}</Typography>
+              </Box>
+              <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
+                <RemoveRedEyeOutlined fontSize='large' sx={{color:main}}/>
+                <Typography color={dark} fontWeight="500">Following: </Typography>
+                {/* Replace with variable with number of likes */}
+                <Typography color={dark}> {user.following.length} </Typography>
+              </Box>
+           </Box>
+          )}
           {/* Future Dev, add new rows for social profiles */}
     </WidgeWrap>
     ) : (
@@ -170,21 +192,21 @@ function UserPanel({user, following, isProfilePage}) {
 
           {/* New Row */}
           
-             <Box padding="1rem 0">
+          {!isProfilePage && (
+          <Box padding="1rem 0">
               <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
                 <DeliveryDiningOutlined fontSize='large' sx={{color:main}}/>
                 <Typography color={dark} fontWeight="500">Followers: </Typography>
                 <Typography color={dark}> {followers.length}</Typography>
               </Box>
-             {!isProfilePage && (
               <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
                 <RemoveRedEyeOutlined fontSize='large' sx={{color:main}}/>
                 <Typography color={dark} fontWeight="500">Following: </Typography>
                 {/* Replace with variable with number of likes */}
                 <Typography color={dark}> {typeof following === "number" ? following : following.length} </Typography>
               </Box>
-              )}
            </Box>
+          )}
       
           {/* Future Dev, add new rows for social profiles */}
     </WidgeWrap>

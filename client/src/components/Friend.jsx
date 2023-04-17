@@ -24,7 +24,6 @@ function Friend({
   const [userPost, setUserPost] = useState(false);
   const [params, setParams] = useState("")
   const navigate = useNavigate();
-  const { pathname } = useLocation();
   const route = useParams()
     console.log(isProfilePage)
 
@@ -55,7 +54,7 @@ function Friend({
       setUserPost(true)
     }
 
-  }, [pathname]);
+  }, []);
   
   const follow = async (friendId, userId) => {
     await api.followUser(friendId, userId)
@@ -98,8 +97,8 @@ function Friend({
           </Typography>
         </Box>
       </FlexBetween>
-      {!isProfilePage && (
-        (!userPost && isFollowing ? (
+      {!isProfilePage && !userPost && (
+        (isFollowing ? (
           <IconButton
             onClick={() => unfollow(friendId, userId)}
             sx={{ backgroundColor: primaryLight, p: "0.6rem" }}

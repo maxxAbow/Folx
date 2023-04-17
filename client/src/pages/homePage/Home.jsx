@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation} from 'react-router-dom';
 import Navigation from 'components/Navigation';
 import UserPanel from 'components/UserPanel';
 import CreatePost from 'components/CreatePost';
@@ -12,7 +12,7 @@ const Home = ({setIsAuth, user, setUser, profileId, setProfileId, setIsProfilePa
   // const [user, setUser] = useState(null) 
   // const [userId, setUserId] = useState(null)
   const [image, setImage] = useState('')
-  const [location, setLocation] = useState('')
+  const [location, setLocation] = useState(useLocation())
   const [followers, setFollowers] = useState(0)
   const [following, setFollowing] = useState(0)
   const [posts, setPosts] = useState([]);
@@ -54,15 +54,16 @@ const Home = ({setIsAuth, user, setUser, profileId, setProfileId, setIsProfilePa
     getUser(userId)
     setIsProfilePage(false);
 
-  }, [userId]);
+  }, [location]);
 
   if (!user) {
     return null
   }
   
+  debugger
   return (
     <Box>
-      <Navigation setIsAuth={setIsAuth} userId={userId} />
+      <Navigation setIsAuth={setIsAuth} user={user} setUser={setUser} userId={userId} />
       <Box 
       width="100%" 
       padding="2rem 6%" 

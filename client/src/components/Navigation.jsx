@@ -32,10 +32,10 @@ import { useNavigate } from 'react-router-dom';
 import FlexBetween from './style-components/FlexBetween';
 import '../assets/css/Navigation.css'
 
-const Navigation = ({ userId, setIsAuth }) => {
+const Navigation = ({ userId, setIsAuth, user, setUser }) => {
   // State to determine to open up mobile menu on smaller/mobile screens
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
 
   // To dispatch action from reducers to change mode's state
   const dispatch = useDispatch();
@@ -59,7 +59,8 @@ const Navigation = ({ userId, setIsAuth }) => {
   const logOut = () => {
     localStorage.removeItem('activeUser');
     setIsAuth(false);
-    // navigate('/');
+    setUser(null)
+    navigate('/');
   };
 
   const returnHome = () => {
