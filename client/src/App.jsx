@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Navigate, Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Login from 'pages/loginPage/Login';
 import Home from 'pages/homePage/Home';
@@ -41,7 +41,8 @@ useEffect(()=> {
 
   return (
     <Container fluid className='p-0 app'>
-      <BrowserRouter>
+      <HashRouter>
+      {/* <BrowserRouter> */}
       <ThemeProvider theme={theme}>
       <CssBaseline />
       <Routes>
@@ -52,7 +53,8 @@ useEffect(()=> {
         <Route path='/profile/:userId' element={isAuth ? <Profile user={user} setUser={setUser} profileId={profileId} setProfileId={setProfileId} isAuth={isAuth} setIsAuth={setIsAuth} isProfilePage={isProfilePage} setIsProfilePage={setIsProfilePage} /> : <Navigate to="/" />} />
       </Routes>
       </ThemeProvider>
-      </BrowserRouter>
+      {/* </BrowserRouter> */}
+      </HashRouter>
     </Container>
   );
 }
