@@ -38,8 +38,7 @@ Follow these commands to run the command-line application:
 
 ## Usage
 
-  ![Usage](./client/public/assets/images/usage/screenshot-1.png)
-  ![Usage](./client/public/assets/images/usage/screenshot-2.png)
+<img src="./client/public/assets/images/usage/screenshot-1.png" width="500"><img src="./client/public/assets/images/usage/screenshot-2.png" width="500">
 
 ## Credits
 
