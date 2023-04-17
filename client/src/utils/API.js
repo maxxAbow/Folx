@@ -6,7 +6,6 @@ import { API_URL } from "config";
 
 const api = {
     // User Axios calls for userRoutes controller
-    // Notice we are only asking for username and not password
     getUsers: () => {
         return axios.get(`${API_URL}/api/users`);
     },
@@ -55,6 +54,10 @@ const api = {
     // Post Axios calls for all postController request (Post Request endpoints are unfinished in backend)
     getPosts: () => {
         return axios.get(`${API_URL}/api/posts`);
+    },
+
+    getAllPostById: (userId) => {
+        return axios.get(`${API_URL}/api/posts/users/${userId}`);
     },
 
     getPostById: (postId) => {
