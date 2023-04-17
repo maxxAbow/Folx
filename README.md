@@ -86,6 +86,10 @@ Follow these commands to run the command-line application:
   [React](https://react.dev/learn)
   
   [Node](https://nodejs.org/en/docs)
+  
+  [Git Branching](https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows)
+  
+  [Agile Software Development](https://en.wikipedia.org/wiki/Agile_software_development)
 
 ## Toolset
 
