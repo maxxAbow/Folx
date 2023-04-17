@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import api from 'utils/API';
 import {
   Box,
@@ -32,10 +33,11 @@ import { useNavigate } from 'react-router-dom';
 import FlexBetween from './style-components/FlexBetween';
 import '../assets/css/Navigation.css'
 
-const Navigation = ({ userId, setIsAuth, user, setUser }) => {
+const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage }) => {
   // State to determine to open up mobile menu on smaller/mobile screens
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
-  // const [user, setUser] = useState(null);
+  
+  document.body.style.paddingTop = "80px";
 
   // To dispatch action from reducers to change mode's state
   const dispatch = useDispatch();
@@ -61,7 +63,9 @@ const Navigation = ({ userId, setIsAuth, user, setUser }) => {
   const logOut = () => {
     localStorage.removeItem('activeUser');
     setIsAuth(false);
-    setUser(null)
+    if (!isProfilePage) {
+      setUser(null)
+    }
     navigate('/');
   };
 
@@ -101,8 +105,11 @@ const Navigation = ({ userId, setIsAuth, user, setUser }) => {
             },
           }}
         >
-          FolX
-          <FoodBank sx={{ fontSize: 40 }} />
+          <img 
+            src='../assets/images/logos/folx-1.png' 
+            alt='Folx logo'
+            style={{height: "48px", width: "fit-content"}}
+          />
         </Typography>
         {/* Setting condition for if Page is not on a mobile screen */}
         {isNonMobileScreens && (
