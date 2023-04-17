@@ -11,12 +11,16 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
+// Enable CORS for all routes
+app.use(cors());
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
 
@@ -31,8 +35,6 @@ const sess = {
   saveUninitialized: true,
 };
 
-// Enable CORS for all routes
-app.use(cors());
 app.use(session(sess));
 app.use(routes);
 
