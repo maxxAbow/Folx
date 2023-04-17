@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import api from 'utils/API';
 import {
   Box,
@@ -32,7 +33,7 @@ import { useNavigate } from 'react-router-dom';
 import FlexBetween from './style-components/FlexBetween';
 import '../assets/css/Navigation.css'
 
-const Navigation = ({ userId, setIsAuth, user, setUser }) => {
+const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage }) => {
   // State to determine to open up mobile menu on smaller/mobile screens
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   // const [user, setUser] = useState(null);
@@ -61,7 +62,10 @@ const Navigation = ({ userId, setIsAuth, user, setUser }) => {
   const logOut = () => {
     localStorage.removeItem('activeUser');
     setIsAuth(false);
-    setUser(null)
+    if (!isProfilePage) {
+      setUser(null)
+    }
+    unmountAll();
     navigate('/');
   };
 
@@ -72,6 +76,11 @@ const Navigation = ({ userId, setIsAuth, user, setUser }) => {
       // This value causes the scrolling to occur with a smooth animation, making it appear more gradual and controlled.
       // window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  function unmountAll() {
+    const root = document.getElementById('root');
+    ReactDOM.unmountComponentAtNode(root);
+  }
 
   const searchUser = async (userId) => {
     const response = await api.getUserById(userId);
