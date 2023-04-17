@@ -31,13 +31,13 @@ import { useDispatch } from 'react-redux';
 import { setMode } from 'state';
 import { useNavigate } from 'react-router-dom';
 import FlexBetween from './style-components/FlexBetween';
-import '../assets/css/Navigation.css'
+import '../assets/css/Navigation.css';
 
 const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage }) => {
   // State to determine to open up mobile menu on smaller/mobile screens
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
-  
-  document.body.style.paddingTop = "80px";
+
+  document.body.style.paddingTop = '80px';
 
   // To dispatch action from reducers to change mode's state
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage }) => {
   // Hook to determine if current screensize to determine users screensize
   const isNonMobileScreens = useMediaQuery('(min-width: 1000px)');
 
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState('');
 
   // Refers themes from theme js file
   const theme = useTheme();
@@ -64,22 +64,22 @@ const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage }) => {
     localStorage.removeItem('activeUser');
     setIsAuth(false);
     if (!isProfilePage) {
-      setUser(null)
+      setUser(null);
     }
     navigate('/');
   };
 
   const returnHome = () => {
-      navigate('/home')
-      // This value causes the scrolling to occur immediately, without any animation or smoothing.
-      window.scrollTo({ top: 0, behavior: 'instant' });
-      // This value causes the scrolling to occur with a smooth animation, making it appear more gradual and controlled.
-      // window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigate('/home');
+    // This value causes the scrolling to occur immediately, without any animation or smoothing.
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    // This value causes the scrolling to occur with a smooth animation, making it appear more gradual and controlled.
+    // window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const searchUser = async (userId) => {
     const response = await api.getUserById(userId);
-    setUsername(response.data.username)
+    setUsername(response.data.username);
   };
 
   useEffect(() => {
@@ -105,10 +105,10 @@ const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage }) => {
             },
           }}
         >
-          <img 
-            src='../assets/images/logos/folx-1.png' 
+          <img
+            src='../assets/images/logos/folx-1.png'
             alt='Folx logo'
-            style={{height: "48px", width: "fit-content"}}
+            style={{ height: '48px', width: 'fit-content' }}
           />
         </Typography>
         {/* Setting condition for if Page is not on a mobile screen */}
@@ -164,6 +164,32 @@ const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage }) => {
               <MenuItem onClick={() => logOut()}>Log Out</MenuItem>
             </Select>
           </FormControl>
+          <svg
+            className='editorial'
+            xmlns='http://www.w3.org/2000/svg'
+            xmlnsXlink='http://www.w3.org/1999/xlink'
+            viewBox='0 24 150 28'
+            preserveAspectRatio='none'
+          >
+            <defs>
+              <path
+                id='gentle-wave'
+                d='M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z'
+              />
+            </defs>
+            <g className='parallax1'>
+              <use xlinkHref='#gentle-wave' x='50' y='3' fill='#F8D858' />
+            </g>
+            <g className='parallax2'>
+              <use xlinkHref='#gentle-wave' x='50' y='0' fill='#C8CF90' />
+            </g>
+            <g className='parallax3'>
+              <use xlinkHref='#gentle-wave' x='50' y='9' fill='#EE8636' />
+            </g>
+            <g className='parallax4'>
+              <use xlinkHref='#gentle-wave' x='50' y='6' fill='#E93E44' />
+            </g>
+          </svg>
         </FlexBetween>
       ) : (
         <IconButton
