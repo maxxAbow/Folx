@@ -34,6 +34,27 @@ try {
 }
 });
 
+// GET all post by userId
+router.get('/:userId', async (req, res) => {
+try {
+    const {userId} = req.params;
+    if(!userId){
+    return res.status(400).json({message: 'UserId must be defined'})
+    }
+    if(typeof userId !== 'string'){
+    return res.status(400).json({message: 'UserId must be a string'})
+    }
+    const posts = await Posts.find({userId})
+    if(!posts){
+    return res.status(404).json({message: 'Posts not found'})
+    }
+    return res.json(posts)
+} catch (error) {
+    console.log(error)
+    return res.status(500).json(error)
+}
+});
+
 
 
 //GET followings posts by user's list of following
