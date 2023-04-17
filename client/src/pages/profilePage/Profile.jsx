@@ -19,8 +19,6 @@ const Profile = ({isAuth, setIsAuth, user, setUser, profileId, setProfileId, isP
   const [postState, setPostState ] = useState(false)
   const [loggedInUserDataLoaded, setLoggedInUserDataLoaded] = useState(false);
 
-  // const [profileId, setProfileId] = useState("");
-  // console.log(isProfilePage)
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
   const navigate = useNavigate();
   const param = useLocation();
@@ -46,10 +44,10 @@ const Profile = ({isAuth, setIsAuth, user, setUser, profileId, setProfileId, isP
    
   }
   
-  const updatePosts = async () => {
-    const posts = await api.getPosts();
+  const updatePosts = async (userId) => {
+    const posts = await api.getAllPostById(userId)
     setPosts(posts.data);
-  };
+    };
 
   useEffect( () => {
     getUser(userId)

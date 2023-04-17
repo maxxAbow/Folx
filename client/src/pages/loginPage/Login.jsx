@@ -30,8 +30,6 @@ const Login = ({isAuth, setIsAuth}) => {
     imgArray[i].remove();
   };
 
-  // console.log(`login component ${isAuth}`)
-
   return (
     <Row>
       <Col>

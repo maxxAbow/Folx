@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import {useParams} from 'react-router-dom'
 import Post from './Post';
 import api from 'utils/API';
 
@@ -10,7 +11,7 @@ function Timeline({
     postState, 
     setPostState, 
     user,
-    isProfile = false, 
+    // isProfile = false, 
     followers, 
     setFollowers, 
     following, 
@@ -28,14 +29,16 @@ function Timeline({
         const {data} = await api.getPostById();
     }
 
+    const {userId : id} = useParams()
     // If User is on a profile, it will only retrieve post made by that specific user, otherwise will retreive posts from everyone
     useEffect(() => {
-        if(isProfile) {
-            return null
+        if(isProfilePage) {
+            debugger
+            updatePosts(id)
         } else {
             updatePosts();
         }
-    }, [postState])
+    }, [postState, isProfilePage])
 
     if (!user) {
         return null

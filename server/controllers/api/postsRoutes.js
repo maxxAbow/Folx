@@ -55,7 +55,6 @@ try {
 }
 });
 
-
 //GET followings posts by user's list of following
 router.get('/grabbing/:userId' , async (req,res)=>{
     const activeUser = req.session.userId;

@@ -11,12 +11,6 @@ function Earth() {
         
     })
 
-    // useEffect(() => {
-    //     if(!!orbitControlsRef.current){
-    //         console.log(orbitControlsRef.current)
-    //     }
-    // }, [orbitControlsRef.current])
-
   return (
     <>
         {/* Creates camera perspective around the obect, takes arg called position [x-axis,y-axis, z-axis] */}
