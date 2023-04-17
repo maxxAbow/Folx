@@ -33,7 +33,7 @@ import { useNavigate } from 'react-router-dom';
 import FlexBetween from './style-components/FlexBetween';
 import '../assets/css/Navigation.css';
 
-const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage }) => {
+const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage, isFinishedApp=false }) => {
   // State to determine to open up mobile menu on smaller/mobile screens
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
 
@@ -112,7 +112,7 @@ const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage }) => {
           />
         </Typography>
         {/* Setting condition for if Page is not on a mobile screen */}
-        {isNonMobileScreens && (
+        {isNonMobileScreens || isFinishedApp && (
           <FlexBetween
             backgroundColor={neutralLight}
             borderRadius='9px'
@@ -137,9 +137,13 @@ const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage }) => {
               <LightMode sx={{ color: dark, fontSize: '25px' }} />
             )}
           </IconButton>
-          <Message sx={{ fontSize: '25px' }} />
-          <Notifications sx={{ fontSize: '25px' }} />
-          <Help sx={{ fontSize: '25px' }} />
+          {isFinishedApp && (
+            <>
+            <Message sx={{ fontSize: '25px' }} />
+            <Notifications sx={{ fontSize: '25px' }} />
+            <Help sx={{ fontSize: '25px' }} />
+            </>
+          )}
           <FormControl variant='standard' value={username}>
             <Select
               value={username}

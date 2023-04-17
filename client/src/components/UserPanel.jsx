@@ -59,10 +59,9 @@ function UserPanel({user, following, isProfilePage}) {
       <FlexBetween
         gap="0.5rem"
         paddingBottom="1.1rem"
-        onClick={() => navigate(`/profile/${_id}`)}
       >
         {/* First Row */}
-        <FlexBetween gap="1rem">
+        <FlexBetween gap="1rem" onClick={() => navigate(`/profile/${_id}`)}>
           <Box>
             <ProfilePic 
               image={userImage} 
