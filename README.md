@@ -1,4 +1,4 @@
-# <img src="./client/public/assets/images/logos/folx-1.png" width="500">
+# <img src="./client/public/assets/images/logos/folx-1.png" width="300">
 
 ## License
 
