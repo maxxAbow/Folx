@@ -19,21 +19,11 @@ function Timeline({
     profileId, 
     setProfileId,
     isProfilePage}) {
-   
-    const getAllPosts = async () => {
-        const {data} = (await api.getPosts());
-        setPosts(data);
-    }
-    
-    const getUserPosts = async () => {
-        const {data} = await api.getPostById();
-    }
 
     const {userId : id} = useParams()
     // If User is on a profile, it will only retrieve post made by that specific user, otherwise will retreive posts from everyone
     useEffect(() => {
         if(isProfilePage) {
-            debugger
             updatePosts(id)
         } else {
             updatePosts();
