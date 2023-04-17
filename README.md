@@ -63,7 +63,6 @@ Follow these commands to run the command-line application:
 [Maxx Bowman](https://linkedin.com/in/maxx-abigail-bowman-85b537193/)</br>
 [Victor Rivera](https://linkedin.com/in/.../)</br>
 [Sarah Wattles](https://www.linkedin.com/in/smwattles/)</br>
-</br>
 
 ### Resources
 
