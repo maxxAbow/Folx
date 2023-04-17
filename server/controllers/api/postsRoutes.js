@@ -44,7 +44,7 @@ try {
     if(typeof userId !== 'string'){
     return res.status(400).json({message: 'UserId must be a string'})
     }
-    const posts = await Posts.find( { $or: [ { userId: userId }] })
+    const posts = await Posts.find( { $or: [ { userId: userId }] }).sort({createdAt: -1})
     if(!posts){
     return res.status(404).json({message: 'Posts not found'})
     }
@@ -83,29 +83,6 @@ router.get('/grabbing/:userId' , async (req,res)=>{
         return res.status(500).json(e)
         }
 });
-// const userIds = ['blah balh']
-// const url = `http://localhost:3001/userId?userIds=${JSON.stringify(userIds)}`
-// GET all posts by a userId
-// router.get('/userId/all', async (req, res) => {
-//     const {userIds: userIdsString} = req.query
-
-//     try {
-//         if(!userIdsString) {
-//             return res.status(400).json({message: 'userIds must be defined'})
-//         }
-//         const userIds = JSON.parse(userIdsString).map((string) => new mongoose.Types.ObjectId(string))
-
-//         const posts = await Posts.find({where: { userId: {$in: userIds }}})
-//         console.log(posts)
-//         if(!posts.length){
-//         return res.status(404).json({message: 'Posts not found'})
-//         }
-//         return res.json(posts)
-//     } catch (error) {
-//         console.log(error)
-//         return res.status(500).json(error)
-//     }
-// });
 
 //GET posts by userId
 router.get('/target/:userId', async (req,res)=>{

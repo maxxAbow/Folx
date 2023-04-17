@@ -36,7 +36,8 @@ import '../assets/css/Navigation.css'
 const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage }) => {
   // State to determine to open up mobile menu on smaller/mobile screens
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
-  // const [user, setUser] = useState(null);
+  
+  document.body.style.paddingTop = "80px";
 
   // To dispatch action from reducers to change mode's state
   const dispatch = useDispatch();

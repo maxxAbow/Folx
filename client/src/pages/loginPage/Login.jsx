@@ -10,6 +10,8 @@ const Login = ({isAuth, setIsAuth}) => {
   const [login, setLogin] = useState(true);
   // const [isAuth, setIsAuth] = useState(false);
 
+  document.body.style.paddingTop = "0px";
+
   // Randomly generates a number that represents an index in the array returned by the images
   const hideImg = () => {
     const imgArray = document.querySelectorAll('.space-food');
