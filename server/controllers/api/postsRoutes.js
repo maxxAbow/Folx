@@ -92,22 +92,39 @@ router.get('/grabbing/:userId' , async (req,res)=>{
 
 
 //GET posts by userId
-router.get('/target/:userId', async (req,res)=>{
+// router.get('/profile/:userId', async (req,res)=>{
+//     try{
+//     const userId = req.body;
+//     if(!userId){
+//         return res.status(400).json({message: 'User not found'})
+//     }
+//     const posts = await Posts.find(userId);
+//     if(!posts){
+//         return res.status(404).json({message: 'Posts by user: '+ userId +' not found'})
+//          }
+//     } catch (e) {
+//         console.log(e)
+//         return res.status(500).json(e)
+//         }
+// });
+router.get('/profile/:userId', async(req,res)=>{
     try{
-    const luckyUser = req.body.userId;
-    if(!luckyUser){
+    const {userId} = req.body;
+    if(!userId){
         return res.status(400).json({message: 'User not found'})
     }
-    const posts = await Posts.find({where: {userId: {luckyUser}}});
-    if(!posts){
-        return res.status(404).json({message: 'Posts by user: '+ luckyUser +' not found'})
-         }
+    const posts = await Posts.findById(userId);
     console.log(posts);
-    } catch (e) {
-        console.log(e)
-        return res.status(500).json(e)
-        }
+    if(!posts){
+        return res.status(400).json({message: 'No posts found'})
+    }
+    res.json(posts);
+    } catch (e){
+        console.log(e);
+        return res.status(500).json(e);
+    }
 });
+
 
 
 //GET post data and only userImage

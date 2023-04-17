@@ -56,6 +56,10 @@ const api = {
     getPosts: () => {
         return axios.get(`${API_URL}/api/posts`);
     },
+    
+    getUserPosts: () => {
+        return axios.get('${API_URL}/api/posts/profile/${userId}');
+    },
 
     getPostById: (postId) => {
         return axios.get(`${API_URL}/api/posts/${postId}`);
