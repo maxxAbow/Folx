@@ -130,4 +130,4 @@ n/a
 Have questions? Want to contribute?
 <br>
 Join our Discord!
-[Discord](https://discord.gg/3ma7aQ2Jv7)
+[Click Here](https://discord.gg/3ma7aQ2Jv7)
