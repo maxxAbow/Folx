@@ -121,13 +121,9 @@ Follow these commands to run the command-line application:
 
 [Contributor Covenant](https://www.contributor-covenant.org/)
 
-## Tests
-
-n/a
-
 ## Questions
 
-Have questions? Want to contribute?
+Questions or concerns?
 <br>
 Join our Discord!
 [Click Here](https://discord.gg/3ma7aQ2Jv7)
