@@ -68,7 +68,7 @@ const Profile = ({isAuth, setIsAuth, user, setUser, profileId, setProfileId, isP
   // }
   
   return (
-    <Box>
+    <Box className='lollipops'>
       <Navigation setIsAuth={setIsAuth} userId={loggedInId} isProfilePage={isProfilePage}/>
       <Box 
       width="100%" 
