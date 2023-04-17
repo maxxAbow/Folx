@@ -1,9 +1,5 @@
 # <img src="./client/public/assets/images/logos/folx-1.png" width="400">
 
-## License
-
-<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-A31F34?style=for-the-badge" alt="MIT License"/></a>
-
 ## Badges
 
 <img src="https://img.shields.io/github/languages/count/maxxAbow/folx?color=FF9AA2&style=for-the-badge" alt="Languages" />
@@ -18,6 +14,8 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Credits](#credits)
+- [Resources](#resources)
+- [Toolset](#toolset)
 - [License](#license)
 - [Contribute](#contribute)
 - [Questions](#questions)
@@ -32,6 +30,7 @@ Whether you're looking for inspiration, want to share your culinary creations, o
 ## Installation
 Follow these commands to run the command-line application:  
 
+    git clone git@github.com:maxxAbow/Folx.git
     npm install
     npm run seed
     npm run start
@@ -137,6 +136,10 @@ Follow these commands to run the command-line application:
 ![Simple Icons](https://img.shields.io/badge/Simple_Icons-000000?style=for-the-badge&logo=Simple-Icons&logoColor=000000&labelColor=gray)
 
 ![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=Three.js&logoColor=000000&labelColor=gray)
+
+## License
+
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-A31F34?style=for-the-badge" alt="MIT License"/></a>
 
 ## Contribute
 
