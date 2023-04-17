@@ -35,7 +35,7 @@ try {
 });
 
 // GET all post by userId
-router.get('/:userId', async (req, res) => {
+router.get('/users/:userId', async (req, res) => {
 try {
     const {userId} = req.params;
     if(!userId){
@@ -44,7 +44,7 @@ try {
     if(typeof userId !== 'string'){
     return res.status(400).json({message: 'UserId must be a string'})
     }
-    const posts = await Posts.find({userId})
+    const posts = await Posts.find( { $or: [ { userId: userId }] })
     if(!posts){
     return res.status(404).json({message: 'Posts not found'})
     }
@@ -54,7 +54,6 @@ try {
     return res.status(500).json(error)
 }
 });
-
 
 
 //GET followings posts by user's list of following
@@ -108,9 +107,6 @@ router.get('/grabbing/:userId' , async (req,res)=>{
 //         return res.status(500).json(error)
 //     }
 // });
-
-
-
 
 //GET posts by userId
 router.get('/target/:userId', async (req,res)=>{
