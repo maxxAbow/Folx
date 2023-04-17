@@ -1,5 +1,5 @@
 
-# ![Folx](./client/public/assets/images/logos/folx-1.png)
+# ![Folx](./client/public/assets/images/logos/folx-1.png | width=200)
 
 
 ## License
