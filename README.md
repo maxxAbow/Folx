@@ -75,7 +75,13 @@ Follow these commands to run the command-line application:
 
 ### Resources
 
-    lorem ipsum
+  [MongoDB](https://www.mongodb.com/docs/)
+  
+  [Express](https://expressjs.com/)
+  
+  [React](https://react.dev/learn)
+  
+  [Node](https://nodejs.org/en/docs)
 
 ## Toolset
 
