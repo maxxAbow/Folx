@@ -65,18 +65,6 @@ Follow these commands to run the command-line application:
 [Sarah Wattles](https://www.linkedin.com/in/smwattles/)</br>
 </br>
 
-### Collaborators
-
-  Daikeen Lockett
-  
-  David Mackey
-  
-  Maxx Bowman
-  
-  Victor Rivera
-  
-  Sarah Wattles
-
 ### Resources
 
   [MongoDB](https://www.mongodb.com/docs/)
