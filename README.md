@@ -24,9 +24,9 @@
 
 ## Description
 
-Looking for a foodie community that is inclusive, diverse, and full of culinary inspiration?<br>
-Look no further than Folx, the social media app for food enthusiasts from all backgrounds.<br><br>
-With our app, you can follow other food enthusiasts and discover new dishes to try on the home page. See the latest updates from the foodies you follow on your timeline, where you can like other engaged users' posts. Our profile page displays all of your own posts, so you can share your favorite recipes and cooking tips with your followers. Plus, you can build your own community of foodies by following other users. And they can follow you too.<br><br>
+Looking for a foodie community that is inclusive, diverse, and full of culinary inspiration?</br>
+Look no further than Folx, the social media app for food enthusiasts from all backgrounds.</br></br>
+With our app, you can follow other food enthusiasts and discover new dishes to try on the home page. See the latest updates from the foodies you follow on your timeline, where you can like other engaged users' posts. Our profile page displays all of your own posts, so you can share your favorite recipes and cooking tips with your followers. Plus, you can build your own community of foodies by following other users. And they can follow you too.</br></br>
 Whether you're looking for inspiration, want to share your culinary creations, or just love everything food-related, Folx is the perfect platform for you. Join our inclusive and diverse community of foodies today and start exploring the delicious world of cuisine together!
 
 ## Installation
@@ -43,27 +43,27 @@ Follow these commands to run the command-line application:
 
 ## Credits
 
-:email: Email:<br>
-[Daikeen Lockett](mailto:daikeen_lockett@yahoo.com)<br>
-[David Mackey](mailto:davidmackey92@gmail.com)<br>
-[Maxx Bowman](mailto:mbowman@welland.com)<br>
-[Victor Rivera](mailto:veektur@hotmail.com)<br>
-[Sarah Wattles](mailto:swattles@swattles.onmicrosoft.com)<br>
-<br>
-:octocat: GitHub:<br>
-[Daikeen Lockett](https://github.com/dlockett133/)<br>
-[David Mackey](https://github.com/davidmichaelmackey/)<br>
-[Maxx Bowman](https://github.com/maxxAbow/)<br>
-[Victor Rivera](https://github.com/veektur123/)<br>
-[Sarah Wattles](https://github.com/Swattles/)<br>
-<br>
-:briefcase: Linkedin:<br>
-[Daikeen Lockett](https://linkedin.com/in/daikeen-lockett/)<br>
-[David Mackey](https://linkedin.com/in/davidmichaelmackey/)<br>
-[Maxx Bowman](https://linkedin.com/in/maxx-abigail-bowman-85b537193/)<br>
-[Victor Rivera](https://linkedin.com/in/.../)<br>
-[Sarah Wattles](https://www.linkedin.com/in/smwattles/)<br>
-<br>
+:email: Email:</br>
+[Daikeen Lockett](mailto:daikeen_lockett@yahoo.com)</br>
+[David Mackey](mailto:davidmackey92@gmail.com)</br>
+[Maxx Bowman](mailto:mbowman@welland.com)</br>
+[Victor Rivera](mailto:veektur@hotmail.com)</br>
+[Sarah Wattles](mailto:swattles@swattles.onmicrosoft.com)</br>
+</br>
+:octocat: GitHub:</br>
+[Daikeen Lockett](https://github.com/dlockett133/)</br>
+[David Mackey](https://github.com/davidmichaelmackey/)</br>
+[Maxx Bowman](https://github.com/maxxAbow/)</br>
+[Victor Rivera](https://github.com/veektur123/)</br>
+[Sarah Wattles](https://github.com/Swattles/)</br>
+</br>
+:briefcase: Linkedin:</br>
+[Daikeen Lockett](https://linkedin.com/in/daikeen-lockett/)</br>
+[David Mackey](https://linkedin.com/in/davidmichaelmackey/)</br>
+[Maxx Bowman](https://linkedin.com/in/maxx-abigail-bowman-85b537193/)</br>
+[Victor Rivera](https://linkedin.com/in/.../)</br>
+[Sarah Wattles](https://www.linkedin.com/in/smwattles/)</br>
+</br>
 
 ### Collaborators
 
@@ -143,7 +143,6 @@ Follow these commands to run the command-line application:
 
 ## Questions
 
-Questions or concerns?
-<br>
+Questions or concerns?</br>
 Join our Discord!
 [Click Here](https://discord.gg/3ma7aQ2Jv7)
