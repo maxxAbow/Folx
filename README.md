@@ -127,6 +127,7 @@ n/a
 
 ## Questions
 
-Have Questions?
+Have questions? Want to contribute?
 <br>
-Feel free send me an [email](mailto:davidmackey92@gmail.com) or reach out to me on [Linkedin](https://linkedin.com/in/davidmichaelmackey/).
+Join our Discord!
+[Discord](https://discord.gg/3ma7aQ2Jv7)
