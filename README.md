@@ -37,7 +37,7 @@ Follow these commands to run the command-line application:
 
 ## Usage
 
-  ![Usage](assets/images/screenshot.png)
+  ![Usage](./client/public/assets/images/usage/screenshot.png)
 
 ## Credits
 
