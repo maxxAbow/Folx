@@ -75,7 +75,7 @@ function Friend({
         onClick={() => {
           navigate(`/profile/${friendId}`);
           setProfileId()
-          // navigate(0);
+          navigate(0);
         }}
       >
         <ProfilePic image={image} size="55px" />
