@@ -70,15 +70,16 @@ function Friend({
        
     return (
       <FlexBetween>
-      <FlexBetween gap="1rem">
+      <FlexBetween 
+        gap="1rem"
+        onClick={() => {
+          navigate(`/profile/${friendId}`);
+          setProfileId()
+          // navigate(0);
+        }}
+      >
         <ProfilePic image={image} size="55px" />
-        <Box
-          onClick={() => {
-            navigate(`/profile/${friendId}`);
-            setProfileId()
-            navigate(0);
-          }}
-        >
+        <Box>
           <Typography
             color={main}
             variant="h5"
