@@ -105,8 +105,11 @@ const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage }) => {
             },
           }}
         >
-          FolX
-          <FoodBank sx={{ fontSize: 40 }} />
+          <img 
+            src='../assets/images/logos/folx-1.png' 
+            alt='Folx logo'
+            style={{height: "48px", width: "fit-content"}}
+          />
         </Typography>
         {/* Setting condition for if Page is not on a mobile screen */}
         {isNonMobileScreens && (
