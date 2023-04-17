@@ -2,7 +2,22 @@ import React, {useEffect, useState} from 'react'
 import Post from './Post';
 import api from 'utils/API';
 
-function Timeline({userId, posts, setPosts, updatePosts, postState, setPostState, user, isProfile = false, followers, setFollowers, following, setFollowing}) {
+function Timeline({
+    userId, 
+    posts, 
+    setPosts, 
+    updatePosts, 
+    postState, 
+    setPostState, 
+    user,
+    isProfile = false, 
+    followers, 
+    setFollowers, 
+    following, 
+    setFollowing,
+    profileId, 
+    setProfileId,
+    isProfilePage}) {
    
     const getAllPosts = async () => {
         const {data} = (await api.getPosts());
@@ -59,6 +74,9 @@ function Timeline({userId, posts, setPosts, updatePosts, postState, setPostState
         following={following}
         setFollowing={setFollowing}
         setPostState={setPostState}
+        profileId={profileId} 
+        setProfileId={setProfileId}
+        isProfilePage={isProfilePage}
     />
     ))}
 

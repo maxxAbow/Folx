@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, useParams} from 'react-router-dom';
 import Navigation from 'components/Navigation';
 import UserPanel from 'components/UserPanel';
 import CreatePost from 'components/CreatePost';
@@ -7,21 +7,26 @@ import { Box, useMediaQuery } from '@mui/material';
 import api from 'utils/API';
 import Timeline from 'components/Timeline';
 
-const Profile = ({setIsAuth}) => {
+const Profile = ({isAuth, setIsAuth, user, setUser, profileId, setProfileId, isProfilePage, setIsProfilePage}) => {
   // Make fetch call here via the home component level, will do first thing tomorrow
-  const [user, setUser] = useState(null) 
-  // const [userId, setUserId] = useState(null)
+  const [friend, setFriend] = useState(null) 
+  // const [loggedInId, setLoggedInId] = useState(null)
   const [image, setImage] = useState('')
   const [location, setLocation] = useState('')
   const [followers, setFollowers] = useState(0)
   const [following, setFollowing] = useState(0)
   const [posts, setPosts] = useState([]);
   const [postState, setPostState ] = useState(false)
-  
+  const [loggedInUserDataLoaded, setLoggedInUserDataLoaded] = useState(false);
+
+  // const [profileId, setProfileId] = useState("");
+  // console.log(isProfilePage)
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
-  const navigate = useNavigate()
-  let userId = ''
-  let userData = {}
+  const navigate = useNavigate();
+  const param = useLocation();
+  let loggedInId = ''
+  let friendData = {}
+  let { userId } = useParams();
 
   const activeUserStorage = localStorage.getItem("activeUser");// Retrieves activerUsers data from local storage
   const activeUser = JSON.parse(activeUserStorage); // parses the string into a JS object
@@ -29,20 +34,16 @@ const Profile = ({setIsAuth}) => {
   if (!activeUser || activeUser[1] !== true) {
     navigate('/')
   } else if (activeUser[1] === true) {
-    userId = activeUser[0] // if logged in, setUserId
+    loggedInId = activeUser[0] // if logged in, setUserId
   }
 
-  const getUser = async (userId) => {
-    const findUser = await api.getUserById(userId);
-    userData = findUser.data;
-    setUser(userData)
-    setImage(userData.userImage)
-    setFollowers(userData.followers.length)
-    if (typeof following === 'string') {
-      setFollowing(following.split(","))
-    } else {
-      setFollowing(userData.following)
-    }
+  // change this to profileId
+  const getUser = async (profileId) => {
+    const friend = await api.getUserById(profileId);
+    friendData = friend.data;
+    setFriend(friendData)
+    setImage(friendData.userImage)
+   
   }
   
   const updatePosts = async () => {
@@ -50,18 +51,27 @@ const Profile = ({setIsAuth}) => {
     setPosts(posts.data);
   };
 
-  useEffect(() => {
+  useEffect( () => {
     getUser(userId)
+    setProfileId(userId)
+    setIsProfilePage(true)
 
-  }, [userId]);
+  }, [param]);
 
-  if (!user) {
-    return null
-  }
+  useEffect( () => {
+    if ( friend?._id === loggedInId){
+      setUser(friend)
+      setLoggedInUserDataLoaded(true); 
+    }
+  }, [friend]);
+
+  // if (!user) {
+  //   return null
+  // }
   
   return (
     <Box>
-      <Navigation setIsAuth={setIsAuth} userId={userId} />
+      <Navigation setIsAuth={setIsAuth} userId={loggedInId} />
       <Box 
       width="100%" 
       padding="2rem 6%" 
@@ -70,14 +80,26 @@ const Profile = ({setIsAuth}) => {
       justifyContent="space-between"
       >
         <Box flexBasis={isNonMobileScreen ? "26%" : undefined}>
-          <UserPanel user={user} following={following}/>
+          <UserPanel user={friend} following={following} isProfilePage={isProfilePage}/>
         </Box>
         <Box 
           flexBasis={isNonMobileScreen ? "42%" : undefined}
           marginTop={isNonMobileScreen ? undefined : "2rem"}
         >
-          <CreatePost user={user} image={image} userId={userId} setPostState={setPostState} />
-          <Timeline user={user} posts={posts} setPosts={setPosts} setPostState={setPostState} updatePosts={updatePosts} postState={postState} followers={followers} setFollowers={setFollowers} following={following} setFollowing={setFollowing} />
+          {loggedInUserDataLoaded && <CreatePost user={user} setPostState={setPostState} />}
+          <Timeline 
+            user={friend} 
+            posts={posts} 
+            setPosts={setPosts} 
+            setPostState={setPostState} 
+            updatePosts={updatePosts} 
+            postState={postState} 
+            following={following} 
+            setFollowing={setFollowing} 
+            profileId={profileId} 
+            setProfileId={setProfileId}
+            isProfilePage={isProfilePage}
+            />
         </Box>
         {isNonMobileScreen && (
           <Box flexBasis={"26%"}></Box>

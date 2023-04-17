@@ -41,6 +41,7 @@ function CreatePost({user, image, setPostState}) {
     const mediumMain = palette.neutral.mediumMain;
     const medium = palette.neutral.medium; 
 
+    // debugger
     const newPost = async () => {
        await api.createPost({
             userId: user._id,

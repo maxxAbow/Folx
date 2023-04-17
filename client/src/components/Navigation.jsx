@@ -32,10 +32,10 @@ import { useNavigate } from 'react-router-dom';
 import FlexBetween from './style-components/FlexBetween';
 import '../assets/css/Navigation.css'
 
-const Navigation = ({ userId, setIsAuth }) => {
+const Navigation = ({ userId, setIsAuth, user, setUser }) => {
   // State to determine to open up mobile menu on smaller/mobile screens
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
 
   // To dispatch action from reducers to change mode's state
   const dispatch = useDispatch();
@@ -44,6 +44,8 @@ const Navigation = ({ userId, setIsAuth }) => {
 
   // Hook to determine if current screensize to determine users screensize
   const isNonMobileScreens = useMediaQuery('(min-width: 1000px)');
+
+  const [username, setUsername] = useState("");
 
   // Refers themes from theme js file
   const theme = useTheme();
@@ -59,7 +61,8 @@ const Navigation = ({ userId, setIsAuth }) => {
   const logOut = () => {
     localStorage.removeItem('activeUser');
     setIsAuth(false);
-    // navigate('/');
+    setUser(null)
+    navigate('/');
   };
 
   const returnHome = () => {
@@ -72,7 +75,8 @@ const Navigation = ({ userId, setIsAuth }) => {
 
   const searchUser = async (userId) => {
     const response = await api.getUserById(userId);
-    setUser(response.data);
+    debugger
+    setUsername(response.data.username)
   };
 
   useEffect(() => {
@@ -80,11 +84,14 @@ const Navigation = ({ userId, setIsAuth }) => {
   }, []);
   // console.log(user);
 
-  if (!user) {
-    return null;
-  }
+  // if (!user) {
+  //   return null;
+  // }
 
-  const { username } = user;
+  // debugger
+  // const { username } = user;
+
+  // console.log()
 
   return (
     // The Box component from @mui/material allows us to pass in CSS properties as component properties

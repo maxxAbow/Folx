@@ -15,16 +15,26 @@ import FlexBetween from './style-components/FlexBetween';
 import WidgeWrap from './style-components/WidgeWrap';
 import api from 'utils/API';
 
-function UserPanel({user, following}) {
+function UserPanel({user, following, isProfilePage}) {
 
     const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
-
     const {palette} = useTheme();
     const navigate = useNavigate()
     const dark = palette.neutral.dark;
     const medium = palette.neutral.medium;
     const main = palette.neutral.main;
     
+    const activeUserStorage = localStorage.getItem("activeUser");// Retrieves activerUsers data from local storage
+    const activeUser = JSON.parse(activeUserStorage); // parses the string into a JS object
+    let isUserProfile = false;
+    let loggedInId = "";
+
+    if (!activeUser || activeUser[1] !== true) {
+      navigate('/')
+    } else if (activeUser[1] === true) {
+      loggedInId = activeUser[0];
+    }
+
     if (!user) {
       return null
     }
@@ -38,7 +48,10 @@ function UserPanel({user, following}) {
       followers,
     } = user;
 
-    // debugger
+    if (loggedInId === _id) {
+      isUserProfile = true;
+    }
+
   return (
     <>
     {isNonMobileScreen ? (
@@ -50,7 +63,6 @@ function UserPanel({user, following}) {
       >
         {/* First Row */}
         <FlexBetween gap="1rem">
-          {/* Need to import image soon, work with Backend for this as well */}
           <Box>
             <ProfilePic 
               image={userImage} 
@@ -69,7 +81,6 @@ function UserPanel({user, following}) {
               }}>
                 {username}
             </Typography>
-              {/* Need to work with Back-end to add number of friends to User Model */}
               <Typography color={medium}>{followers.length} Followers</Typography>
           </Box>
         </FlexBetween>
@@ -86,28 +97,45 @@ function UserPanel({user, following}) {
               </Box>
               <Box display="flex" alignItems="center" gap="1rem">
                 <DinnerDiningOutlined  fontSize='large' sx={{color:main}}/>
-                {/* Might change this to favorite cuisine instead, talk to back-end */}
                 <Typography color={dark} fontWeight="500">Favorite Food: </Typography>
                 <Typography color={dark} >{favFood} </Typography>
               </Box>
           </Box>
+
           <Divider />
 
           {/* New Row */}
+          {!isProfilePage &&(
           <Box padding="1rem 0">
-            <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
-              <DeliveryDiningOutlined fontSize='large' sx={{color:main}}/>
-              <Typography color={dark} fontWeight="500">Followers: </Typography>
-              <Typography color={dark}> {followers.length}</Typography>
-            </Box>
-            <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
-              <RemoveRedEyeOutlined fontSize='large' sx={{color:main}}/>
-              <Typography color={dark} fontWeight="500">Following: </Typography>
-              {/* Replace with variable with number of likes */}
-              <Typography color={dark}> {typeof following === "number" ? following : following.length} </Typography>
-            </Box>
-          </Box>
+              <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
+                <DeliveryDiningOutlined fontSize='large' sx={{color:main}}/>
+                <Typography color={dark} fontWeight="500">Followers: </Typography>
+                <Typography color={dark}> {followers.length}</Typography>
+              </Box>
+              <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
+                <RemoveRedEyeOutlined fontSize='large' sx={{color:main}}/>
+                <Typography color={dark} fontWeight="500">Following: </Typography>
+                {/* Replace with variable with number of likes */}
+                <Typography color={dark}> {typeof following === "number" ? following : following.length} </Typography>
+              </Box>
+           </Box>
+          )}
 
+          {isProfilePage && isUserProfile &&(
+          <Box padding="1rem 0">
+              <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
+                <DeliveryDiningOutlined fontSize='large' sx={{color:main}}/>
+                <Typography color={dark} fontWeight="500">Followers: </Typography>
+                <Typography color={dark}> {followers.length}</Typography>
+              </Box>
+              <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
+                <RemoveRedEyeOutlined fontSize='large' sx={{color:main}}/>
+                <Typography color={dark} fontWeight="500">Following: </Typography>
+                {/* Replace with variable with number of likes */}
+                <Typography color={dark}> {user.following.length} </Typography>
+              </Box>
+           </Box>
+          )}
           {/* Future Dev, add new rows for social profiles */}
     </WidgeWrap>
     ) : (
@@ -119,7 +147,6 @@ function UserPanel({user, following}) {
       >
         {/* First Row */}
         <FlexBetween gap="1rem">
-          {/* Need to import image soon, work with Backend for this as well */}
           <Box>
             <ProfilePic 
               image={userImage} 
@@ -138,7 +165,6 @@ function UserPanel({user, following}) {
               }}>
                 {username}
             </Typography>
-              {/* Need to work with Back-end to add number of friends to User Model */}
               <Typography color={medium}>{followers.length} Followers</Typography>
           </Box>
         </FlexBetween>
@@ -148,6 +174,7 @@ function UserPanel({user, following}) {
         <Divider />
 
         {/* Next Row */}
+
           <Box padding="1rem 0">
               <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
                 <LocationOnOutlined  fontSize='large' sx={{color:main}}/>
@@ -155,7 +182,6 @@ function UserPanel({user, following}) {
               </Box>
               <Box display="flex" alignItems="center" gap="1rem">
                 <DinnerDiningOutlined  fontSize='large' sx={{color:main}}/>
-                {/* Might change this to favorite cuisine instead, talk to back-end */}
                 <Typography color={dark} fontWeight="500">Favorite Food: </Typography>
                 <Typography color={dark} >{favFood} </Typography>
               </Box>
@@ -163,20 +189,23 @@ function UserPanel({user, following}) {
           <Divider />
 
           {/* New Row */}
+          
+          {!isProfilePage && (
           <Box padding="1rem 0">
-            <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
-              <DeliveryDiningOutlined fontSize='large' sx={{color:main}}/>
-              <Typography color={dark} fontWeight="500">Followers: </Typography>
-              <Typography color={dark}> {followers.length}</Typography>
-            </Box>
-            <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
-              <RemoveRedEyeOutlined fontSize='large' sx={{color:main}}/>
-              <Typography color={dark} fontWeight="500">Following: </Typography>
-              {/* Replace with variable with number of likes */}
-              <Typography color={dark}> {typeof following === "number" ? following : following.length} </Typography>
-            </Box>
-          </Box>
-
+              <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
+                <DeliveryDiningOutlined fontSize='large' sx={{color:main}}/>
+                <Typography color={dark} fontWeight="500">Followers: </Typography>
+                <Typography color={dark}> {followers.length}</Typography>
+              </Box>
+              <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
+                <RemoveRedEyeOutlined fontSize='large' sx={{color:main}}/>
+                <Typography color={dark} fontWeight="500">Following: </Typography>
+                {/* Replace with variable with number of likes */}
+                <Typography color={dark}> {typeof following === "number" ? following : following.length} </Typography>
+              </Box>
+           </Box>
+          )}
+      
           {/* Future Dev, add new rows for social profiles */}
     </WidgeWrap>
     )}
