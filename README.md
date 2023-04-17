@@ -1,5 +1,5 @@
 
-# { F🍩lx }
+# ![Folx](./client/public/assets/images/logos/folx-1.png)
 
 
 ## License
