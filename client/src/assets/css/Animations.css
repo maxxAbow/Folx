@@ -2,6 +2,15 @@
 	pointer-events: none;
 }
 
+/* .logo{
+    position: relative;
+    right: 140px;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    transform-origin: bottom;
+
+} */
+
 .astro {
     align-self: flex-end;
     animation-duration: 2s;

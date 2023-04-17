@@ -99,6 +99,7 @@ const Login = ({isAuth, setIsAuth}) => {
               className='col-lg-5 col-md-7 p-0 form-container'
               style={{ width: '25%', position: 'relative', zIndex: '1' }}
             >
+              
               <Form 
                 login={login} 
                 setLogin={setLogin} 
