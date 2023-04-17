@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react'; 
 import api from 'utils/API';
 import { BiLogInCircle } from 'react-icons/bi';
 import { RiAccountPinBoxFill } from 'react-icons/ri';
@@ -87,6 +87,7 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
 
   return (
     <>
+    <img className='logo bounce-2' src='../assets/images/logos/folx-1.png' alt='Folx Logo'/>
       <div
         className='form-box p-md-5'
         id='signinForm'
