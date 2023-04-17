@@ -65,7 +65,6 @@ const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage }) => {
     if (!isProfilePage) {
       setUser(null)
     }
-    unmountAll();
     navigate('/');
   };
 
@@ -76,11 +75,6 @@ const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage }) => {
       // This value causes the scrolling to occur with a smooth animation, making it appear more gradual and controlled.
       // window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
-  function unmountAll() {
-    const root = document.getElementById('root');
-    ReactDOM.unmountComponentAtNode(root);
-  }
 
   const searchUser = async (userId) => {
     const response = await api.getUserById(userId);
