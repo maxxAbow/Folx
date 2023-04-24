@@ -11,6 +11,7 @@
 ## Table of Contents
 
 - [Description](#description)
+- [Links](#links)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Credits](#credits)
@@ -26,6 +27,12 @@ Looking for a foodie community that is inclusive, diverse, and full of culinary 
 Look no further than Folx, the social media app for food enthusiasts from all backgrounds.</br></br>
 With our app, you can follow other food enthusiasts and discover new dishes to try on the home page. See the latest updates from the foodies you follow on your timeline, where you can like other engaged users' posts. Our profile page displays all of your own posts, so you can share your favorite recipes and cooking tips with your followers. Plus, you can build your own community of foodies by following other users. And they can follow you too.</br></br>
 Whether you're looking for inspiration, want to share your culinary creations, or just love everything food-related, Folx is the perfect platform for you. Join our inclusive and diverse community of foodies today and start exploring the delicious world of cuisine together!
+
+## Links
+
+[GitHub](https://github.com/maxxAbow/Folx)
+<br>
+[Live Site](https://folx-project-three.herokuapp.com)
 
 ## Installation
 Follow these commands to run the command-line application:  
