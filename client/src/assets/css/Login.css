@@ -42,6 +42,7 @@ body {
 .logo {
   position: relative;
   right: 140px;
+  left: 0px;
 }
 
 .form-name {
@@ -91,4 +92,29 @@ body {
 #favorite-food-input {
   border-radius: 18px;
   text-align: center;
+}
+
+@media screen and (max-width: 1000px) {
+  .form {
+    width: 360px;
+    position: relative;
+    right: 60px;
+  }
+}
+@media screen and (max-height: 864px) {
+  #signupForm, #signinForm {
+    height:400px;
+    overflow-y:auto
+  }
+}
+@media screen and (max-width: 767px) {
+  .form {
+    width: 50%;
+    right: 0;
+  }
+
+  #signupForm, #signinForm {
+    height:400px;
+    overflow-y:auto
+  }
 }

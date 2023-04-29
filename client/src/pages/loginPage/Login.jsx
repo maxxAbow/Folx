@@ -1,5 +1,6 @@
 import React, { Suspense, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
+import { useMediaQuery } from '@mui/material';
 import { Canvas } from '@react-three/fiber';
 import '../../assets/css/Login.css';
 import '../../assets/css/Animations.css';
@@ -9,6 +10,8 @@ import Form from '../../components/Form';
 const Login = ({isAuth, setIsAuth}) => {
   const [login, setLogin] = useState(true);
   // const [isAuth, setIsAuth] = useState(false);
+
+  const isNonMobileScreen = useMediaQuery('(min-width: 1000px)');
 
   document.body.style.paddingTop = "0px";
 
@@ -36,65 +39,69 @@ const Login = ({isAuth, setIsAuth}) => {
     <Row>
       <Col>
         <div className='container3D'>
-          <div className='flier'>
-            <img
-              className='space-food'
-              id='image1'
-              src='/assets/images/pizza.png'
-              alt='floating pizza'
-            />
-            <img
-              className='space-food'
-              id='image2'
-              src='/assets/images/turkey.png'
-              alt='floating turkey'
-            />
-            <img
-              className='space-food'
-              id='image3'
-              src='/assets/images/sushi.png'
-              alt='floating sushi'
-            />
-            <img
-              className='space-food'
-              id='image4'
-              src='/assets/images/ice-cream.png'
-              alt='floating ice cream'
-            />
-            <img
-              className='space-food'
-              id='image5'
-              src='/assets/images/cake.png'
-              alt='floating cake'
-            />
-            <img
-              className='space-food'
-              id='image6'
-              src='/assets/images/chinese-food.png'
-              alt='floating chinese takeout'
-            />
-            <img
-              className='space-food'
-              id='image7'
-              src='/assets/images/fried-chicken.png'
-              alt='floating fried chicken'
-            />
-            <img
-              className='space-food'
-              id='image8'
-              src='/assets/images/fries.png'
-              alt='floating fries'
-            />
-          </div>
-          <Row className='middle'>
-            <Col>
+          {isNonMobileScreen && (
+            <div className='flier'>
               <img
-                className='astro bounce-2'
-                src='/assets/images/astronaut-flipped.png'
-                alt='A bouncing astronaut'
-                onClick={() => hideImg()}
+                className='space-food'
+                id='image1'
+                src='/assets/images/pizza.png'
+                alt='floating pizza'
               />
-            </Col>
+              <img
+                className='space-food'
+                id='image2'
+                src='/assets/images/turkey.png'
+                alt='floating turkey'
+              />
+              <img
+                className='space-food'
+                id='image3'
+                src='/assets/images/sushi.png'
+                alt='floating sushi'
+              />
+              <img
+                className='space-food'
+                id='image4'
+                src='/assets/images/ice-cream.png'
+                alt='floating ice cream'
+              />
+              <img
+                className='space-food'
+                id='image5'
+                src='/assets/images/cake.png'
+                alt='floating cake'
+              />
+              <img
+                className='space-food'
+                id='image6'
+                src='/assets/images/chinese-food.png'
+                alt='floating chinese takeout'
+              />
+              <img
+                className='space-food'
+                id='image7'
+                src='/assets/images/fried-chicken.png'
+                alt='floating fried chicken'
+              />
+              <img
+                className='space-food'
+                id='image8'
+                src='/assets/images/fries.png'
+                alt='floating fries'
+              />
+            </div>
+          )}
+          <Row className='middle justify-content-center'>
+            {isNonMobileScreen && (
+              <Col>
+                <img
+                  className='astro bounce-2'
+                  src='/assets/images/astronaut-flipped.png'
+                  alt='A bouncing astronaut'
+                  onClick={() => hideImg()}
+                />
+              </Col>
+            )}
             <Col
               className='col-lg-5 col-md-7 p-0 form-container'
               style={{ width: '25%', position: 'relative', zIndex: '1' }}
@@ -105,15 +112,18 @@ const Login = ({isAuth, setIsAuth}) => {
                 setLogin={setLogin} 
                 isAuth={isAuth}
                 setIsAuth={setIsAuth}
+                isNonMobileScreen={isNonMobileScreen}
               />
             </Col>
-            <Col xs lg='5' style={{ height: '100vh', padding: 0 }}>
-              <Canvas>
-                <Suspense fallback={null}>
-                  <Earth />
-                </Suspense>
-              </Canvas>
-            </Col>
+            {isNonMobileScreen && (
+              <Col xs lg='5' style={{ height: '100vh', padding: 0 }}>
+                <Canvas>
+                  <Suspense fallback={null}>
+                    <Earth />
+                  </Suspense>
+                </Canvas>
+              </Col>
+            )}
           </Row>
         </div>
         <audio id='myAudio' style={{ display: 'none' }}>
