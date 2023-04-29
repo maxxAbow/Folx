@@ -4,7 +4,7 @@ import { BiLogInCircle } from 'react-icons/bi';
 import { RiAccountPinBoxFill } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
 
-const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
+const Form = ({ login, setLogin, isAuth, setIsAuth, isNonMobileScreen}) => {
   const navigate = useNavigate();
 
   // Login Values from login form
@@ -86,7 +86,8 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
   };
 
   return (
-    <>
+    <div className='container form'>
+    <div class="row justify-content-center align-items-center inner-row" id='form-box'>
     <img className='logo bounce-2' src='../assets/images/logos/folx-1.png' alt='Folx Logo'/>
       <div
         className='form-box p-md-5'
@@ -229,7 +230,8 @@ const Form = ({ login, setLogin, isAuth, setIsAuth }) => {
           </button>
         </div>
       </div>
-    </>
+      </div>
+    </div>
   );
 };
 
