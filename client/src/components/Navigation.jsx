@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 import api from 'utils/API';
 import {
   Box,
@@ -14,12 +14,9 @@ import {
 } from '@mui/material';
 
 import {
-  // LocalPizza,
   LightMode,
   DarkMode,
   Search,
-  // FastFood,
-  FoodBank,
   Message,
   Notifications,
   Help,
@@ -29,11 +26,12 @@ import {
 
 import { useDispatch } from 'react-redux';
 import { setMode } from 'state';
-import { useNavigate } from 'react-router-dom';
 import FlexBetween from './style-components/FlexBetween';
 import '../assets/css/Navigation.css';
 
-const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage, isFinishedApp=false }) => {
+const Navigation = ({ userId, setIsAuth, setUser, isProfilePage, isFinishedApp=false }) => {
+  // created isFinishedApp prop to set a condition for if future development is finished 
+
   // State to determine to open up mobile menu on smaller/mobile screens
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
 
@@ -58,11 +56,10 @@ const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage, isFinishe
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
-  // Removes the activeUser Object from localStorage,
-  // then sets isAuth state to false so that it automatically rerenders the App.js, which routes the user back to the login page
   const logOut = () => {
-    localStorage.removeItem('activeUser');
-    setIsAuth(false);
+    localStorage.removeItem('activeUser'); // Removes the activeUser Object from localStorage,
+    setIsAuth(false); // Sets isAuth state to false so that it automatically rerenders the App.js, which routes the user back to the login page
+    //  if on a profile page, set the 'User' state to null
     if (!isProfilePage) {
       setUser(null);
     }
@@ -77,11 +74,13 @@ const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage, isFinishe
     // window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Get the user data for the given user id from the API and update the 'username'state with the retrieved data
   const searchUser = async (userId) => {
     const response = await api.getUserById(userId);
     setUsername(response.data.username);
   };
 
+  // Invokes the searchUser function each time the Navigation component is rendered
   useEffect(() => {
     searchUser(userId);
   }, []);
@@ -137,6 +136,7 @@ const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage, isFinishe
               <LightMode sx={{ color: dark, fontSize: '25px' }} />
             )}
           </IconButton>
+          {/* If isFinishedApp is true, the following icon buttons */}
           {isFinishedApp && (
             <>
             <Message sx={{ fontSize: '25px' }} />
@@ -168,6 +168,7 @@ const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage, isFinishe
               <MenuItem onClick={() => logOut()}>Log Out</MenuItem>
             </Select>
           </FormControl>
+          {/* Renders the wave anination of colors at the bottom of the page, it is not rendered in mobile views*/}
           <svg
             className='editorial'
             xmlns='http://www.w3.org/2000/svg'
@@ -242,9 +243,14 @@ const Navigation = ({ userId, setIsAuth, user, setUser, isProfilePage, isFinishe
                 <LightMode sx={{ color: dark, fontSize: '25px' }} />
               )}
             </IconButton>
-            <Message sx={{ fontSize: '25px' }} />
-            <Notifications sx={{ fontSize: '25px' }} />
-            <Help sx={{ fontSize: '25px' }} />
+            {/* If isFinishedApp is true, the following icon buttons */}
+            {isFinishedApp && (
+            <>
+              <Message sx={{ fontSize: '25px' }} />
+              <Notifications sx={{ fontSize: '25px' }} />
+              <Help sx={{ fontSize: '25px' }} />
+            </>
+            )}
             <FormControl variant='standard' value={username}>
               <Select
                 value={username}

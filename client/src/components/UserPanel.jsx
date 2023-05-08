@@ -104,6 +104,7 @@ function UserPanel({user, following, isProfilePage}) {
           <Divider />
 
           {/* New Row */}
+          {/* If 'isProfilePage' is false (meaning on homepage) render these components below */}
           {!isProfilePage &&(
           <Box padding="1rem 0">
               <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
@@ -120,6 +121,7 @@ function UserPanel({user, following, isProfilePage}) {
            </Box>
           )}
 
+          {/* If user is on their profile page, render these components below */}
           {isProfilePage && isUserProfile &&(
           <Box padding="1rem 0">
               <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
@@ -138,6 +140,7 @@ function UserPanel({user, following, isProfilePage}) {
           {/* Future Dev, add new rows for social profiles */}
     </WidgeWrap>
     ) : (
+      // Renders Mobile view of app
       <WidgeWrap>
       <FlexBetween
         gap="0.5rem"
@@ -203,6 +206,20 @@ function UserPanel({user, following, isProfilePage}) {
                 <Typography color={dark}> {typeof following === "number" ? following : following.length} </Typography>
               </Box>
            </Box>
+          )}
+
+          {isProfilePage && isUserProfile && (
+            <Box padding="1rem 0">
+             <Box display="flex" alignItems="center" gap="1rem" marginBottom="0.5rem">
+               <LocationOnOutlined  fontSize='large' sx={{color:main}}/>
+               <Typography color={dark} fontWeight="500">{location}</Typography>
+             </Box>
+             <Box display="flex" alignItems="center" gap="1rem">
+               <DinnerDiningOutlined  fontSize='large' sx={{color:main}}/>
+               <Typography color={dark} fontWeight="500">Favorite Food: </Typography>
+               <Typography color={dark} >{favFood} </Typography>
+             </Box>
+            </Box>
           )}
       
           {/* Future Dev, add new rows for social profiles */}

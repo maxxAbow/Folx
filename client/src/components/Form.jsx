@@ -11,18 +11,20 @@ const Form = ({ login, setLogin, isAuth, setIsAuth, isNonMobileScreen}) => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  // Sign=up values from Sign-up form
+  // Sign-up values from Sign-up form
   const [createdUsername, setcreatedUsername] = useState("");
   const [createdEmail, setcreatedEmail] = useState("");
   const [createdPassword, setcreatedPassword] = useState("");
   const [createdLocation, setcreatedLocation] = useState("");
   const [createdFavFood, setcreatedFavFood] = useState("");
 
+  // created empty array to store data from session
   const activeUser = [];
 
   const loginUser = async (e) => {
     e.preventDefault();
   
+    // Makes POST request to server to login, and returns session data
     const authUser = await api.login({
       email: loginEmail.toLowerCase(),
       password: loginPassword
@@ -31,23 +33,33 @@ const Form = ({ login, setLogin, isAuth, setIsAuth, isNonMobileScreen}) => {
     if (!authUser) {
       console.log('Email and or Password is incorrect');
     }
+
     const userData = authUser.data;
+
+    // If user is logged in, set IsAuth state to true
     if (userData.session.loggedIn === true) {
       setIsAuth(true);
     }
 
+    // Interates through properties of userData.session object , (checks the property keys )
+    // And pushes the corresponding values to empty activeUser array.
     for (let key in userData.session) {
       if (key === 'userId' || key === 'loggedIn') {
         activeUser.push(userData.session[key]);
       }
     }
+    // Pushes the value of userImage key (property) to the activeUser array
     activeUser.push(userData.user.userImage)
+    // Saves activeUser Array to localStorage | Later development, implement session storage/cookies instead of local storage
     localStorage.setItem('activeUser', JSON.stringify(activeUser));
+
+    // Navigates to homepage
     navigate('/home');
   };
 
   const createUser = async (e) => {
     e.preventDefault();
+    // Makes POST request to server to createUser
     const createdUser = await api.createUser({
       username: createdUsername,
       email: createdEmail.toLowerCase(),
@@ -56,11 +68,13 @@ const Form = ({ login, setLogin, isAuth, setIsAuth, isNonMobileScreen}) => {
       favFood: createdFavFood,
       userImage: Math.floor(Math.random() * 5 + 1).toString()
     });
-    
+
+    //Check if user was created successfully, if not return null
     if (!createdUser) {
       return null
     }
     
+    // If user is successfully created, make POST request to server to login, and returns session data
     const authUser = await api.login({
       email: createdEmail,
       password: createdPassword,
@@ -87,7 +101,7 @@ const Form = ({ login, setLogin, isAuth, setIsAuth, isNonMobileScreen}) => {
 
   return (
     <div className='container form'>
-    <div class="row justify-content-center align-items-center inner-row" id='form-box'>
+    <div className="row justify-content-center align-items-center inner-row" id='form-box'>
     <img className='logo bounce-2' src='../assets/images/logos/folx-1.png' alt='Folx Logo'/>
       <div
         className='form-box p-md-5'
@@ -143,6 +157,8 @@ const Form = ({ login, setLogin, isAuth, setIsAuth, isNonMobileScreen}) => {
           </button>
         </div>
       </div>
+
+      {/* The Sign-up Form is Below */}
       <div
         className='form-box p-md-5'
         id='signupForm'

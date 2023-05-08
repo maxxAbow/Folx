@@ -7,13 +7,15 @@ function Earth() {
 
     const gltf = useLoader(GLTFLoader, '/assets/polyImages/earth/scene.gltf')
     const orbitControlsRef = useRef(null)
-    useFrame((state) => {
-        
-    })
+
+    // This useEffect is used to access all of the properties inside of the OrbitControl class
+    // useEffect(() => {
+    //   console.log(orbitControlsRef.current)
+    // })
 
   return (
     <>
-        {/* Creates camera perspective around the obect, takes arg called position [x-axis,y-axis, z-axis] */}
+        {/* Creates camera perspective around the object, takes arg called position [x-axis,y-axis, z-axis] */}
         <PerspectiveCamera makeDefault  position={[0,0,5]}/>
 
         <OrbitControls 
@@ -23,7 +25,7 @@ function Earth() {
             enableZoom={false} 
             enablePan={false}     
             />
-        {/* Ambien light illuminates the model, 2 args; light color and intensity */}
+        {/* Ambient light illuminates the model, 2 args; light color and intensity */}
         <ambientLight args={["#ffffff",.5]} />
         <directionalLight position={[1, -1, 1]} />
         

@@ -4,14 +4,11 @@ import Post from './Post';
 import api from 'utils/API';
 
 function Timeline({
-    userId, 
     posts, 
-    setPosts, 
     updatePosts, 
     postState, 
     setPostState, 
     user,
-    // isProfile = false, 
     followers, 
     setFollowers, 
     following, 
