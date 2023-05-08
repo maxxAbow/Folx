@@ -51,12 +51,6 @@ const Home = ({setIsAuth, user, setUser, profileId, setProfileId, setIsProfilePa
     }
   };
 
-  // Update the posts state with the most recent posts from the API
-  const updatePosts = async () => {
-    const posts = await api.getPosts();
-    setPosts(posts.data);
-  };
-
   useEffect(() => {
     getUser(userId) // Get the user data for the given user id on initial render and when the location changes
     setIsProfilePage(false); // Set the 'isProfilePage' state to false on initial render and when the location changes
@@ -91,7 +85,6 @@ const Home = ({setIsAuth, user, setUser, profileId, setProfileId, setIsProfilePa
             posts={posts} 
             setPosts={setPosts} 
             setPostState={setPostState} 
-            updatePosts={updatePosts} 
             postState={postState} 
             followers={followers} 
             setFollowers={setFollowers} 

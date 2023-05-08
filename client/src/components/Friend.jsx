@@ -12,10 +12,8 @@ function Friend({
   friendId, 
   username, 
   location, 
-  setFollowers, 
   following, 
   setFollowing,
-  profileId, 
   setProfileId,
   isProfilePage}) {
   
@@ -27,6 +25,7 @@ function Friend({
   const { pathname } = useLocation();
   const route = useParams()
 
+  // All theme colors
   const { palette } = useTheme();
   const primaryLight = palette.primary.light;
   const primaryDark = palette.primary.dark;
@@ -51,21 +50,27 @@ function Friend({
     }
 
     if (activeUser[0] === friendId) {
-      setUserPost(true)
+      setUserPost(true);
     }
 
   }, [pathname]);
   
+  // Fetch request that updates the user's following array by adding the friendId to it
   const follow = async (friendId, userId) => {
-    await api.followUser(friendId, userId)
+    await api.followUser(friendId, userId);
+    // updates the 'following' state so that the 'following' variable in the UserPanel component rerenders reflecting follow
     setFollowing(typeof following === "number" ? following + 1 : following.length + 1);
-    setIsFollowing(!isFollowing)
+    // toggles state of 'isFollowing'
+    setIsFollowing(!isFollowing);
   };
   
+  // Fetch request that updates the user's following array by removing the friendId from it
   const unfollow = async (friendId) => {
-    await api.unfollowUser(friendId, userId)
+    await api.unfollowUser(friendId, userId);
+    // updates the 'following' state so that the 'following' variable in the UserPanel component rerenders reflecting the unfollow
     setFollowing(typeof following === "number" ? following - 1 : following.length - 1);
-    setIsFollowing(!isFollowing)
+    // toggles state of 'isFollowing'
+    setIsFollowing(!isFollowing);
   };
        
     return (
@@ -98,7 +103,9 @@ function Friend({
           </Typography>
         </Box>
       </FlexBetween>
+      {/* If not on a profile page and if post is not from the logged in user, then render these components */}
       {!isProfilePage && !userPost && (
+        // if following
         (isFollowing ? (
           <IconButton
             onClick={() => unfollow(friendId, userId)}
@@ -107,6 +114,7 @@ function Friend({
             <PersonRemoveOutlined sx={{ color: primaryDark }} />
           </IconButton>
         ) : (
+        // if not following  
           <IconButton
             onClick={() => follow(friendId, userId)}
             sx={{ backgroundColor: primaryLight, p: "0.6rem" }}

@@ -2,13 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   LocalPizzaOutlined,
-  NoMealsOutlined,
-  LocationOnOutlined,
   CommentOutlined,
   DeleteOutlined,
 } from '@mui/icons-material';
-import { Box, Divider, IconButton, Typography, useTheme } from '@mui/material';
-import ProfilePic from './style-components/ProfilePic';
+import {IconButton, Typography, useTheme } from '@mui/material';
 import FlexBetween from './style-components/FlexBetween';
 import WidgeWrap from './style-components/WidgeWrap';
 import Friend from './Friend';
@@ -25,7 +22,6 @@ const Post = ({
   postImage,
   likes,
   comments,
-  date,
   followers,
   setFollowers,
   following,
@@ -70,18 +66,22 @@ const Post = ({
     return null;
   }
 
+  // Fetch request that updates the post's like array by adding the loggedInUserId to it
   const like = async (postId, loggedInUserId) => {
     await api.likePost(postId, loggedInUserId);
     setNumLikes(numLikes + 1);
     setLiked(!liked);
   };
 
+  // Fetch request that updates the post's like array by removing the loggedInUserId to it
   const unlike = async (postId) => {
     await api.unlikePost(postId, loggedInUserId);
     setNumLikes(numLikes - 1);
     setLiked(!liked);
   };
 
+  // Fetch request that deletes the user's post by the postId, then toggles the state of 'postState'.
+  // this is done so the timeline rerenders minus the post that was deleted
   const deletePost = async (postId) => {
     await api.deletePostById(postId);
     setPostState((prevState) => !prevState);

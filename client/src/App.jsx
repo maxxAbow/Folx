@@ -45,10 +45,36 @@ useEffect(()=> {
       <ThemeProvider theme={theme}>
       <CssBaseline />
       <Routes>
-        <Route path='/' element={isAuth === false ? <Login isAuth={isAuth} setIsAuth={setIsAuth}/> : <Navigate to={"/home"} />} />
+        <Route path='/' element={isAuth === false ? <Login setIsAuth={setIsAuth}/> : <Navigate to={"/home"} />} />
         {/* If isAuth is not equal to True, then user will be routed to login page */}
-        <Route path='/home' element={isAuth ? <Home user={user} setUser={setUser} setIsAuth={setIsAuth} profileId={profileId} setProfileId={setProfileId} setIsProfilePage={setIsProfilePage}/> : <Navigate to="/" />} />
-        <Route path='/profile/:userId' element={isAuth ? <Profile user={user} setUser={setUser} profileId={profileId} setProfileId={setProfileId} isAuth={isAuth} setIsAuth={setIsAuth} isProfilePage={isProfilePage} setIsProfilePage={setIsProfilePage} /> : <Navigate to="/" />} />
+        {/* Home page route */}
+        <Route path='/home' 
+          element={
+            isAuth ? 
+            <Home 
+              user={user} 
+              setUser={setUser} 
+              setIsAuth={setIsAuth} 
+              profileId={profileId} 
+              setProfileId={setProfileId} 
+              setIsProfilePage={setIsProfilePage}
+            /> 
+            : <Navigate to="/" />} 
+        />
+        {/* Profile page route */}
+        <Route path='/profile/:userId' 
+          element={
+            isAuth ? 
+            <Profile user={user} 
+            setUser={setUser} 
+            profileId={profileId} 
+            setProfileId={setProfileId} 
+            setIsAuth={setIsAuth} 
+            isProfilePage={isProfilePage} 
+            setIsProfilePage={setIsProfilePage} 
+            /> 
+            : <Navigate to="/" />} 
+        />
       </Routes>
       </ThemeProvider>
       {/* </BrowserRouter> */}
