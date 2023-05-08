@@ -45,6 +45,7 @@ useEffect(()=> {
       <ThemeProvider theme={theme}>
       <CssBaseline />
       <Routes>
+        {/* Login page route */}
         <Route path='/' element={isAuth === false ? <Login setIsAuth={setIsAuth}/> : <Navigate to={"/home"} />} />
         {/* If isAuth is not equal to True, then user will be routed to login page */}
         {/* Home page route */}
