@@ -7,7 +7,7 @@ import { Box, useMediaQuery } from '@mui/material';
 import api from 'utils/API';
 import Timeline from 'components/Timeline';
 
-const Profile = ({isAuth, setIsAuth, user, setUser, profileId, setProfileId, isProfilePage, setIsProfilePage}) => {
+const Profile = ({user, setUser, setIsAuth, profileId, setProfileId, isProfilePage, setIsProfilePage}) => {
   // Make fetch call here via the home component level, will do first thing tomorrow
   const [friend, setFriend] = useState(null) 
   // const [loggedInId, setLoggedInId] = useState(null)
@@ -41,13 +41,7 @@ const Profile = ({isAuth, setIsAuth, user, setUser, profileId, setProfileId, isP
     friendData = friend.data;
     setFriend(friendData)
     setImage(friendData.userImage)
-   
   }
-  
-  const updatePosts = async (userId) => {
-    const posts = await api.getAllPostById(userId)
-    setPosts(posts.data);
-    };
 
   useEffect( () => {
     getUser(userId)
@@ -63,10 +57,6 @@ const Profile = ({isAuth, setIsAuth, user, setUser, profileId, setProfileId, isP
     }
   }, [friend]);
 
-  // if (!user) {
-  //   return null
-  // }
-  
   return (
     <Box className='lollipops'>
       <Navigation setIsAuth={setIsAuth} userId={loggedInId} isProfilePage={isProfilePage}/>
@@ -90,7 +80,6 @@ const Profile = ({isAuth, setIsAuth, user, setUser, profileId, setProfileId, isP
             posts={posts} 
             setPosts={setPosts} 
             setPostState={setPostState} 
-            updatePosts={updatePosts} 
             postState={postState} 
             following={following} 
             setFollowing={setFollowing} 

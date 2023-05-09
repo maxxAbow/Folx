@@ -4,14 +4,12 @@ import Navigation from 'components/Navigation';
 import UserPanel from 'components/UserPanel';
 import CreatePost from 'components/CreatePost';
 import { Box, useMediaQuery } from '@mui/material';
-import api from 'utils/API';
 import Timeline from 'components/Timeline';
+import api from 'utils/API';
 import '../../assets/css/Home.css';
 
 const Home = ({setIsAuth, user, setUser, profileId, setProfileId, setIsProfilePage}) => {
-  // Make fetch call here via the home component level, will do first thing tomorrow
-  // const [user, setUser] = useState(null) 
-  // const [userId, setUserId] = useState(null)
+
   const [image, setImage] = useState('')
   const [location, setLocation] = useState(useLocation())
   const [followers, setFollowers] = useState(0)
@@ -20,7 +18,7 @@ const Home = ({setIsAuth, user, setUser, profileId, setProfileId, setIsProfilePa
   const [posts, setPosts] = useState([]);
   const [postState, setPostState] = useState(false);
 
-  const isNonMobileScreen = useMediaQuery('(min-width: 1000px)');
+  const isNonMobileScreen = useMediaQuery('(min-width: 1000px)'); // set a boolean value to indicate whether the screen is greater than or equal to 1000px
   const navigate = useNavigate();
   let userId = '';
   let userData = {};
@@ -28,37 +26,38 @@ const Home = ({setIsAuth, user, setUser, profileId, setProfileId, setIsProfilePa
   const activeUserStorage = localStorage.getItem('activeUser'); // Retrieves activerUsers data from local storage
   const activeUser = JSON.parse(activeUserStorage); // parses the string into a JS object
 
+  // If the active user is not logged in, navigate to the homepage
   if (!activeUser || activeUser[1] !== true) {
     navigate('/');
+
+  // Otherwise, set the 'userId' variable to the id of the active user
   } else if (activeUser[1] === true) {
     userId = activeUser[0]; // if logged in, setUserId
   }
 
+  // Get the user data for the given user id from the API and update the state with the retrieved data
   const getUser = async (userId) => {
     const findUser = await api.getUserById(userId);
     userData = findUser.data;
     setUser(userData);
     setImage(userData.userImage);
     setFollowers(userData.followers.length);
+    // If the following state is of type string, it is split by the commas and set as an array to the 'following' state. 
     if (typeof following === 'string') {
       setFollowing(following.split(','));
     } else {
+      // Otherwise, the following state is updated with the userData's following property which is an array.
       setFollowing(userData.following);
     }
   };
 
-  const updatePosts = async () => {
-    const posts = await api.getPosts();
-    setPosts(posts.data);
-  };
-
   useEffect(() => {
-    getUser(userId)
-    setIsProfilePage(false);
+    getUser(userId) // Get the user data for the given user id on initial render and when the location changes
+    setIsProfilePage(false); // Set the 'isProfilePage' state to false on initial render and when the location changes
 
   }, [location]);
 
-
+  // If the user is not defined, return null
   if (!user) {
     return null;
   }  
@@ -86,7 +85,6 @@ const Home = ({setIsAuth, user, setUser, profileId, setProfileId, setIsProfilePa
             posts={posts} 
             setPosts={setPosts} 
             setPostState={setPostState} 
-            updatePosts={updatePosts} 
             postState={postState} 
             followers={followers} 
             setFollowers={setFollowers} 
